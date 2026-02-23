@@ -3,5 +3,9 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "all",
-  "printWidth": 100
+  "printWidth": 100,
+  "vueIndentScriptAndStyle": false,
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "endOfLine": "lf"
 }

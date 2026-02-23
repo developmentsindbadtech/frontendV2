@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore('auth', () => {
-  const auth = ref(null)
+  const authUser = ref(null)
 
   return {
-    auth,
+    authUser,
   }
 })
+  

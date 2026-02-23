@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite'
+import { env } from 'node:process'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -8,12 +9,19 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     'shadcn-nuxt',
     '@pinia/nuxt',
-    '@sidebase/nuxt-auth',
+    // '@sidebase/nuxt-auth',
     '@nuxt/image',
     '@nuxtjs/color-mode',
   ],
   colorMode: {
     classSuffix: '',
+  },
+  runtimeConfig: {
+    public: {
+      TRADING_BOT: env.TRADING_BOT,
+      ALKHABER_ENDPOINT: env.ALKHABER_ENDPOINT,
+      DPM_ENDPOINT: env.DPM_ENDPOINT
+    }
   },
   css: ['~/assets/css/tailwind.css'],
   vite: {
