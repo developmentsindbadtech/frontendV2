@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import Hero from '~/components/landing/sections/Hero.vue'
+
 definePageMeta({
   layout: 'landing',
 })
 </script>
 
 <template>
-  <div>
-    <h1>Welcome to Landing Page</h1>
-  </div>
+  <Hero />
 </template>

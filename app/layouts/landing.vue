@@ -91,6 +91,14 @@ const closeMobileNav = () => {
             <Button variant="outline" size="lg" class="cursor-pointer text-secondary">
               Book a Demo</Button
             >
+
+            <Button
+              variant="outline"
+              size="lg"
+              class="cursor-pointer text-primary border-primary! hover:bg-primary/10 hover:text-primary"
+            >
+              EN</Button
+            >
           </div>
         </div>
       </nav>
@@ -173,13 +181,21 @@ const closeMobileNav = () => {
               >
                 Book a Demo
               </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                class="w-full border border-primary! hover:bg-background hover:text-secondary"
+                @click="closeMobileNav"
+              >
+                English
+              </Button>
             </div>
           </div>
         </div>
       </Transition>
     </header>
 
-    <main class="relative z-0 pt-32">
+    <main class="relative z-0">
       <slot />
     </main>
     <LandingFooter />
