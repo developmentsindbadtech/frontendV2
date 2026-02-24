@@ -18,10 +18,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      TRADING_BOT: env.TRADING_BOT,
-      ALKHABER_ENDPOINT: env.ALKHABER_ENDPOINT,
-      DPM_ENDPOINT: env.DPM_ENDPOINT
-    }
+      backendEndpoint: env.BACKEND_ENDPOINT,
+      alkhabeerEndpoint: env.ALKHABER_ENDPOINT,
+      dpmEndpoint: env.DPM_ENDPOINT,
+    },
   },
   css: ['~/assets/css/tailwind.css'],
   vite: {
