@@ -53,7 +53,6 @@ const password = ref('')
 const { login } = useAppAuthStore()
 
 const handleSubmit = async () => {
-  const res = await login(email.value, password.value)
-  console.log(res)
+  await login(email.value, password.value)
 }
 </script>

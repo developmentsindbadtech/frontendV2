@@ -1,4 +1,7 @@
 export const useAppAuthStore = defineStore('auth', () => {
+  const authUser = ref()
+  const botToken = ref()
+  const token = ref()
   const login = async (email: string, password: string) => {
     try {
       const config = useRuntimeConfig()
@@ -7,12 +10,14 @@ export const useAppAuthStore = defineStore('auth', () => {
           ? config.public.backendEndpointlocal
           : config.public.backendEndpoint
 
-      const response = await useFetch(`${baseUrl}/login`, {
+      const response = await $fetch(`${baseUrl}/login`, {
         method: 'POST',
         body: { email, password },
       })
 
-      console.log(response)
+      authUser.value = (response as Record<string, any>).user
+      botToken.value = (response as Record<string, any>).botToken
+      token.value = (response as Record<string, any>).token
     } catch (error) {
       console.error(error)
     }
@@ -20,5 +25,8 @@ export const useAppAuthStore = defineStore('auth', () => {
 
   return {
     login,
+    authUser,
+    botToken,
+    token,
   }
 })
