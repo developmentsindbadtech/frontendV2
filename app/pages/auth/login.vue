@@ -1,6 +1,6 @@
 <template>
-  <form class="w-full h-full flex items-center justify-center">
-    <Card class="w-full md:max-w-sm">
+  <form class="w-full h-full flex items-center justify-center" @submit.prevent="handleSubmit">
+    <Card class="w-full sm:max-w-sm">
       <CardHeader class="justify-center text-center">
         <CardTitle>Login</CardTitle>
         <CardDescription>Enter your credentials to access the platform.</CardDescription>
@@ -8,12 +8,17 @@
       <CardContent class="space-y-4">
         <div class="space-y-2">
           <Label>Email</Label>
-          <Input type="email" placeholder="Email" required />
+          <Input v-model="email" type="email" placeholder="Email" required />
         </div>
         <div class="space-y-2">
           <Label>Password</Label>
           <div class="relative">
-            <Input :type="showPassword ? 'text' : 'password'" placeholder="Password" required />
+            <Input
+              v-model="password"
+              :type="showPassword ? 'text' : 'password'"
+              placeholder="Password"
+              required
+            />
             <Button
               size="icon-sm"
               variant="ghost"
@@ -42,4 +47,13 @@ import { Button } from '~/components/ui/button'
 import { EyeOff, Eye } from 'lucide-vue-next'
 
 const showPassword = ref(false)
+const email = ref('')
+const password = ref('')
+
+const { login } = useAppAuthStore()
+
+const handleSubmit = async () => {
+  const res = await login(email.value, password.value)
+  console.log(res)
+}
 </script>

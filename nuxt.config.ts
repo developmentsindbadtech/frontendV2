@@ -19,8 +19,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       backendEndpoint: env.BACKEND_ENDPOINT,
+      backendEndpointlocal: env.LOCAL_BACKEND_ENDPOINT,
       alkhabeerEndpoint: env.ALKHABER_ENDPOINT,
       dpmEndpoint: env.DPM_ENDPOINT,
+      appEnv: env.APP_ENV,
     },
   },
   css: ['~/assets/css/tailwind.css'],
