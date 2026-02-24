@@ -1,6 +1,11 @@
+<script setup lang="ts">
+definePageMeta({
+  layout: 'landing',
+})
+</script>
+
 <template>
   <div>
-    <h2 class="text-2xl font-bold tracking-tight">Welcome back</h2>
-    <p class="text-muted-foreground">Here is an overview of your dashboard.</p>
+    <h1>Welcome to Landing Page</h1>
   </div>
 </template>
