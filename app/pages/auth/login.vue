@@ -33,7 +33,7 @@
         </div>
       </CardContent>
       <CardFooter class="justify-center">
-        <Button>Login</Button>
+        <Button :disabled="isLoading">{{ isLoading ? 'Logging in...' : 'Login' }}</Button>
       </CardFooter>
     </Card>
   </form>
@@ -45,7 +45,9 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Button } from '~/components/ui/button'
 import { EyeOff, Eye } from 'lucide-vue-next'
+import { toast } from 'vue-sonner'
 
+const isLoading = ref(false)
 const showPassword = ref(false)
 const email = ref('')
 const password = ref('')
@@ -53,6 +55,14 @@ const password = ref('')
 const { login } = useAppAuthStore()
 
 const handleSubmit = async () => {
-  await login(email.value, password.value)
+  isLoading.value = true
+  const res = await login(email.value, password.value)
+  if (!res) {
+    toast.error('Login failed: Invalid credentials')
+  } else {
+    toast.success('Logged in successfully')
+    navigateTo('/')
+  }
+  isLoading.value = false
 }
 </script>

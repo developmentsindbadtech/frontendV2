@@ -4,3 +4,9 @@
     <p class="text-muted-foreground">Here is an overview of your dashboard.</p>
   </div>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+  layout: 'app',
+})
+</script>

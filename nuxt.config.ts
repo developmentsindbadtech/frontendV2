@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     'shadcn-nuxt',
     '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
     // '@sidebase/nuxt-auth',
     '@nuxt/image',
     '@nuxtjs/color-mode',
