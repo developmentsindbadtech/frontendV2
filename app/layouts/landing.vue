@@ -195,7 +195,7 @@ const closeMobileNav = () => {
       </Transition>
     </header>
 
-    <main class="relative z-0">
+    <main class="relative z-0 py-20">
       <slot />
     </main>
     <LandingFooter />

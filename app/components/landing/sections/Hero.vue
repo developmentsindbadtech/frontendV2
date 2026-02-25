@@ -3,17 +3,17 @@ import { Sparkles, Search } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section class="h-screen flex items-center justify-center overflow-hidden">
-    <div class="w-6xl px-2">
+  <section class="h-screen w-full overflow-hidden flex items-center justify-center">
+    <div class="w-full px-2 flex flex-col items-center justify-center">
       <span
-        className="flex items-center gap-2 px-4 py-2 rounded-full border border-secondary font-bold text-base text-secondary bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
+        className="flex items-center gap-2 px-4 py-2 rounded-full border border-secondary font-bold  text-sm sm:text-sm text-secondary bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
       >
         <Sparkles class="h-4 w-4" />
         Trading decisions are powered by AI
       </span>
 
       <!-- Text-Content -->
-      <div class="w-90 md:w-200 mx-auto">
+      <div class="w-90 md:w-200">
         <h1
           class="font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight text-center text-secondary"
         >
@@ -33,7 +33,7 @@ import { Sparkles, Search } from 'lucide-vue-next'
       >
         <!-- Icon -->
 
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 md:w-md">
           <Search class="size-5 shrink-0" />
 
           <!-- Input -->
@@ -46,10 +46,20 @@ import { Sparkles, Search } from 'lucide-vue-next'
 
         <!-- Button -->
         <button
-          class="w-full sm:w-auto px-6 py-2 bg-secondary text-white rounded-xl sm:rounded-full font-bold hover:bg-secondary/80 transition-colors"
+          class="w-full cursor-pointer sm:w-auto px-6 py-2 bg-secondary text-white rounded-xl sm:rounded-full font-bold hover:bg-secondary/80 transition-colors"
         >
           Get Started
         </button>
+      </div>
+
+      <!-- Hero-image -->
+      <NuxtImg src="/images/Hero.png" class="md:w-7xl mx-auto mt-8 rounded-2xl shadow-lg" />
+
+      <div class="mt-12 w-full max-w-3xl">
+        <h1 class="text-md sm:text-xl font-bold text-center text-natural">
+          Trusted by leading institutions in the Saudi market
+        </h1>
+        <div></div>
       </div>
     </div>
   </section>
