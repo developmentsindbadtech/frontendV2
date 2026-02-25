@@ -15,5 +15,10 @@ import UserInfo from '~/components/profile/UserInfo.vue'
 
 definePageMeta({
   layout: 'app',
+  middleware: ['auth'],
 })
+
+const { authUser, botToken, token } = useAppAuthStore()
+
+console.log(authUser, botToken, token)
 </script>
