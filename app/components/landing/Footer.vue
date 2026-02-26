@@ -31,9 +31,9 @@ const payments = [
       <!-- Top -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
         <!-- Brand -->
-        <div class="flex flex-col items-start gap-4">
+        <div class="flex flex-col items-center md:items-start gap-4">
           <NuxtImg src="/images/Logo(1).png" alt="Sindbad.Tech Logo" class="w-36 md:w-44" />
-          <p class="text-sm text-primary/80 max-w-xs">
+          <p class="text-sm text-center md:text-start text-primary/80 max-w-xs">
             AI-powered trading automation built for the Saudi market.
           </p>
         </div>
@@ -83,9 +83,9 @@ const payments = [
       <div
         class="mt-8 pt-6 border-t border-secondary/20 flex flex-col md:flex-row md:items-center md:justify-between gap-6"
       >
-        <div>
+        <div class="mx-auto md:mx-0">
           <p class="text-sm font-semibold text-center text-primary mb-3">Follow us</p>
-          <div class="flex items-center gap-2 mx-auto justify-center">
+          <div class="flex items-center gap-2">
             <a v-for="social in socials" :key="social.image" :href="social.url">
               <NuxtImg
                 :src="social.image"
