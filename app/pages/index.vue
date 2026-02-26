@@ -2,6 +2,9 @@
 import Hero from '~/components/landing/sections/Hero.vue'
 import Feature from '~/components/landing/sections/Feature.vue'
 import SharCompliance from '~/components/landing/sections/ShariaCompliance.vue'
+import Faq from '~/components/landing/sections/Faq.vue';
+import Calculator from '~/components/landing/sections/Calculator.vue';
+
 definePageMeta({
   layout: 'landing',
 })
@@ -12,6 +15,8 @@ definePageMeta({
     <Hero />
     <Feature />
     <SharCompliance />
+    <Faq />
+    <Calculator />
   </div>
 </template>
 
