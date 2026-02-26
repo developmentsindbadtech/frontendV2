@@ -3,8 +3,8 @@ import { Sparkles, Search } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section class="h-screen md:w-7xl mx-auto">
-    <div class="w-full px-2 flex flex-col items-center justify-center">
+  <section class="min-h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
+    <div class="w-full flex flex-col items-center justify-center pt-6 md:pt-10">
       <span
         className="flex items-center gap-2 px-4 py-2 mt-10 rounded-full border border-secondary font-bold  text-base sm:text-sm text-secondary bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
       >
@@ -13,14 +13,16 @@ import { Sparkles, Search } from 'lucide-vue-next'
       </span>
 
       <!-- Text-Content -->
-      <div class="w-90 md:w-200">
+      <div class="w-full max-w-sm md:max-w-3xl lg:max-w-5xl">
         <h1
-          class="font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight text-center text-secondary"
+          class="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-center text-secondary"
         >
           Build Your Legacy <span class="text-primary">While You Live It.</span>
         </h1>
 
-        <p class="mt-4 lg:w-150 text-base md:text-lg text-center text-primary mx-auto">
+        <p
+          class="mt-4 w-full max-w-2xl lg:max-w-4xl text-base md:text-lg text-center text-primary mx-auto"
+        >
           The world's most secure automated trading bot. Deploy institutional-grade strategies,
           manage risk with precision stop-losses, and let our AI algorithms handle the volatility —
           built for the Saudi market.
@@ -53,9 +55,9 @@ import { Sparkles, Search } from 'lucide-vue-next'
       </div>
 
       <!-- Hero-image -->
-      <NuxtImg src="/images/Hero.png" class="md:w-7xl mx-auto mt-8 rounded-2xl shadow-lg" />
+      <NuxtImg src="/images/Hero.png" class="w-full max-w-7xl mx-auto mt-8 rounded-2xl shadow-lg" />
 
-      <div class="mt-12 w-80 md:w-7xl">
+      <div class="mt-12 w-full max-w-7xl">
         <h1 class="text-md sm:text-xl font-bold text-center text-natural">
           Trusted by leading institutions in the Saudi market
         </h1>

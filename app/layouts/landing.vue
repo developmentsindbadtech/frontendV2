@@ -49,14 +49,16 @@ const closeMobileNav = () => {
     <header
       class="fixed inset-x-0 top-0 z-50 border-b border-b-primary/30 bg-background/80 backdrop-blur supports-backdrop-filter:backdrop-blur"
     >
-      <nav class="mx-auto flex w-full items-center justify-between gap-4 px-6 py-3 lg:py-4">
+      <nav
+        class="mx-auto flex w-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3 lg:py-4"
+      >
         <div class="flex w-full items-center justify-between gap-4 lg:w-auto">
           <NuxtLink to="/" class="flex items-center gap-2">
             <NuxtImg src="/images/Logo(1).png" alt="Logo" width="120" height="36" />
           </NuxtLink>
 
           <button
-            class="inline-flex items-center justify-center rounded-full border border-border p-2 text-primary transition-colors hover:bg-accent hover:text-accent-foreground md:hidden"
+            class="inline-flex items-center justify-center rounded-full border border-border p-2 text-primary transition-colors hover:bg-accent hover:text-accent-foreground lg:hidden"
             aria-label="Toggle navigation"
             @click="toggleMobileNav"
           >
@@ -114,7 +116,7 @@ const closeMobileNav = () => {
       >
         <div v-if="isMobileNavOpen" class="lg:hidden">
           <div
-            class="mx-auto mt-2 flex max-w-6xl flex-col gap-6 rounded-2xl border border-border bg-background px-6 py-6 shadow-xl"
+            class="mx-auto mt-2 flex max-w-6xl flex-col gap-6 rounded-2xl border border-border bg-background px-4 sm:px-6 py-6 shadow-xl"
           >
             <div class="flex flex-col gap-4">
               <div
@@ -195,7 +197,7 @@ const closeMobileNav = () => {
       </Transition>
     </header>
 
-    <main class="relative z-0 overflow-hidden py-30">
+    <main class="relative z-0 overflow-hidden pt-24 md:pt-28 lg:pt-30 pb-20 md:pb-24 lg:pb-30">
       <slot />
     </main>
     <LandingFooter />

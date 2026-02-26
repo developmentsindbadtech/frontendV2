@@ -3,8 +3,12 @@ import { Brain, ShieldCheck, TrendingUp, ChevronUp, ChevronDown } from 'lucide-v
 </script>
 
 <template>
-  <section class="h-screen sm:w-7xl mx-auto mt-50">
-    <div class="w-full p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+  <section
+    class="min-h-screen w-full max-w-7xl mx-auto mt-10 md:mt-16 lg:mt-50 px-4 sm:px-6 lg:px-0"
+  >
+    <div
+      class="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
+    >
       <!-- Left column -->
 
       <div>
@@ -13,46 +17,55 @@ import { Brain, ShieldCheck, TrendingUp, ChevronUp, ChevronDown } from 'lucide-v
 
       <!-- Right column -->
       <div>
-        <span class="text-secondary font-bold">AI-Driven Features</span>
-        <h1 class="text-secondary text-5xl font-bold mt-4 line">
+        <span class="text-secondary font-bold text-sm md:text-base">AI-Driven Features</span>
+        <h1 class="text-secondary text-3xl sm:text-4xl md:text-5xl font-bold mt-3 md:mt-4 line">
           <span class="text-primary">Smarter Trading, </span>Zero Emotion
         </h1>
-        <p class="text-primary font-semibold mt-12">
+        <p class="text-primary font-semibold mt-6 md:mt-12">
           Every trading decision is powered by AI that eliminates emotional bias and executes with
           mathematical precision.
         </p>
         <div
-          class="w-full p-5 border border-secondary rounded-2xl bg-primary flex justify-between items-start mt-6 gap-6"
+          class="w-full p-3 md:p-4 lg:p-5 border border-secondary rounded-2xl bg-primary flex flex-col lg:flex-row justify-between items-start mt-4 md:mt-6 gap-3 md:gap-4 lg:gap-6"
         >
           <Brain
-            class="h-10 w-10 border border-secondary rounded-sm bg-blue/50 p-2 text-secondary"
+            class="h-8 w-8 md:h-10 md:w-10 border border-secondary rounded-sm bg-blue/50 p-2 text-secondary shrink-0"
           />
 
-          <div class="flex flex-col gap-2 w-70">
-            <h3 class="text-secondary text-xl">AI-Powered Smart Entry</h3>
-            <p class="text-md text-white">
+          <div class="flex flex-col gap-2 flex-1">
+            <h3 class="text-secondary text-lg md:text-xl">AI-Powered Smart Entry</h3>
+            <p class="text-sm md:text-md text-white">
               Our machine learning models analyze 50+ indicators across Tadawul and global markets,
               identifying the perfect entry points. Trading decisions are powered by AI that learns
               from millions of data points in real-time.
             </p>
           </div>
-          <ChevronUp class="h-5 w-5 text-secondary" />
+          <ChevronUp class="h-5 w-5 text-secondary shrink-0" />
         </div>
 
         <div
-          class="mt-6 flex items-center justify-between w-full p-2 border border-secondary rounded-2xl bg-blue-50/20"
+          class="mt-4 md:mt-6 flex items-center justify-between w-full p-3 md:p-3 lg:p-2 border border-secondary rounded-2xl bg-blue-50/20 gap-3 md:gap-4"
         >
-          <ShieldCheck class="h-10 w-10 rounded-sm bg-primary p-2 text-secondary" />
-          <h3 class="text-secondary text-xl">Precision Stop-Loss Engine</h3>
-          <ChevronDown class="h-5 w-5 text-primary inline ml-2" />
+          <ShieldCheck
+            class="h-8 w-8 md:h-10 md:w-10 rounded-sm bg-primary p-2 text-secondary shrink-0"
+          />
+          <h3 class="text-secondary text-lg md:text-xl flex-1">Precision Stop-Loss Engine</h3>
+          <ChevronDown class="h-5 w-5 text-primary inline ml-2 shrink-0" />
         </div>
 
         <div
-          class="mt-6 flex items-center justify-between w-full p-2 border border-secondary rounded-2xl bg-blue-50/20"
+          class="mt-4 md:mt-6 flex items-center justify-between w-full p-3 md:p-3 lg:p-2 border border-secondary rounded-2xl bg-blue-50/20 gap-3 md:gap-4"
         >
-          <TrendingUp class="h-10 w-10 rounded-sm bg-primary p-2 text-secondary" />
-          <h3 class="text-secondary text-xl">Automated Portfolio Rebalancing</h3>
-          <ChevronDown class="h-5 w-5 text-primary inline ml-2" />
+          <div class="flex items-center gap-3 md:gap-4 flex-1 min-w-0">
+            <TrendingUp
+              class="h-8 w-8 md:h-10 md:w-10 rounded-sm bg-primary p-2 text-secondary shrink-0"
+            />
+            <h3 class="text-secondary text-lg md:text-xl truncate">
+              Automated Portfolio Rebalancing
+            </h3>
+          </div>
+
+          <ChevronDown class="h-5 w-5 text-primary shrink-0 ml-2" />
         </div>
       </div>
     </div>
