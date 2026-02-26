@@ -3,7 +3,7 @@ import { Sparkles, Search } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section class="min-h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
+  <section class="min-h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 mt-72px lg:px-0">
     <div class="w-full flex flex-col items-center justify-center pt-6 md:pt-10">
       <span
         className="flex items-center gap-2 px-4 py-2 mt-10 rounded-full border border-secondary font-bold  text-base sm:text-sm text-secondary bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"

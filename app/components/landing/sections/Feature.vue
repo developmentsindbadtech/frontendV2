@@ -1,10 +1,19 @@
 <script setup lang="ts">
-import { Brain, ShieldCheck, TrendingUp, ChevronUp, ChevronDown } from 'lucide-vue-next'
+import {
+  Brain,
+  ShieldCheck,
+  TrendingUp,
+  ChevronUp,
+  ChevronDown,
+  Zap,
+  ChartColumn,
+  Lock,
+} from 'lucide-vue-next'
 </script>
 
 <template>
   <section
-    class="min-h-screen w-full max-w-7xl mx-auto mt-10 md:mt-16 lg:mt-50 px-4 sm:px-6 lg:px-0"
+    class="min-h-screen w-full mt-72 max-w-7xl mx-auto md:mt-16 lg:mt-50 px-4 sm:px-6 lg:px-0"
   >
     <div
       class="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
@@ -67,6 +76,65 @@ import { Brain, ShieldCheck, TrendingUp, ChevronUp, ChevronDown } from 'lucide-v
 
           <ChevronDown class="h-5 w-5 text-primary shrink-0 ml-2" />
         </div>
+      </div>
+    </div>
+
+    <div
+      class="w-full mt-72 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
+    >
+      <!-- Left column -->
+      <div class="w-full">
+        <span class="text-secondary font-bold text-sm md:text-base"
+          >Built for the Saudi Market</span
+        >
+        <h1 class="text-secondary text-3xl sm:text-4xl md:text-5xl font-bold mt-3 md:mt-4 line">
+          <span class="text-primary">Institutional-Grade, </span>AI Strategies
+        </h1>
+        <p class="text-primary font-semibold mt-6 md:mt-12">
+          Deploy the same AI-powered strategies used by top hedge funds. Our algorithms analyze
+          Tadawul, NOMU, and global correlations to make data-driven trading decisions — fully
+          automated, fully transparent.
+        </p>
+
+        <div
+          class="mt-4 md:mt-6 flex items-center justify-between w-full p-3 md:p-3 lg:p-2 rounded-2xl gap-3 md:gap-4"
+        >
+          <Zap class="h-8 w-8 md:h-10 md:w-10 rounded-sm bg-primary p-2 text-secondary shrink-0" />
+          <h3 class="text-secondary text-lg md:text-xl flex-1">
+            Execute trades in under 10ms with zero latency
+          </h3>
+        </div>
+
+        <div
+          class="mt-4 md:mt-6 flex items-center justify-between w-full p-3 md:p-3 lg:p-2 rounded-2xl gap-3 md:gap-4"
+        >
+          <div class="flex items-center gap-3 md:gap-4 flex-1 min-w-0">
+            <ChartColumn
+              class="h-8 w-8 md:h-10 md:w-10 rounded-sm bg-primary p-2 text-secondary shrink-0"
+            />
+            <h3 class="text-secondary text-lg md:text-xl truncate">
+              Back-test strategies against 10+ years of Tadawul data
+            </h3>
+          </div>
+        </div>
+        <div
+          class="mt-4 md:mt-6 flex items-center justify-between w-full p-3 md:p-3 lg:p-2 rounded-2xl gap-3 md:gap-4"
+        >
+          <div class="flex items-center gap-3 md:gap-4 flex-1 min-w-0">
+            <Lock
+              class="h-8 w-8 md:h-10 md:w-10 rounded-sm bg-primary p-2 text-secondary shrink-0"
+            />
+            <h3 class="text-secondary text-lg md:text-xl truncate">
+              Bank-grade encryption & CMA-compliant security protocols
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column -->
+      <div>
+        <!-- <---PlaceHolder Only--->
+        <NuxtImg src="/images/feature-mobile-frame.png" class="w-full" />
       </div>
     </div>
   </section>
