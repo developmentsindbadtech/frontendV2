@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Hero from '~/components/landing/sections/Hero.vue'
 import Feature from '~/components/landing/sections/Feature.vue'
+import SharCompliance from '~/components/landing/sections/ShariaCompliance.vue'
 definePageMeta({
   layout: 'landing',
 })
@@ -10,11 +11,12 @@ definePageMeta({
   <div>
     <Hero />
     <Feature />
+    <SharCompliance />
   </div>
 </template>
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 definePageMeta({
   layout: 'app',
 })
-</script>
+</script> -->
