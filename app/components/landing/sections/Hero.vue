@@ -3,10 +3,10 @@ import { Sparkles, Search } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section class="h-screen w-full overflow-hidden flex items-center justify-center">
+  <section class="h-screen w-full flex items-center justify-center">
     <div class="w-full px-2 flex flex-col items-center justify-center">
       <span
-        className="flex items-center gap-2 px-4 py-2 rounded-full border border-secondary font-bold  text-sm sm:text-sm text-secondary bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
+        className="flex items-center gap-2 px-4 py-2 mt-10 rounded-full border border-secondary font-bold  text-base sm:text-sm text-secondary bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
       >
         <Sparkles class="h-4 w-4" />
         Trading decisions are powered by AI
@@ -55,11 +55,20 @@ import { Sparkles, Search } from 'lucide-vue-next'
       <!-- Hero-image -->
       <NuxtImg src="/images/Hero.png" class="md:w-7xl mx-auto mt-8 rounded-2xl shadow-lg" />
 
-      <div class="mt-12 w-full max-w-3xl">
+      <div class="mt-12 w-80 md:w-7xl">
         <h1 class="text-md sm:text-xl font-bold text-center text-natural">
           Trusted by leading institutions in the Saudi market
         </h1>
-        <div></div>
+
+        <!-- Trusted brands logos placeholder -->
+        <div class="flex items-center justify-between flex-wrap gap-6 mt-6 w-full">
+          <NuxtImg
+            v-for="value in 6"
+            :key="value"
+            src="/images/brand-placeholder.png"
+            class="w-30 mx-auto"
+          />
+        </div>
       </div>
     </div>
   </section>
