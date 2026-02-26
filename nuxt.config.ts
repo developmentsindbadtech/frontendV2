@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     'shadcn-nuxt',
     '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
     // '@sidebase/nuxt-auth',
     '@nuxt/image',
     '@nuxtjs/color-mode',
@@ -18,10 +19,12 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      TRADING_BOT: env.TRADING_BOT,
-      ALKHABER_ENDPOINT: env.ALKHABER_ENDPOINT,
-      DPM_ENDPOINT: env.DPM_ENDPOINT
-    }
+      backendEndpoint: env.BACKEND_ENDPOINT,
+      backendEndpointlocal: env.LOCAL_BACKEND_ENDPOINT,
+      alkhabeerEndpoint: env.ALKHABER_ENDPOINT,
+      dpmEndpoint: env.DPM_ENDPOINT,
+      appEnv: env.APP_ENV,
+    },
   },
   css: ['~/assets/css/tailwind.css'],
   vite: {
