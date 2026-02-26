@@ -79,49 +79,47 @@ const payments = [
         </div>
       </div>
 
-      <!-- Social + Payments placeholders -->
+      <!-- Legal + Social + Payments in one row -->
       <div
-        class="mt-8 pt-6 border-t border-secondary/20 flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+        class="mt-8 pt-6 border-t border-secondary/20 flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6 w-full"
       >
-        <div class="mx-auto md:mx-0">
-          <p class="text-sm font-semibold text-center text-primary mb-3">Follow us</p>
-          <div class="flex items-center gap-2">
-            <a v-for="social in socials" :key="social.image" :href="social.url">
-              <NuxtImg
-                :src="social.image"
-                :alt="social.name || 'Social media icon'"
-                class="w-15 rounded-full hover:opacity-80 transition-opacity"
-              />
-            </a>
-          </div>
+        <div class="flex flex-col gap-2 text-center lg:text-left">
+          <p class="text-xs md:text-sm text-primary/80 lg:max-w-2xl">
+            Sindbad.Tech Commercial Registration No. 2055130307, permitted by the Capital Market
+            Authority (2023-115-05). VAT Registration Number (104240002616387)
+          </p>
+          <span class="text-xs md:text-sm text-primary/80">
+            {{ 'Copyright © ' + new Date().getFullYear() + ' All Rights Reserved | Sindbad.Tech' }}
+          </span>
         </div>
 
-        <div>
-          <p class="text-sm font-semibold text-primary text-center mb-3">Payment methods</p>
-          <div class="flex items-center gap-1 flex-wrap mx-auto justify-center">
-            <a v-for="payment in payments" :key="payment.name" :href="payment.url">
-              <NuxtImg
-                :src="payment.image"
-                :alt="payment.name + ' payment method'"
-                class="w-15 object-contain"
-              />
-            </a>
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8 lg:gap-10">
+          <div class="mx-auto sm:mx-0">
+            <p class="text-sm font-semibold text-center text-primary mb-3">Follow us</p>
+            <div class="flex items-center gap-2">
+              <a v-for="social in socials" :key="social.image" :href="social.url">
+                <NuxtImg
+                  :src="social.image"
+                  :alt="social.name || 'Social media icon'"
+                  class="w-15 rounded-full hover:opacity-80 transition-opacity"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-sm font-semibold text-primary text-center mb-3">Payment methods</p>
+            <div class="flex items-center gap-1 flex-wrap mx-auto justify-center">
+              <a v-for="payment in payments" :key="payment.name" :href="payment.url">
+                <NuxtImg
+                  :src="payment.image"
+                  :alt="payment.name + ' payment method'"
+                  class="w-15 object-contain"
+                />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Legal -->
-      <div
-        class="mt-8 pt-6 border-t border-secondary/20 flex flex-col md:flex-row md:justify-between md:items-center gap-4 w-full"
-      >
-        <p class="text-xs md:text-sm text-primary/80 md:max-w-[70%] text-center md:text-left">
-          Sindbad.Tech Commercial Registration No. 2055130307, permitted by the Capital Market
-          Authority (2023-115-05). VAT Registration Number (104240002616387)
-        </p>
-
-        <span class="text-xs text-center md:text-sm text-primary/80">
-          {{ 'Copyright © ' + new Date().getFullYear() + ' All Rights Reserved | Sindbad.Tech' }}
-        </span>
       </div>
     </section>
   </footer>
