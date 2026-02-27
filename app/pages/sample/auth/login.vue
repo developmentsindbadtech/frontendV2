@@ -8,13 +8,13 @@
       <CardContent class="space-y-4">
         <div class="space-y-2">
           <Label>Email</Label>
-          <Input v-model="email" type="email" placeholder="Email" required />
+          <Input v-model="credentials.email" type="email" placeholder="Email" required />
         </div>
         <div class="space-y-2">
           <Label>Password</Label>
           <div class="relative">
             <Input
-              v-model="password"
+              v-model="credentials.password"
               :type="showPassword ? 'text' : 'password'"
               placeholder="Password"
               required
@@ -49,14 +49,17 @@ import { toast } from 'vue-sonner'
 
 const isLoading = ref(false)
 const showPassword = ref(false)
-const email = ref('')
-const password = ref('')
+
+const credentials = ref<Credentials>({
+  email: '',
+  password: '',
+})
 
 const { login } = useAppAuthStore()
 
 const handleSubmit = async () => {
   isLoading.value = true
-  const res = await login(email.value, password.value)
+  const res = await login(credentials.value)
   if (!res) {
     toast.error('Login failed: Invalid credentials')
   } else {
