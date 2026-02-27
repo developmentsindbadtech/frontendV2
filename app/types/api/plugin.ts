@@ -5,6 +5,11 @@ export interface ApiInstances {
   dpm: $Fetch
   alkhabeer: $Fetch
 }
+export interface ApiClientOptions {
+  baseURL: string
+  getToken: () => string | null | undefined
+  onAuthError: (status: number) => void
+}
 
 declare module '#app' {
   interface NuxtApp {

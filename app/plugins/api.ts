@@ -1,11 +1,5 @@
-import type { ApiInstances } from '~/types/api/plugin'
+import type { ApiInstances, ApiClientOptions } from '~/types/api/plugin'
 import { APP_ENV_LOCAL } from '~/lib/const'
-
-interface ApiClientOptions {
-  baseURL: string
-  getToken: () => string | null | undefined
-  onAuthError: (status: number) => void
-}
 
 function createApiClient(options: ApiClientOptions) {
   return $fetch.create({
