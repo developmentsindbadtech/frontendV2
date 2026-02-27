@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Hero from '~/components/landing/sections/Hero.vue'
 import Feature from '~/components/landing/sections/Feature.vue'
+import StockMarkets from '~/components/landing/sections/StockMarkets.vue'
 import SharCompliance from '~/components/landing/sections/ShariaCompliance.vue'
 import Faq from '~/components/landing/sections/Faq.vue'
 import Calculator from '~/components/landing/sections/Calculator.vue'
@@ -17,6 +18,7 @@ definePageMeta({
   <div>
     <Hero />
     <Feature />
+    <StockMarkets />
     <SharCompliance />
     <Calculator />
     <TeamCard />
