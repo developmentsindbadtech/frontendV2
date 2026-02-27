@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Hero from '~/components/landing/sections/Hero.vue'
 import Feature from '~/components/landing/sections/Feature.vue'
+import Testimonials from '~/components/landing/sections/Testimonials.vue'
 definePageMeta({
   layout: 'landing',
 })
@@ -10,6 +11,7 @@ definePageMeta({
   <div>
     <Hero />
     <Feature />
+    <Testimonials />
   </div>
 </template>
 

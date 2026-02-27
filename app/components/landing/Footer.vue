@@ -72,7 +72,7 @@ const payments = [
             Sinbad.Tech bot experience
           </h3>
           <button
-            class="bg-secondary text-white font-bold px-6 py-3 rounded-xl hover:bg-secondary/90 transition-colors w-full"
+            class="bg-secondary cursor-pointer text-white font-bold px-6 py-3 rounded-xl hover:bg-secondary/90 transition-colors w-full"
           >
             Sign Up
           </button>
