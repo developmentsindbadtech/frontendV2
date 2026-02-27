@@ -8,6 +8,8 @@ import {
   Zap,
   ChartColumn,
   Lock,
+  ArrowRight,
+
 } from 'lucide-vue-next'
 </script>
 
@@ -129,6 +131,16 @@ import {
             </h3>
           </div>
         </div>
+
+        <Button 
+              variant="default"
+              size="lg"
+              class="bg-secondary rounded-3xl cursor-pointer font-bold text-white hover:bg-secondary/90 mt-6 md:mt-8"
+        >
+          Explore AI strategies
+          <ArrowRight class="w-4 h-4"/>
+        </Button>
+        
       </div>
 
       <!-- Right column -->
