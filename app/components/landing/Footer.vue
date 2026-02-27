@@ -29,7 +29,7 @@ const payments = [
   <footer class="w-full mt-16 md:mt-24 border-t border-secondary/20">
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 py-10 md:py-14">
       <!-- Top -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
+      <div class="grid grid-cols-1 mx-3 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
         <!-- Brand -->
         <div class="flex flex-col items-center md:items-start gap-4">
           <NuxtImg src="/images/Logo(1).png" alt="Sindbad.Tech Logo" class="w-36 md:w-44" />
@@ -64,15 +64,15 @@ const payments = [
         </div>
 
         <!-- CTA -->
-        <div class="flex flex-col items-start lg:items-end gap-4">
+        <div class="flex flex-col items-center md:col-span-2 xl:col-span-1 xl:items-end gap-4">
           <h3
-            class="text-center text-primary font-semibold text-base md:text-lg max-w-sm lg:text-center"
+            class="text-center xl:text-center text-primary font-semibold text-base md:text-lg max-w-sm"
           >
             <span class="text-secondary font-bold">SIGN UP NOW FOR FREE To</span> get the
             Sinbad.Tech bot experience
           </h3>
           <button
-            class="bg-secondary cursor-pointer text-white font-bold px-6 py-3 rounded-xl hover:bg-secondary/90 transition-colors w-full"
+            class="bg-secondary cursor-pointer text-white font-bold px-6 py-3 rounded-xl hover:bg-secondary/90 transition-colors w-full md:max-w-xs"
           >
             Sign Up
           </button>
@@ -81,9 +81,9 @@ const payments = [
 
       <!-- Legal + Social + Payments in one row -->
       <div
-        class="mt-8 pt-6 border-t border-secondary/20 flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6 w-full"
+        class="mt-8 pt-6 border-t border-secondary/20 flex flex-col xl:flex-row xl:justify-between xl:items-start gap-6 w-full"
       >
-        <div class="flex flex-col gap-2 text-center lg:text-left">
+        <div class="flex flex-col gap-2 text-center mx-auto xl:text-left min-w-0">
           <p class="text-xs md:text-sm text-primary/80 lg:max-w-2xl">
             Sindbad.Tech Commercial Registration No. 2055130307, permitted by the Capital Market
             Authority (2023-115-05). VAT Registration Number (104240002616387)
@@ -93,7 +93,9 @@ const payments = [
           </span>
         </div>
 
-        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8 lg:gap-10">
+        <div
+          class="flex flex-col mx-auto sm:flex-row sm:flex-wrap items-center sm:items-start gap-6 sm:gap-8 xl:gap-10 xl:justify-end"
+        >
           <div class="mx-auto sm:mx-0">
             <p class="text-sm font-semibold text-center text-primary mb-3">Follow us</p>
             <div class="flex items-center gap-2">
