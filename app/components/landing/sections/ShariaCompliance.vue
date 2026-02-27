@@ -43,7 +43,7 @@ import {
             </figure>
         </div>
         <div class="flex flex-col items-center lg:items-end text-center lg:text-end max-w-md mt-6 lg:mt-16">
-            <BookOpen class="w-12 h-12 text-secondary mb-4"/>
+            <BookOpen class="w-8 h-8 text-secondary mb-4"/>
             <h2 class="font-bold text-3xl">
                 <span class="text-secondary">Complied with</span> SHARI'A COMPLIANCE!
             </h2>
@@ -57,7 +57,6 @@ import {
             >
             <ArrowUpLeft class="w-2 h-2"/>
             Sharia opinion
-            
         </Button>
         </div>
     </div>

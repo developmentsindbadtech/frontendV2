@@ -4,6 +4,7 @@ import Feature from '~/components/landing/sections/Feature.vue'
 import SharCompliance from '~/components/landing/sections/ShariaCompliance.vue'
 import Faq from '~/components/landing/sections/Faq.vue';
 import Calculator from '~/components/landing/sections/Calculator.vue';
+import TeamCard from '~/components/landing/sections/TeamCard.vue';
 
 definePageMeta({
   layout: 'landing',
@@ -17,6 +18,7 @@ definePageMeta({
     <SharCompliance />
     <Faq />
     <Calculator />
+    <TeamCard />
   </div>
 </template>
 
