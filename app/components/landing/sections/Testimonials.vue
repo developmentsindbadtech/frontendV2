@@ -9,6 +9,7 @@ type Testimonial = {
   testimony: string
 }
 
+// SAMPLE DATAS ONLY - NOT FINAL TESTIMONIALS
 const testimonials: Testimonial[] = [
   {
     id: 1,
@@ -244,7 +245,7 @@ const moveRight = () => {
       </div>
 
       <div class="mt-8 md:mt-10 w-full flex flex-col items-center">
-        <div class="relative h-34 sm:h-38 md:h-40 w-full max-w-3xl overflow-hidden">
+        <div class="relative h-34 sm:h-38 md:h-40 w-full md:max-w-3xl overflow-hidden">
           <button
             type="button"
             class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-11 md:w-11 rounded-full border border-secondary/40 bg-primary/70 text-secondary flex items-center justify-center hover:bg-primary/90 transition-colors"
