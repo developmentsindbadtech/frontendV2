@@ -6,6 +6,7 @@ import Faq from '~/components/landing/sections/Faq.vue'
 import Calculator from '~/components/landing/sections/Calculator.vue'
 import TeamCard from '~/components/landing/sections/TeamCard.vue'
 import CallToAction from '~/components/landing/sections/CallToAction.vue'
+import Testimonials from '~/components/landing/sections/Testimonials.vue'
 
 definePageMeta({
   layout: 'landing',
@@ -17,10 +18,11 @@ definePageMeta({
     <Hero />
     <Feature />
     <SharCompliance />
-    <Faq />
     <Calculator />
     <TeamCard />
+    <Testimonials />
     <CallToAction />
+    <Faq />
   </div>
 </template>
 
