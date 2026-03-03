@@ -9,14 +9,11 @@ import {
   ChartColumn,
   Lock,
   ArrowRight,
-
 } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section
-    class="min-h-screen w-full mt-72 max-w-7xl mx-auto md:mt-16 lg:mt-50 px-4 sm:px-6 lg:px-0"
-  >
+  <section class="min-h-screen w-full md:mt-18 max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-0">
     <div
       class="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
     >
@@ -82,7 +79,7 @@ import {
     </div>
 
     <div
-      class="w-full mt-72 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
+      class="w-full md:mt-18 mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
     >
       <!-- Left column -->
       <div class="w-full">
@@ -132,15 +129,14 @@ import {
           </div>
         </div>
 
-        <Button 
-              variant="default"
-              size="lg"
-              class="bg-secondary rounded-3xl cursor-pointer font-bold text-white hover:bg-secondary/90 mt-6 md:mt-8"
+        <Button
+          variant="default"
+          size="lg"
+          class="bg-secondary rounded-3xl cursor-pointer font-bold text-white hover:bg-secondary/90 mt-6 md:mt-8"
         >
           Explore AI strategies
-          <ArrowRight class="w-4 h-4"/>
+          <ArrowRight class="w-4 h-4" />
         </Button>
-        
       </div>
 
       <!-- Right column -->

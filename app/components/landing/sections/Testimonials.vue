@@ -229,7 +229,7 @@ const moveRight = () => {
 </script>
 
 <template>
-  <section class="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-72 md:mt-20 lg:px-0">
+  <section class="w-full max-w-7xl mx-auto px-4 sm:px-6 md:mt-18 mt-12 lg:px-0">
     <div class="w-full flex flex-col items-center justify-center text-center">
       <span class="text-secondary font-bold text-sm md:text-base">Testimonials</span>
       <h2 class="text-secondary text-3xl sm:text-4xl md:text-5xl font-bold mt-3 md:mt-4">

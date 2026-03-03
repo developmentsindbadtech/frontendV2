@@ -26,7 +26,7 @@ const payments = [
 </script>
 
 <template>
-  <footer class="w-full mt-16 md:mt-24 border-t border-secondary/20">
+  <footer class="w-full md:mt-18 mt-12 border-t border-secondary/20">
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 py-10 md:py-14">
       <!-- Top -->
       <div class="grid grid-cols-1 mx-3 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">

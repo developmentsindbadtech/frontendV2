@@ -3,10 +3,10 @@ import { Sparkles, Search } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section class="min-h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 mt-72px lg:px-0">
+  <section class="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-18 lg:px-0">
     <div class="w-full flex flex-col items-center justify-center pt-6 md:pt-10">
       <span
-        className="flex items-center gap-2 px-4 py-2 mt-10 rounded-full border border-secondary font-bold  text-base sm:text-sm text-secondary bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
+        class="flex items-center gap-2 px-4 py-2 mt-10 rounded-full border border-secondary font-bold text-base sm:text-sm text-secondary bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
       >
         <Sparkles class="h-4 w-4" />
         Trading decisions are powered by AI
@@ -56,22 +56,6 @@ import { Sparkles, Search } from 'lucide-vue-next'
 
       <!-- Hero-image -->
       <NuxtImg src="/images/Hero.png" class="w-full max-w-7xl mx-auto mt-8 rounded-2xl shadow-lg" />
-
-      <div class="mt-12 w-full max-w-7xl">
-        <h1 class="text-md sm:text-xl font-bold text-center text-natural">
-          Trusted by leading institutions in the Saudi market
-        </h1>
-
-        <!-- Trusted brands logos placeholder -->
-        <div class="flex items-center justify-between flex-wrap gap-6 mt-6 w-full">
-          <NuxtImg
-            v-for="value in 6"
-            :key="value"
-            src="/images/brand-placeholder.png"
-            class="w-30 mx-auto"
-          />
-        </div>
-      </div>
     </div>
   </section>
 </template>

@@ -36,7 +36,7 @@ const statusClass = (status: string) => {
 </script>
 
 <template>
-  <section class="mt-72 max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
+  <section class="md:mt-18 mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
     <div class="w-full flex flex-col items-center gap-8 py-5 md:mx-auto px-4 sm:px-6 lg:px-0">
       <h2 class="text-primary text-sm sm:text-2xl md:text-5xl font-bold text-center">
         <span class="text-secondary">Target Stock Markets</span>
