@@ -125,7 +125,15 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  /* Forces a permanent scrollbar gutter so the page width remains identical whether the scrollbar is visible or hidden. */
+  html {
+    scrollbar-gutter: stable;
+  }
+
   body {
+    /* Overrides the Radix/Shadcn injected padding that causes the 'left jump'. Combined with the theme styles from your original tailwind.css.*/
+    padding-right: 0px !important;
     @apply bg-background text-foreground font-sans;
   }
 }
