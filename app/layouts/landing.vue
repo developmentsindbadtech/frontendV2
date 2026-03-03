@@ -82,7 +82,7 @@ const closeMobileNav = () => {
             <Button
               variant="default"
               size="lg"
-              class="hover:bg-background hover:text-secondary cursor-pointer"
+              class="hover:bg-transparent hover:text-secondary cursor-pointer bg-transparent"
             >
               Sign In
             </Button>

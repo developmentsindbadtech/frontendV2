@@ -200,7 +200,7 @@ const positionedTestimonials = computed(() =>
 )
 
 const visibleTestimonials = computed(() =>
-  positionedTestimonials.value.filter((person) => Math.abs(person.offset) <= 3),
+  positionedTestimonials.value.filter((person) => Math.abs(person.offset) <= 1),
 )
 
 const avatarStyle = (offset: number) => {

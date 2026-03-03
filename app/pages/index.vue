@@ -20,8 +20,8 @@ definePageMeta({
     <Hero />
     <LogoGroup />
     <Feature />
-    <StockMarkets />
     <SharCompliance />
+    <StockMarkets />
     <Calculator />
     <TeamCard />
     <Testimonials />

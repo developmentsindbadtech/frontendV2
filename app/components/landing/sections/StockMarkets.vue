@@ -47,9 +47,7 @@ const statusClass = (status: string) => {
         One of the main goal here in Sindbad.Tech is to expand globally
       </h3>
 
-      <div
-        class="rounded-sm shadow-2xl p-4 sm:p-6 md:p-10 border border-secondary/20 bg-primary/10 w-full max-w-7xl"
-      >
+      <div class="rounded-sm p-4 sm:p-6 md:p-10 w-full max-w-7xl">
         <div class="relative w-full max-w-7xl mx-auto mt-6 md:mt-12">
           <NuxtImg
             src="/images/stock-markets/Vector.png"
