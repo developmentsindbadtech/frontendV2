@@ -13,6 +13,21 @@ import LogoGroup from '~/components/landing/sections/LogoGroup.vue'
 definePageMeta({
   layout: 'landing',
 })
+useHead({
+  title: 'Sindbad - AI-Powered Stock Trading for Saudi Markets',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Sindbad is an AI-powered stock trading platform designed for the Saudi markets. Our advanced algorithms analyze real-time data to provide smart entry and exit points, maximizing your trading potential while minimizing emotional bias.',
+    },
+    {
+      name: 'keywords',
+      content:
+        'AI stock trading, Saudi stock market, smart trading, algorithmic trading, financial technology, stock analysis, trading platform, market insights',
+    },
+  ],
+})
 </script>
 
 <template>
