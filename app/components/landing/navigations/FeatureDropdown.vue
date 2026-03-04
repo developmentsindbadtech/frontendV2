@@ -1,10 +1,24 @@
 <script setup lang="ts">
-import { ChevronDown, Activity, RefreshCw, Grid, Cloud, Coins, ChevronRight } from 'lucide-vue-next'
+import {
+    ChevronDown,
+    Zap,
+    Bot,
+    Clock,
+    BarChart3,
+    ShieldCheck,
+    Lock,
+    Cloud,
+    Coins,
+    ChevronRight
+} from 'lucide-vue-next'
 
-const leftFeatures = [
-    { title: 'Signal Bot', description: 'Designed for TradingView users', icon: Activity },
-    { title: 'DCA Bot', description: 'Purchase at opportune moments', icon: RefreshCw },
-    { title: 'GRID Bot', description: 'Trade in sideways markets', icon: Grid }
+const features = [
+    { title: 'Automated Trade', description: 'Execute trades based on preset rules.', icon: Zap },
+    { title: 'Trading Bots', description: 'Deploy algorithmic trading strategies.', icon: Bot },
+    { title: '24/7 Automation', description: 'Continuous market monitoring and execution.', icon: Clock },
+    { title: 'Backtest', description: 'Test strategies against historical data.', icon: BarChart3 },
+    { title: 'Safeguard Signal', description: 'Advanced risk management signals.', icon: ShieldCheck },
+    { title: 'Security', description: 'Institutional-grade asset protection.', icon: Lock }
 ]
 
 const exchangeBots = ['Binance Bot', 'OKX Bot', 'Coinbase Bot', 'Kraken Bot', 'Bybit Bot']
@@ -21,28 +35,27 @@ const coinBots = ['Ethereum Bot', 'Tether Bot', 'Dogecoin Bot', 'Solana Bot', 'B
             </Button>
         </DropdownMenuTrigger>
 
-        <!-- Added offset 20 to align drop down menu to the border -->
         <DropdownMenuContent align="start" :side-offset="20"
-            class="w-[750px] p-0 flex rounded-xl border border-border bg-card shadow-xl z-50 overflow-hidden">
+            class="w-[800px] p-0 flex rounded-xl border border-border bg-card shadow-xl z-50 overflow-hidden">
 
-            <div class="w-1/3 bg-muted/20 p-4 border-r border-border flex flex-col gap-2">
-                <DropdownMenuItem v-for="item in leftFeatures" :key="item.title"
-                    class="flex flex-col items-start p-3 cursor-pointer transition-colors rounded-lg hover:bg-background outline-none border border-transparent hover:border-border/50">
+            <div class="w-2/5 bg-muted/20 p-4 border-r border-border flex flex-col gap-1">
+                <DropdownMenuItem v-for="item in features" :key="item.title"
+                    class="flex flex-col items-start p-2.5 cursor-pointer transition-colors rounded-lg hover:bg-background outline-none border border-transparent hover:border-border/50">
                     <div class="flex items-center gap-2 w-full">
-                        <component :is="item.icon" class="w-5 h-5 text-blue" />
+                        <component :is="item.icon" class="w-4 h-4 text-blue" />
                         <span class="font-semibold text-sm text-primary">{{ item.title }}</span>
                     </div>
-                    <span class="text-xs text-muted-foreground mt-1 ml-7">{{ item.description }}</span>
+                    <span class="text-[11px] text-muted-foreground mt-0.5 ml-6">{{ item.description }}</span>
                 </DropdownMenuItem>
             </div>
 
-            <div class="w-2/3 bg-card p-6 flex flex-col">
+            <div class="w-3/5 bg-card p-6 flex flex-col justify-center">
                 <div class="mb-8">
                     <div class="flex items-center gap-2 mb-4 px-2 opacity-70">
                         <Cloud class="w-4 h-4" />
                         <span class="text-xs font-bold uppercase tracking-wider">Exchange BOT</span>
                     </div>
-                    <div class="grid grid-cols-3 gap-y-4 gap-x-2">
+                    <div class="grid grid-cols-2 gap-y-4 gap-x-2">
                         <DropdownMenuItem v-for="bot in exchangeBots" :key="bot"
                             class="flex items-center gap-2 cursor-pointer text-muted-foreground hover:text-foreground transition-colors p-2 text-sm outline-none">
                             <div class="w-2 h-2 rounded-full bg-blue/40"></div>
@@ -56,7 +69,7 @@ const coinBots = ['Ethereum Bot', 'Tether Bot', 'Dogecoin Bot', 'Solana Bot', 'B
                         <Coins class="w-4 h-4" />
                         <span class="text-xs font-bold uppercase tracking-wider">Coin BOT</span>
                     </div>
-                    <div class="grid grid-cols-3 gap-y-4 gap-x-2">
+                    <div class="grid grid-cols-2 gap-y-4 gap-x-2">
                         <DropdownMenuItem v-for="bot in coinBots" :key="bot"
                             class="flex items-center gap-2 cursor-pointer text-muted-foreground hover:text-foreground transition-colors p-2 text-sm outline-none">
                             <div class="w-2 h-2 rounded-full bg-natural/40"></div>
