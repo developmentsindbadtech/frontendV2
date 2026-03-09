@@ -3,6 +3,15 @@ import { env } from 'node:process'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // app: {
+  //   head: {
+  //     link: [
+  //       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+  //       // or PNG:
+  //       // { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+  //     ],
+  //   },
+  // },
   compatibilityDate: '2025-07-15',
   devServer: {
     port: 5173,
