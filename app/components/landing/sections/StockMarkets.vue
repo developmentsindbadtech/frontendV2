@@ -38,14 +38,11 @@ const statusClass = (status: string) => {
 <template>
   <section class="md:mt-18 mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
     <div class="w-full flex flex-col items-center gap-8 py-5 md:mx-auto px-4 sm:px-6 lg:px-0">
-      <h2 class="text-primary text-sm sm:text-2xl md:text-5xl font-bold text-center">
-        Supported Stock Exchange
+      <span class="text-secondary text-center font-bold text-base">Global Markets</span>
+      <h2 class="text-secondary sm:text-2xl md:text-5xl font-bold text-center">
+        <span class="text-primary block">Supported</span>
+        <span class="block mt-2">Stock Exchange</span>
       </h2>
-
-      <h3 class="text-primary text-center text-base md:text-2xl">
-        Based on historical performance of our AI algorithm Performance based on 19% average annual
-        return from Midrar's AI algorithm.
-      </h3>
 
       <div class="rounded-sm p-4 sm:p-6 md:p-10 w-full max-w-7xl">
         <div class="relative w-full max-w-7xl mx-auto mt-6 md:mt-12">
