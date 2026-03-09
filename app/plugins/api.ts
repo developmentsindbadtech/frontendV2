@@ -1,5 +1,6 @@
 import type { ApiInstances, ApiClientOptions } from '~/types/api/plugin'
 import { APP_ENV_LOCAL } from '~/lib/const'
+import { useAppAuthStore } from '~/stores/useAppAuthStore'
 
 function createApiClient(options: ApiClientOptions) {
   return $fetch.create({
