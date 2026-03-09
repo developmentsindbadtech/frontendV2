@@ -48,14 +48,14 @@ function closeDialog(dialog: HTMLDialogElement | null) {
           Shari'a rules and
           <span class="block">regulations.</span>
         </p>
-        <Button
-          variant="outline"
-          size="lg"
-          class="cursor-pointer bg-secondary font-bold mt-4 text-sm md:text-md rounded-3xl  text-white hover:bg-secondary/90"
+        <a 
+          href="/pdf/sharia_certifcate.pdf" 
+          target="_blank"
+          class="cursor-pointer bg-secondary font-bold mt-4 text-sm rounded-3xl text-white hover:bg-secondary/90 px-4 py-2 inline-flex items-center gap-2"
         >
           Sharia Laws
-          <MoveRight class="w-2 h-2" />
-        </Button>
+          <MoveRight class="w-4 h-4" />
+        </a>
       </div>
       <!-- right column -->
       <div class="flex flex-col lg:flex-row gap-14 items-center lg:items-start w-full">
@@ -79,12 +79,16 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               <button @click="closeDialog(dialogShariaMember1)" class="self-end text-gray-500 hover:text-gray-700">
                 <X class="h-5 w-5 bg-gray-200 rounded-2xl" />
               </button>
-            <NuxtImg src="/images/shariacompliance/committee-placeholder.png" class="max-w-lg rounded-xl w-50 h-50" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
+            <NuxtImg src="/images/shariacompliance/committee-placeholder.png" class="max-w-lg rounded-xl w-48 h-48" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
             <h3 class="text-sm font-bold mt-4 text-center justify-center">Prof. Dr. Abdullah bin Issa Al-Ayadhi</h3>
             <p class="text-center mt-2 text-sm">Member of the Sharia Committee</p>
-            <p class="text-end mt-2 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            <p class="text-end mt-2 text-xs font-light"> <span class="block">Associate Professor of Islamic Jurisprudence at Jazan University.</span><br>
+              <span class="block">One of the members of the Sharia Standards Committee of the Accounting and 
+                Auditing Organization for Islamic Financial Institutions (AAOIFI). </span><br>
+              <span class="block">Committee of the Kingdom of Saudi Arabia. Committee of the Kingdom of Saudi Arabia.</span><br>
+              <span class="block">He is a member of the Sharia Board of the Accounting and Auditing
+              Organization for Islamic Financial Institutions (AAOIFI).</span><br>
+              <span class="block">He has research works and published books on Islamic finance.</span>
             </p>
           </div>
         </dialog>
@@ -108,12 +112,17 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               <button @click="closeDialog(dialogShariaHead)" class="self-end text-gray-500 hover:text-gray-700">
                 <X class="h-5 w-5 bg-gray-200 rounded-2xl" />
               </button>
-            <NuxtImg src="/images/shariacompliance/committee-placeholder.png" class="max-w-lg rounded-xl w-50 h-50" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
+            <NuxtImg src="/images/shariacompliance/committee-placeholder.png" class="max-w-lg rounded-xl w-48 h-48" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
             <h3 class="text-sm font-bold mt-4 text-center justify-center">Prof. Dr. Yousef bin Abdullah Al Shubaili</h3>
             <p class="text-center mt-2 text-sm">Head of the Sharia Committee</p>
-            <p class="text-end mt-2 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            <p class="text-end mt-2 text-xs font-light"><span class="block">He holds a PhD and a Master's degree in comparative jurisprudence.</span><br>
+              <span class="block">A university professor at the Higher Judicial Institute
+              at Imam Muhammad Ibn Saud Islamic University.</span><br>
+              <span class="block">Member and Chairman of several Sharia committees for a
+              number of financial institutions in Saudi Arabia and abroad.</span><br>
+              <span class="block">He is a member of the Sharia Board of the Accounting
+              and Auditing Organization for Islamic Financial Institutions (AAOIFI).</span><br>
+              <span class="block">He has numerous scientific contributions and participations.</span>
             </p>
           </div>
         </dialog>
@@ -137,12 +146,15 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               <button @click="closeDialog(dialogShariaMember2)" class="self-end text-gray-500 hover:text-gray-700">
                 <X class="h-5 w-5 bg-gray-200 rounded-2xl" />
               </button>
-            <NuxtImg src="/images/shariacompliance/committee-placeholder.png" class="max-w-lg rounded-xl w-50 h-50" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
+            <NuxtImg src="/images/shariacompliance/committee-placeholder.png" class="max-w-lg rounded-xl w-48 h-48" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
             <h3 class="text-sm font-bold mt-4 text-center justify-center">Abdul Aziz bin Saleh Al-Dumeiji</h3>
             <p class="text-center mt-2 text-sm">Member of the Sharia Committee</p>
-            <p class="text-end mt-2 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            <p class="text-end mt-2 text-xs font-light"><span class="block">He holds a master's degree in Islamic jurisprudence.</span><br>
+              <span class="block">He holds an Executive Master's degree in Islamic Finance.</span><br>
+              <span class="block">He holds a fellowship in Sharia supervision and auditing from the Accounting and Auditing Organization for Islamic Financial Institutions (AAOIFI).</span><br>
+              <span class="block">He has experience working in the Sharia departments of financial institutions.</span><br>
+              <span class="block">Member of several Sharia committees for a number of fintech companies.</span><br>
+              <span class="block">Multiple scientific contributions including a published book on financing services and a doctoral dissertation on crowdfunding.</span>
             </p>
           </div>
         </dialog>
