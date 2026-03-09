@@ -1,15 +1,32 @@
 <script setup lang="ts">
+import { Brain, ShieldCheck, TrendingUp, Zap, ChartColumn, Lock, ArrowRight } from 'lucide-vue-next'
+
 import {
-  Brain,
-  ShieldCheck,
-  TrendingUp,
-  ChevronUp,
-  ChevronDown,
-  Zap,
-  ChartColumn,
-  Lock,
-  ArrowRight,
-} from 'lucide-vue-next'
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '~/components/ui/accordion'
+
+const items = [
+  {
+    title: 'AI-Powered Smart Entry',
+    description:
+      'Our machine learning models analyze 50+ indicators across Tadawul and global markets, identifying the perfect entry points.',
+    icon: Brain,
+  },
+  {
+    title: 'Precision Stop-Loss Engine',
+    description: 'Protect your capital with dynamic stop-losses that adapt to market volatility.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Automated Portfolio Rebalancing',
+    description:
+      'The AI monitors sector correlations, market sentiment, and your risk profile to automatically rebalance positions for maximum growth.',
+    icon: TrendingUp,
+  },
+]
 </script>
 
 <template>
@@ -31,52 +48,35 @@ import {
         <h1 class="text-secondary text-3xl sm:text-4xl md:text-5xl font-bold mt-3 md:mt-4 line">
           <span class="text-primary">Smarter Trading, </span>Zero Emotion
         </h1>
-        <p class="text-primary font-semibold mt-6 md:mt-12">
+        <p class="text-primary font-semibold mt-6 mb-3 md:mt-12">
           Every trading decision is powered by AI that eliminates emotional bias and executes with
           mathematical precision.
         </p>
-        <div
-          class="w-full p-3 md:p-4 lg:p-5 border border-secondary rounded-2xl bg-primary flex flex-col lg:flex-row justify-between items-start mt-4 md:mt-6 gap-3 md:gap-4 lg:gap-6"
-        >
-          <Brain
-            class="h-8 w-8 md:h-10 md:w-10 border border-secondary rounded-sm bg-blue/50 p-2 text-secondary shrink-0"
-          />
 
-          <div class="flex flex-col gap-2 flex-1">
-            <h3 class="text-secondary text-lg md:text-xl">AI-Powered Smart Entry</h3>
-            <p class="text-sm md:text-md text-white">
-              Our machine learning models analyze 50+ indicators across Tadawul and global markets,
-              identifying the perfect entry points. Trading decisions are powered by AI that learns
-              from millions of data points in real-time.
-            </p>
-          </div>
-          <ChevronUp class="h-5 w-5 text-secondary shrink-0" />
-        </div>
+        <Accordion type="single" collapsible class="w-full space-y-3 sm:space-y-4">
+          <AccordionItem
+            v-for="(faq, index) in items"
+            :key="index"
+            :value="`item-${index}`"
+            class="border border-b! border-secondary rounded-xl bg-blue-50/20 px-4 sm:px-5 data-[state=open]:bg-primary data-[state=open]:ring-1 data-[state=open]:ring-ring/50 transition-all duration-300 ease-out overflow-hidden"
+          >
+            <AccordionTrigger
+              class="cursor-pointer text-sm sm:text-base md:text-lg font-medium text-foreground transition-all duration-300 ease-out hover:no-underline hover:text-blue py-4 sm:py-5 text-left"
+            >
+              <div class="flex items-center gap-3">
+                <component
+                  :is="faq.icon"
+                  class="h-8 w-8 md:h-10 md:w-10 border border-secondary rounded-sm bg-blue/50 p-2 text-secondary shrink-0"
+                />
+                <span class="text-secondary">{{ faq.title }}</span>
+              </div>
+            </AccordionTrigger>
 
-        <div
-          class="mt-4 md:mt-6 flex items-center justify-between w-full p-3 md:p-3 lg:p-2 border border-secondary rounded-2xl bg-blue-50/20 gap-3 md:gap-4"
-        >
-          <ShieldCheck
-            class="h-8 w-8 md:h-10 md:w-10 rounded-sm bg-primary p-2 text-secondary shrink-0"
-          />
-          <h3 class="text-secondary text-lg md:text-xl flex-1">Precision Stop-Loss Engine</h3>
-          <ChevronDown class="h-5 w-5 text-primary inline ml-2 shrink-0" />
-        </div>
-
-        <div
-          class="mt-4 md:mt-6 flex items-center justify-between w-full p-3 md:p-3 lg:p-2 border border-secondary rounded-2xl bg-blue-50/20 gap-3 md:gap-4"
-        >
-          <div class="flex items-center gap-3 md:gap-4 flex-1 min-w-0">
-            <TrendingUp
-              class="h-8 w-8 md:h-10 md:w-10 rounded-sm bg-primary p-2 text-secondary shrink-0"
-            />
-            <h3 class="text-secondary text-lg md:text-xl truncate">
-              Automated Portfolio Rebalancing
-            </h3>
-          </div>
-
-          <ChevronDown class="h-5 w-5 text-primary shrink-0 ml-2" />
-        </div>
+            <AccordionContent class="text-sm md:text-base text-start ml-13 text-white pb-4 sm:pb-5">
+              {{ faq.description }}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </div>
 
