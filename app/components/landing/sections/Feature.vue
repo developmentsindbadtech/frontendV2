@@ -30,16 +30,50 @@ const items = [
 </script>
 
 <template>
-  <section
-    class="relative min-h-screen w-full md:mt-18 max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-0"
-  >
+  <section class="relative w-full md:mt-18 max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-0">
     <div
       class="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
     >
       <!-- Left column -->
 
-      <div>
-        <NuxtImg src="/images/feature-mobile-frame.png" class="w-full" />
+      <div
+        class="relative mx-auto w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[520px] xl:max-w-[580px]"
+      >
+        <div
+          class="absolute top-[8%] left-[50.5%] z-30 h-[87.5%] w-[44%] -translate-x-1/2 overflow-hidden"
+        >
+          <img
+            src="/images/mobile_demo.gif"
+            alt="Mobile app demo"
+            class="h-full w-full rounded-b-[2rem] object-cover object-center md:rounded-b-[3rem]"
+          />
+        </div>
+
+        <NuxtImg src="/images/mobile-frame.png" class="relative z-10 w-full" />
+
+        <div
+          class="absolute right-0 top-[14%] z-40 rounded-xl bg-background/45 p-3 backdrop-blur-[2px] xl:hidden"
+        >
+          <NuxtImg src="/images/trade.png" class="w-[118px] sm:w-[138px] object-contain" />
+        </div>
+
+        <div
+          class="absolute left-0 bottom-[8%] z-40 rounded-xl bg-background/45 p-3 backdrop-blur-[2px] xl:hidden"
+        >
+          <NuxtImg src="/images/review.png" class="w-[128px] sm:w-[148px] object-contain" />
+        </div>
+
+        <div
+          class="box-border z-40 hidden h-[140px] w-[209px] flex-row items-start gap-2.5 rounded-2xl bg-background/30 p-6 backdrop-blur-[2px] xl:absolute xl:left-[380px] xl:top-[90px] xl:flex"
+        >
+          <NuxtImg src="/images/trade.png" class="h-full w-full object-contain" />
+        </div>
+
+        <div
+          class="box-border z-40 hidden h-[170.12px] w-[220px] flex-col items-start justify-center gap-2 rounded-2xl bg-background/30 p-6 backdrop-blur-[2px] xl:absolute xl:left-[-27px] xl:top-[350px] xl:flex"
+        >
+          <NuxtImg src="/images/review.png" class="h-full w-full object-contain" />
+        </div>
       </div>
 
       <!-- Right column -->
