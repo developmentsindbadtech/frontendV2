@@ -65,6 +65,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               src="/images/shariacompliance/member1.png"
               alt="Sharia Committee member"
               class="rounded-2xl w-48 h-58 object-cover"
+              loading="lazy"
             />
           </div>
           <figcaption class="mt-4 text-center font-bold w-64">
@@ -79,7 +80,12 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               <button @click="closeDialog(dialogShariaMember1)" class="self-end text-gray-500 hover:text-gray-700">
                 <X class="h-5 w-5 bg-gray-200 rounded-2xl" />
               </button>
-            <NuxtImg src="/images/shariacompliance/member1.png" class="max-w-lg rounded-xl w-45 h-48" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
+            <NuxtImg 
+              src="/images/shariacompliance/member1.png" 
+              class="max-w-lg rounded-xl w-45 h-48" 
+              alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "
+              loading="lazy"
+            />
             <h3 class="text-sm font-bold mt-4 text-center justify-center">Prof. Dr. Abdullah bin Issa Al-Ayadhi</h3>
             <p class="text-center mt-2 text-sm">Member of the Sharia Committee</p>
             <p class="text-end mt-2 text-xs font-light"> <span class="block">Associate Professor of Islamic Jurisprudence at Jazan University.</span><br>
@@ -98,6 +104,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               src="/images/shariacompliance/shariachairperson.png"
               alt="Sharia Committee member"
               class="rounded-2xl w-48 h-58 object-cover"
+              loading="lazy"
             />
           </div>
           <figcaption class="mt-4 text-center font-bold w-64">
@@ -112,7 +119,12 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               <button @click="closeDialog(dialogShariaHead)" class="self-end text-gray-500 hover:text-gray-700">
                 <X class="h-5 w-5 bg-gray-200 rounded-2xl" />
               </button>
-            <NuxtImg src="/images/shariacompliance/shariachairperson.png" class="max-w-lg rounded-xl w-48 h-48" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
+            <NuxtImg 
+              src="/images/shariacompliance/shariachairperson.png" 
+              class="max-w-lg rounded-xl w-48 h-48" 
+              alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "
+              loading="lazy"
+            />
             <h3 class="text-sm font-bold mt-4 text-center justify-center">Prof. Dr. Yousef bin Abdullah Al Shubaili</h3>
             <p class="text-center mt-2 text-sm">Head of the Sharia Committee</p>
             <p class="text-end mt-2 text-xs font-light"><span class="block">He holds a PhD and a Master's degree in comparative jurisprudence.</span><br>
@@ -132,6 +144,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               src="/images/shariacompliance/member2.png"
               alt="Sharia Committee member"
               class="rounded-2xl w-48 h-58 object-cover"
+              loading="lazy"
             />
           </div>
           <figcaption class="mt-4 text-center font-bold w-64">
@@ -146,7 +159,12 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               <button @click="closeDialog(dialogShariaMember2)" class="self-end text-gray-500 hover:text-gray-700">
                 <X class="h-5 w-5 bg-gray-200 rounded-2xl" />
               </button>
-            <NuxtImg src="/images/shariacompliance/member2.png" class="max-w-lg rounded-xl w-52 h-40" alt="Abdul Aziz bin Saleh Al-Dumeiji"/>
+            <NuxtImg 
+              src="/images/shariacompliance/member2.png" 
+              class="max-w-lg rounded-xl w-52 h-40" 
+              alt="Abdul Aziz bin Saleh Al-Dumeiji"
+              loading="lazy"
+            />
             <h3 class="text-sm font-bold mt-4 text-center justify-center">Abdul Aziz bin Saleh Al-Dumeiji</h3>
             <p class="text-center mt-2 text-sm">Member of the Sharia Committee</p>
             <p class="text-end mt-2 text-xs font-light"><span class="block">He holds a master's degree in Islamic jurisprudence.</span><br>
