@@ -3,7 +3,7 @@ import { Sparkles, Search } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section class="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-18 lg:px-0">
+  <section class="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-24 md:mt-41 lg:px-0">
     <div class="w-full flex flex-col items-center justify-center pt-6 md:pt-10">
       <span
         class="flex items-center gap-2 px-4 py-2 rounded-full border border-secondary font-bold text-base sm:text-sm text-secondary bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
@@ -13,7 +13,7 @@ import { Sparkles, Search } from 'lucide-vue-next'
       </span>
 
       <!-- Text-Content -->
-      <div class="w-full max-w-sm md:max-w-3xl lg:max-w-5xl">
+      <div class="w-full max-w-sm md:max-w-3xl lg:max-w-5xl md:mt-6">
         <h1
           class="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-center text-secondary"
         >
@@ -31,7 +31,7 @@ import { Sparkles, Search } from 'lucide-vue-next'
 
       <!-- Seach-Bar -->
       <div
-        class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-8 justify-between bg-foreground/10 rounded-2xl sm:rounded-full p-3 sm:px-4 sm:py-3 mx-auto w-full max-w-2xl"
+        class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:mt-6 justify-between bg-foreground/10 rounded-2xl sm:rounded-full p-3 sm:px-4 sm:py-3 mx-auto w-full max-w-2xl"
       >
         <!-- Icon -->
 
@@ -57,7 +57,7 @@ import { Sparkles, Search } from 'lucide-vue-next'
       <!-- Hero-image -->
       <NuxtImg
         src="/images/Hero.png"
-        class="w-full max-w-7xl mx-auto mt-8 rounded-2xl shadow-lg"
+        class="w-full max-w-7xl mx-auto mt-24 rounded-2xl shadow-lg"
         loading="lazy"
         alt="Hero Image"
       />

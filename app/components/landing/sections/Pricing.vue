@@ -108,7 +108,7 @@ const headingToneClasses: Record<PlanTheme, string> = {
 </script>
 
 <template>
-  <section class="mx-auto mt-12 w-full max-w-285 px-4 py-7.5 sm:px-6 md:mt-18 lg:px-0">
+  <section class="mx-auto mt-12 w-full max-w-7xl px-4 py-7.5 sm:px-6 md:mt-24 lg:px-0">
     <div class="flex w-full flex-col items-center gap-6 md:gap-8">
       <div class="flex w-full flex-col items-center gap-4 text-center">
         <span class="text-base font-bold leading-5.25 text-[#33B5E5]">Pricing</span>
@@ -122,23 +122,9 @@ const headingToneClasses: Record<PlanTheme, string> = {
         </p>
       </div>
 
-      <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
-        <article
-          v-for="plan in plans"
-          :key="plan.name"
-          :class="[
-            'h-full rounded-2xl p-px',
-            plan.featured
-              ? 'bg-[linear-gradient(135deg,#33B5E5_0%,rgba(51,181,229,0.4)_100%)]'
-              : 'bg-transparent',
-          ]"
-        >
-          <div
-            :class="[
-              'flex h-full min-h-116 flex-col rounded-2xl p-6',
-              plan.featured ? 'bg-[#042637]' : 'bg-[#F7FBFD]',
-            ]"
-          >
+      <div class="grid w-full grid-cols-1 gap-7 sm:grid-cols-2 xl:grid-cols-4">
+        <article v-for="plan in plans" :key="plan.name" class="h-full rounded-2xl p-px">
+          <div class="flex h-full min-h-132 flex-col rounded-2xl bg-[#F7FBFD] p-8">
             <div
               v-if="plan.popular"
               class="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-[#22C0D9] px-3 py-1"
@@ -159,51 +145,26 @@ const headingToneClasses: Record<PlanTheme, string> = {
 
               <div class="space-y-2">
                 <div>
-                  <h3
-                    :class="[
-                      'text-base font-bold leading-6',
-                      plan.featured ? 'text-[#22C0D9]' : headingToneClasses[plan.theme],
-                    ]"
-                  >
+                  <h3 :class="['text-base font-bold leading-6', headingToneClasses[plan.theme]]">
                     {{ plan.name }}
                   </h3>
-                  <p
-                    :class="[
-                      'text-[11px] leading-4',
-                      plan.featured ? 'text-[#929292]' : 'text-[#19465D]',
-                    ]"
-                  >
+                  <p class="text-[11px] leading-4 text-[#19465D]">
                     {{ plan.subtitle }}
                   </p>
                 </div>
 
                 <div>
-                  <p
-                    :class="[
-                      'text-[13px] font-semibold leading-5',
-                      plan.featured ? 'text-white' : 'text-[#19465D]',
-                    ]"
-                  >
+                  <p class="text-[13px] font-semibold leading-5 text-[#19465D]">
                     {{ plan.share }}
                   </p>
-                  <p
-                    :class="[
-                      'text-[10px] leading-3.75',
-                      plan.featured ? 'text-[#606060]' : 'text-[#19465D]',
-                    ]"
-                  >
+                  <p class="text-[10px] leading-3.75 text-[#19465D]">
                     {{ plan.feeModel }}
                   </p>
                 </div>
               </div>
             </div>
 
-            <p
-              :class="[
-                'mt-4 text-xs leading-4.5',
-                plan.featured ? 'text-[#929292]' : 'text-[#19465D]',
-              ]"
-            >
+            <p class="mt-4 text-xs leading-4.5 text-[#19465D]">
               {{ plan.description }}
             </p>
 
@@ -214,24 +175,18 @@ const headingToneClasses: Record<PlanTheme, string> = {
                 >
                   <Check class="h-3 w-3 text-[#33B5E5]" />
                 </span>
-                <span
-                  :class="['text-xs leading-4.5', plan.featured ? 'text-white' : 'text-[#19465D]']"
-                  >{{ feature }}</span
-                >
+                <span class="text-xs leading-4.5 text-[#19465D]">{{ feature }}</span>
               </li>
             </ul>
 
-            <button class="mt-4 w-fit cursor-pointer text-xs leading-4.5 text-[#6EC8F4]">
+            <button
+              class="mt-4 w-full cursor-pointer text-center text-xs leading-4.5 text-[#6EC8F4]"
+            >
               See more
             </button>
 
             <button
-              :class="[
-                'mt-auto cursor-pointer rounded-full border px-6 py-3 text-center text-[13px] font-semibold leading-5 transition-colors',
-                plan.featured
-                  ? 'border-[#33B5E530] bg-[linear-gradient(111.34deg,#3DC482_0%,#0973E6_100%)] text-white'
-                  : 'border-[#33B5E530] bg-[#33B5E515] text-[#33B5E5] hover:bg-[#33B5E522]',
-              ]"
+              class="mt-auto cursor-pointer rounded-full border border-[#33B5E530] bg-[#33B5E515] px-6 py-3 text-center text-[13px] font-semibold leading-5 text-[#33B5E5] transition-colors hover:bg-[#33B5E522]"
             >
               {{ plan.cta }}
             </button>

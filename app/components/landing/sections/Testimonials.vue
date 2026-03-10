@@ -157,8 +157,8 @@ const visibleTestimonials = computed(() =>
 
 const avatarStyle = (offset: number) => {
   const distance = Math.abs(offset)
-  const width = distance === 0 ? 77 : distance === 1 ? 55 : 40
-  const height = distance === 0 ? 78 : distance === 1 ? 55 : 40
+  const width = distance === 0 ? 134 : distance === 1 ? 93 : 61
+  const height = distance === 0 ? 136 : distance === 1 ? 93 : 61
   const opacity = distance === 2 ? 0.25 : 1
 
   return {
@@ -176,33 +176,33 @@ const selectTestimonial = (index: number) => {
 
 <template>
   <section
-    class="mx-auto mt-12 flex w-full max-w-275 flex-col items-center justify-center gap-4 px-4 sm:px-6 md:mt-18 lg:px-0"
+    class="mx-auto mt-12 flex w-full max-w-275 flex-col items-center justify-center gap-4 px-4 sm:px-6 md:mt-24 lg:px-0"
   >
     <div class="flex w-full flex-col items-center justify-center gap-6 text-center">
       <div class="flex w-full flex-col items-center gap-4">
         <span class="text-base font-bold leading-5.25 text-[#33B5E5]">Testimonials</span>
         <h2
-          class="text-center text-3xl font-bold text-primary sm:text-4xl md:text-5xl md:leading-15.75 lg:text-[48px]"
+          class="text-center text-3xl font-bold text-primary mt-[16px] sm:text-4xl md:text-5xl md:leading-15.75 lg:text-[48px]"
         >
           Trusted by <span class="text-secondary">Saudi Traders</span>
         </h2>
       </div>
 
       <div class="flex w-full max-w-181 flex-col items-center gap-6.5">
-        <div class="flex h-4 items-center justify-center gap-1">
+        <div class="flex h-4 items-center justify-center mt-[24px] gap-1">
           <Star v-for="index in 5" :key="index" class="size-4 fill-[#00D492] text-[#00D492]" />
         </div>
 
-        <p class="w-full text-center text-base font-normal leading-5.25 text-primary">
+        <p class="w-full text-center text-base font-normal mt-[26px] leading-5.25 text-primary">
           "{{ activeTestimonial.testimony }}"
         </p>
 
-        <div class="flex w-full max-w-[426.89px] items-center justify-center gap-6.5">
+        <div class="flex w-full mt-[26px] max-w-md items-center justify-center gap-6.5">
           <template v-for="person in visibleTestimonials" :key="person.id">
             <button
               v-if="person.offset !== 0"
               type="button"
-              class="cursor-pointer overflow-hidden border border-secondary/30 transition-all duration-500 ease-out"
+              class="cursor-pointer shrink-0 overflow-hidden border border-secondary/30 transition-all duration-500 ease-out"
               :style="avatarStyle(person.offset)"
               :aria-label="`Show testimonial from ${person.name}`"
               @click="selectTestimonial(person.index)"
@@ -210,13 +210,10 @@ const selectTestimonial = (index: number) => {
               <NuxtImg :src="person.image" :alt="person.name" class="h-full w-full object-cover" />
             </button>
 
-            <div
-              v-else
-              class="flex h-32.25 w-[132.89px] flex-col items-center justify-center gap-3"
-            >
+            <div v-else class="flex w-33.5 shrink-0 flex-col items-center justify-center gap-3">
               <button
                 type="button"
-                class="cursor-pointer overflow-hidden border border-secondary/30 transition-all duration-500 ease-out"
+                class="cursor-pointer shrink-0 overflow-hidden border border-secondary/30 transition-all duration-500 ease-out"
                 :style="avatarStyle(person.offset)"
                 :aria-label="`Show testimonial from ${person.name}`"
                 @click="selectTestimonial(person.index)"

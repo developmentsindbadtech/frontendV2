@@ -117,7 +117,7 @@ const chartData = computed(() => {
 </script>
 
 <template>
-  <section class="py-16 md:py-24 px-4 md:mt-18 sm:px-6 flex justify-center font-sans bg-background">
+  <section class="py-16 md:py-24 px-4 md:mt-24 sm:px-6 flex justify-center font-sans bg-background">
     <Card class="w-full max-w-6xl rounded-[2.5rem] shadow-sm border-border">
       <CardHeader class="text-center pb-12 md:pb-16 pt-8 md:pt-12">
         <CardTitle class="text-3xl md:text-5xl font-bold text-primary mb-4 tracking-tight">

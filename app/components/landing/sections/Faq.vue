@@ -23,8 +23,7 @@ withDefaults(
   }>(),
   {
     title: 'Frequently Asked Questions',
-    description:
-      'Everything you need to know about our AI-powered trading platform',
+    description: 'Everything you need to know about our AI-powered trading platform',
     items: () => [
       {
         question: 'How does the AI make trading decisions?',
@@ -38,7 +37,8 @@ withDefaults(
       },
       {
         question: 'What markets does Saud.ai support?',
-        answer: 'Currently, we focus primarily on the Tadawul (Saudi Stock Exchange), with expanding support for regional GCC markets and global commodity indices.',
+        answer:
+          'Currently, we focus primarily on the Tadawul (Saudi Stock Exchange), with expanding support for regional GCC markets and global commodity indices.',
       },
       {
         question: 'How much capital do I need to start?',
@@ -47,7 +47,8 @@ withDefaults(
       },
       {
         question: 'Can I customize the AI trading strategies?',
-        answer: 'Yes, users can set risk parameters, preferred sectors, and maximum drawdown limits to align the AI’s behavior with their personal investment goals.',
+        answer:
+          'Yes, users can set risk parameters, preferred sectors, and maximum drawdown limits to align the AI’s behavior with their personal investment goals.',
       },
       {
         question: 'What happens during high volatility or flash crashes?',
@@ -62,9 +63,19 @@ withDefaults(
 <template>
   <section class="py-12 md:py-24 bg-white px-4 sm:px-6 flex flex-col items-center font-sans">
     <div
-      class="mb-6 flex items-center justify-center w-12 h-12 rounded-full bg-green-50 text-green-500 border border-green-100">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      class="mb-6 flex items-center justify-center w-12 h-12 rounded-full bg-green-50 text-green-500 border border-green-100"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <circle cx="12" cy="12" r="10" />
         <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
         <line x1="12" y1="17" x2="12.01" y2="17" />
@@ -81,13 +92,16 @@ withDefaults(
         </p>
       </div>
 
-      <Accordion type="single" collapsible class="w-full space-y-4">
-        <AccordionItem v-for="(faq, index) in items" :key="index" :value="`item-${index}`" class="border-none rounded-2xl transition-all duration-300 overflow-hidden
-                 data-[state=closed]:bg-[#e0f4ff] 
-                 data-[state=open]:bg-[#0a2533] data-[state=open]:shadow-xl">
-          <AccordionTrigger class="px-6 py-5 text-left font-semibold transition-all hover:no-underline cursor-pointer
-                   data-[state=closed]:text-[#4fb9df] 
-                   data-[state=open]:text-white text-base md:text-lg">
+      <Accordion type="single" default-value="item-0" collapsible class="w-full space-y-4">
+        <AccordionItem
+          v-for="(faq, index) in items"
+          :key="index"
+          :value="`item-${index}`"
+          class="border-none rounded-2xl transition-all duration-300 overflow-hidden data-[state=closed]:bg-[#e0f4ff] data-[state=open]:bg-[#0a2533] data-[state=open]:shadow-xl"
+        >
+          <AccordionTrigger
+            class="px-6 py-5 text-left font-semibold transition-all hover:no-underline cursor-pointer data-[state=closed]:text-[#4fb9df] data-[state=open]:text-white text-base md:text-lg"
+          >
             {{ faq.question }}
           </AccordionTrigger>
 
