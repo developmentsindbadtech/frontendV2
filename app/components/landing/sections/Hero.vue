@@ -55,7 +55,12 @@ import { Sparkles, Search } from 'lucide-vue-next'
       </div>
 
       <!-- Hero-image -->
-      <NuxtImg src="/images/Hero.png" class="w-full max-w-7xl mx-auto mt-8 rounded-2xl shadow-lg" />
+      <NuxtImg
+        src="/images/Hero.png"
+        class="w-full max-w-7xl mx-auto mt-8 rounded-2xl shadow-lg"
+        loading="lazy"
+        alt="Hero Image"
+      />
     </div>
   </section>
 </template>
