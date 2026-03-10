@@ -12,7 +12,7 @@
       <div class="flex flex-col md:flex-row justify-center items-center gap-14 md:gap-18">
         <figure class="flex flex-col items-center w-60">
           <div
-            class="bg-[#042637] rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-200 outline-4"
+            class="bg-white rounded-2xl shadow-sm hover:shadow-md hover:bg-[#042637] hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-200 outline-4 cursor-pointer"
           >
             <NuxtImg
               src="/images/teamcard/teamcard-placeholder.png"
@@ -20,13 +20,13 @@
               class="rounded-xl w-34 h-44 object-cover"
             />
           </div>
-          <figcaption class="mt-4 font-bold text-lg text-center">Mohammed Agbawi</figcaption>
+          <figcaption class="mt-4 font-bold text-lg text-center whitespace-nowrap">Mohammed Agbawi</figcaption>
           <p class="text-sm text-gray-600 text-center">Founder / CEO</p>
         </figure>
 
         <figure class="flex flex-col items-center w-60">
           <div
-            class="bg-white rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-100 outline-4"
+            class="bg-white rounded-2xl shadow-sm hover:shadow-md hover:bg-[#042637] hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-200 outline-4 cursor-pointer"
           >
             <NuxtImg
               src="/images/teamcard/teamcard-placeholder.png"
@@ -40,7 +40,7 @@
 
         <figure class="flex flex-col items-center w-60">
           <div
-            class="bg-white rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-100 outline-4"
+            class="bg-white rounded-2xl shadow-sm hover:shadow-md hover:bg-[#042637] hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-200 outline-4 cursor-pointer"
           >
             <NuxtImg
               src="/images/teamcard/teamcard-placeholder.png"
@@ -54,7 +54,7 @@
 
         <figure class="flex flex-col items-center w-60">
           <div
-            class="bg-white rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-100 outline-4"
+            class="bg-white rounded-2xl shadow-sm hover:shadow-md hover:bg-[#042637] hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-200 outline-4 cursor-pointer"
           >
             <NuxtImg
               src="/images/teamcard/teamcard-placeholder.png"
@@ -68,7 +68,7 @@
 
         <figure class="flex flex-col items-center w-60">
           <div
-            class="bg-white rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-100 outline-4"
+            class="bg-white rounded-2xl shadow-sm hover:shadow-md hover:bg-[#042637] hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-200 outline-4 cursor-pointer"
           >
             <NuxtImg
               src="/images/teamcard/teamcard-placeholder.png"
