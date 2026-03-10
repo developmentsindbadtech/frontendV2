@@ -62,7 +62,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
         <figure class="flex flex-col items-center mt-6 lg:mt-16">
           <div class="p-1 bg-white rounded-2xl inline-block outline-gray-100 outline-4 cursor-pointer" @click="openDialog(dialogShariaMember1)" >
             <NuxtImg
-              src="/images/shariacompliance/committee-placeholder.png"
+              src="/images/shariacompliance/member1.png"
               alt="Sharia Committee member"
               class="rounded-2xl w-48 h-58 object-cover"
             />
@@ -79,7 +79,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               <button @click="closeDialog(dialogShariaMember1)" class="self-end text-gray-500 hover:text-gray-700">
                 <X class="h-5 w-5 bg-gray-200 rounded-2xl" />
               </button>
-            <NuxtImg src="/images/shariacompliance/committee-placeholder.png" class="max-w-lg rounded-xl w-48 h-48" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
+            <NuxtImg src="/images/shariacompliance/member1.png" class="max-w-lg rounded-xl w-45 h-48" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
             <h3 class="text-sm font-bold mt-4 text-center justify-center">Prof. Dr. Abdullah bin Issa Al-Ayadhi</h3>
             <p class="text-center mt-2 text-sm">Member of the Sharia Committee</p>
             <p class="text-end mt-2 text-xs font-light"> <span class="block">Associate Professor of Islamic Jurisprudence at Jazan University.</span><br>
@@ -93,9 +93,9 @@ function closeDialog(dialog: HTMLDialogElement | null) {
           </div>
         </dialog>
         <figure class="flex flex-col items-center">
-          <div class="p-1 bg-[#def3ff] rounded-2xl inline-block outline-gray-100 outline-4 cursor-pointer" @click="openDialog(dialogShariaHead)"  >
+          <div class="p-1 bg-[#042637] rounded-2xl inline-block outline-gray-200 outline-4 cursor-pointer" @click="openDialog(dialogShariaHead)"  >
             <NuxtImg
-              src="/images/shariacompliance/committee-placeholder.png"
+              src="/images/shariacompliance/shariachairperson.png"
               alt="Sharia Committee member"
               class="rounded-2xl w-48 h-58 object-cover"
             />
@@ -112,7 +112,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               <button @click="closeDialog(dialogShariaHead)" class="self-end text-gray-500 hover:text-gray-700">
                 <X class="h-5 w-5 bg-gray-200 rounded-2xl" />
               </button>
-            <NuxtImg src="/images/shariacompliance/committee-placeholder.png" class="max-w-lg rounded-xl w-48 h-48" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
+            <NuxtImg src="/images/shariacompliance/shariachairperson.png" class="max-w-lg rounded-xl w-48 h-48" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
             <h3 class="text-sm font-bold mt-4 text-center justify-center">Prof. Dr. Yousef bin Abdullah Al Shubaili</h3>
             <p class="text-center mt-2 text-sm">Head of the Sharia Committee</p>
             <p class="text-end mt-2 text-xs font-light"><span class="block">He holds a PhD and a Master's degree in comparative jurisprudence.</span><br>
@@ -129,7 +129,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
         <figure class="flex flex-col items-center mt-6 lg:mt-16">
           <div class="p-1 bg-white rounded-2xl inline-block outline-gray-100 outline-4 cursor-pointer" @click="openDialog(dialogShariaMember2)">
             <NuxtImg
-              src="/images/shariacompliance/committee-placeholder.png"
+              src="/images/shariacompliance/member2.png"
               alt="Sharia Committee member"
               class="rounded-2xl w-48 h-58 object-cover"
             />
@@ -146,7 +146,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
               <button @click="closeDialog(dialogShariaMember2)" class="self-end text-gray-500 hover:text-gray-700">
                 <X class="h-5 w-5 bg-gray-200 rounded-2xl" />
               </button>
-            <NuxtImg src="/images/shariacompliance/committee-placeholder.png" class="max-w-lg rounded-xl w-48 h-48" alt="Prof. Dr. Yousef bin Abdullah Al Shubaili "/>
+            <NuxtImg src="/images/shariacompliance/member2.png" class="max-w-lg rounded-xl w-52 h-40" alt="Abdul Aziz bin Saleh Al-Dumeiji"/>
             <h3 class="text-sm font-bold mt-4 text-center justify-center">Abdul Aziz bin Saleh Al-Dumeiji</h3>
             <p class="text-center mt-2 text-sm">Member of the Sharia Committee</p>
             <p class="text-end mt-2 text-xs font-light"><span class="block">He holds a master's degree in Islamic jurisprudence.</span><br>

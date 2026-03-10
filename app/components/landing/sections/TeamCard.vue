@@ -10,7 +10,7 @@
             </header>
             <div class="flex flex-col md:flex-row justify-center items-center gap-14 md:gap-18">
                 <figure class="flex flex-col items-center w-60">
-                    <div class="bg-[#def3ff] rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-100 outline-4">
+                    <div class="bg-[#042637] rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-200  outline-4">
                     <NuxtImg
                         src="/images/teamcard/teamcard-placeholder.png"
                         alt="Sindbad Founder/CEO"
