@@ -45,6 +45,7 @@
   --font-family-sans: var(--font-lufga);
 }
 
+
 :root {
   --font-lufga: 'Lufga', sans-serif;
   --radius: 0.625rem;

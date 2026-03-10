@@ -78,8 +78,8 @@ const closeMobileNav = () => {
           <div
             class="mx-auto mt-2 flex max-w-6xl flex-col gap-6 rounded-2xl border border-border bg-background px-4 sm:px-6 py-6 shadow-xl">
             <div class="flex flex-col gap-4">
-
               <div class="border-b border-border pb-3">
+                <!-- Feature -->
                 <button type="button" class="flex w-full items-center justify-between px-2 py-2"
                   @click="toggleMobileSection('Feature')">
                   <span class="uppercase tracking-wide text-sm font-semibold">Feature</span>
@@ -102,6 +102,7 @@ const closeMobileNav = () => {
               </div>
 
               <div class="border-b border-border pb-3">
+                <!-- About -->
                 <button type="button" class="flex w-full items-center justify-between px-2 py-2"
                   @click="toggleMobileSection('About')">
                   <span class="uppercase tracking-wide text-sm font-semibold">About</span>
@@ -121,6 +122,7 @@ const closeMobileNav = () => {
               </div>
 
               <div class="border-b border-border pb-3">
+                <!-- Pricing -->
                 <button type="button" class="flex w-full items-center justify-between px-2 py-2"
                   @click="toggleMobileSection('Pricing')">
                   <span class="uppercase tracking-wide text-sm font-semibold">Pricing</span>
@@ -141,6 +143,7 @@ const closeMobileNav = () => {
               </div>
 
               <div class="border-b border-border pb-3 last:border-b-0 last:pb-0">
+                <!-- Invest Now -->
                 <button type="button" class="flex w-full items-center justify-between px-2 py-2"
                   @click="toggleMobileSection('InvestNow')">
                   <span class="uppercase tracking-wide text-sm font-semibold">Invest Now</span>
