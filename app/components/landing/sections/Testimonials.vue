@@ -193,7 +193,7 @@ const selectTestimonial = (index: number) => {
           <Star v-for="index in 5" :key="index" class="size-4 fill-[#00D492] text-[#00D492]" />
         </div>
 
-        <p class="w-full text-center text-base font-normal leading-5.25 text-secondary">
+        <p class="w-full text-center text-base font-normal leading-5.25 text-primary">
           "{{ activeTestimonial.testimony }}"
         </p>
 
@@ -229,7 +229,7 @@ const selectTestimonial = (index: number) => {
               </button>
 
               <div class="flex h-9.75 w-full flex-col items-center justify-center">
-                <p class="w-full text-center text-sm font-semibold leading-5.25 text-secondary">
+                <p class="w-full text-center text-sm font-semibold leading-5.25 text-primary">
                   {{ activeTestimonial.name }}
                 </p>
                 <p class="text-center text-xs font-normal leading-4.5 text-[#6A7282]">
