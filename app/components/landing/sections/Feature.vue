@@ -53,7 +53,7 @@ const strategyItems: { icon: Component; title: string }[] = [
       <!-- Left column -->
 
       <div
-        class="relative mx-auto w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[520px] xl:max-w-[580px]"
+        class="relative mx-auto w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[520px] xl:max-w-[580px] animate-fade-up animation-delay-100"
       >
         <div
           class="absolute top-[8%] left-[50.5%] z-30 h-[87.5%] w-[44%] -translate-x-1/2 overflow-hidden"
@@ -93,7 +93,7 @@ const strategyItems: { icon: Component; title: string }[] = [
       </div>
 
       <!-- Right column -->
-      <div>
+      <div class="animate-fade-up animation-delay-200">
         <span class="text-secondary font-bold text-sm md:text-base">AI-Driven Features</span>
         <h1 class="text-secondary text-3xl sm:text-4xl md:text-5xl font-bold mt-3 md:mt-6 line">
           <span class="text-primary">Smarter Trading, </span>Zero Emotion
@@ -157,7 +157,7 @@ const strategyItems: { icon: Component; title: string }[] = [
             <div
               v-for="item in strategyItems"
               :key="item.title"
-              class="flex w-full items-center rounded-2xl p-3 md:p-3 lg:p-2 gap-4"
+              class="flex w-full items-center rounded-2xl p-3 md:p-3 lg:p-2 gap-4 animate-fade-up animation-delay-300"
             >
               <component
                 :is="item.icon"
