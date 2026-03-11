@@ -74,36 +74,23 @@ function closeDialog(dialog: HTMLDialogElement | null) {
       <!-- dialog for pdf -->
       <dialog
         ref="pdfOpen"
-        class="dialog-animate dialog-backdrop fixed top-1/2 left-1/2
-              -translate-x-1/2 -translate-y-1/2
-              w-100 max-w-lg h-125
-              rounded-xl bg-white shadow-xl p-4 flex flex-col"
+        class="dialog-animate dialog-backdrop fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white shadow-xl p-6 flex flex-col items-center gap-4"
       >
-        <!-- Close button -->
-        <div class="flex justify-end mb-2">
-          <button
-            class="text-gray-500 hover:text-gray-700"
-            @click="closeDialog(pdfOpen)"
-          >
-            <X class="h-5 w-5 bg-gray-200 rounded-full p-1" />
-          </button>
-        </div>
-        <!-- PDF preview -->
-        <!-- <div class="flex-1 w-full overflow-hidden"> -->
-          <iframe
+        <button class="self-end text-gray-500 hover:text-gray-700" @click="closeDialog(pdfOpen)">
+          <X class="h-5 w-5 bg-gray-200 rounded-full p-1" />
+        </button>
+        <p class="text-sm font-bold">Preview is removed for the mean time</p>
+        <!-- <iframe
             :src="pdfUrl"
             class="w-full h-full rounded-lg border"
-          />
-          <div class="flex justify-center mt-3">
-          <a
-            :href="pdfUrl"
-            download
-            class="bg-secondary text-white px-4 py-2 rounded-lg font-bold text-sm hover:bg-secondary/90"
-          >
-            Download PDF
-          </a>
-        </div>
-        
+          /> -->
+        <a 
+          :href="pdfUrl"
+          download
+          class="bg-secondary text-white px-6 py-2 rounded-lg font-bold text-sm hover:bg-secondary/90"
+        >
+          Download PDF
+        </a>
       </dialog>
       <!-- right column -->
       <div class="flex flex-col lg:flex-row gap-14 items-center lg:items-start w-full">
