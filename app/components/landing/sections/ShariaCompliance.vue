@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { MoveRight, X } from 'lucide-vue-next'
 import { ref, type Ref } from 'vue'
+import type { H } from 'vue-router/dist/router-CWoNjPRp.mjs'
 
 const dialogShariaHead: Ref<HTMLDialogElement | null> = ref(null)
 const dialogShariaMember1: Ref<HTMLDialogElement | null> = ref(null)
 const dialogShariaMember2: Ref<HTMLDialogElement | null> = ref(null)
+const pdfOpen: Ref<HTMLDialogElement | null> = ref(null)
+const pdfUrl = '/pdf/sharia_certifcate.pdf'
 
 function openDialog(dialog: HTMLDialogElement | null) {
   if (!dialog) return
@@ -38,7 +41,6 @@ function closeDialog(dialog: HTMLDialogElement | null) {
           <span class="text-secondary block mb-2">A strong </span>
           <span class="text-secondary block">obedience</span>
         </h2>
-
         <p
           class="text-primary font-lg mt-6 md:mt-12 leading-snug max-w-xs md:max-w-sm whitespace-pre-line"
         >
@@ -46,7 +48,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
           <span class="block">regulations.</span>
         </p>
         <a
-          href="/pdf/sharia_certifcate.pdf"
+          @click="openDialog(pdfOpen)"
           target="_blank"
           class="cursor-pointer bg-secondary font-bold mt-4 text-sm rounded-3xl text-white hover:bg-secondary/90 px-4 py-2 inline-flex items-center gap-2"
         >
@@ -54,11 +56,45 @@ function closeDialog(dialog: HTMLDialogElement | null) {
           <MoveRight class="w-4 h-4" />
         </a>
       </div>
+      <!-- dialog for pdf -->
+      <dialog
+        ref="pdfOpen"
+        class="dialog-animate dialog-backdrop fixed top-1/2 left-1/2
+              -translate-x-1/2 -translate-y-1/2
+              w-100 max-w-lg h-125
+              rounded-xl bg-white shadow-xl p-4 flex flex-col"
+      >
+        <!-- Close button -->
+        <div class="flex justify-end mb-2">
+          <button
+            class="text-gray-500 hover:text-gray-700"
+            @click="closeDialog(pdfOpen)"
+          >
+            <X class="h-5 w-5 bg-gray-200 rounded-full p-1" />
+          </button>
+        </div>
+        <!-- PDF preview -->
+        <!-- <div class="flex-1 w-full overflow-hidden"> -->
+          <iframe
+            :src="pdfUrl"
+            class="w-full h-full rounded-lg border"
+          />
+          <div class="flex justify-center mt-3">
+          <a
+            :href="pdfUrl"
+            download
+            class="bg-secondary text-white px-4 py-2 rounded-lg font-bold text-sm hover:bg-secondary/90"
+          >
+            Download PDF
+          </a>
+        </div>
+        
+      </dialog>
       <!-- right column -->
       <div class="flex flex-col lg:flex-row gap-14 items-center lg:items-start w-full">
         <figure class="flex flex-col items-center mt-6 lg:mt-16">
           <div
-            class="p-1 bg-white rounded-2xl inline-block outline-gray-100 outline-4 cursor-pointer"
+            class="p-1 bg-white rounded-2xl inline-block  cursor-pointer hover:bg-[#042637] hover:-translate-y-1 transition-all duration-300 outline-gray-200 outline-4"
             @click="openDialog(dialogShariaMember1)"
           >
             <NuxtImg
@@ -119,7 +155,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
         </dialog>
         <figure class="flex flex-col items-center">
           <div
-            class="p-1 bg-[#042637] rounded-2xl inline-block outline-gray-200 outline-4 cursor-pointer"
+            class="p-1 bg-white rounded-2xl inline-block outline-gray-200 outline-4 cursor-pointer hover:bg-[#042637] hover:-translate-y-1 transition-all duration-300"
             @click="openDialog(dialogShariaHead)"
           >
             <NuxtImg
@@ -180,7 +216,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
         </dialog>
         <figure class="flex flex-col items-center mt-6 lg:mt-16">
           <div
-            class="p-1 bg-white rounded-2xl inline-block outline-gray-100 outline-4 cursor-pointer"
+            class="p-1 bg-white rounded-2xl inline-block outline-gray-100 outline-4 cursor-pointer hover:bg-[#042637] hover:-translate-y-1 transition-all duration-300"
             @click="openDialog(dialogShariaMember2)"
           >
             <NuxtImg
