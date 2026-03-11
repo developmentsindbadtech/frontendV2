@@ -1,4 +1,22 @@
 <script setup lang="ts">
+import { ref, type Ref, onMounted } from 'vue'
+
+const sectionRef = ref<HTMLElement | null>(null)
+const isVisible = ref(false)
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      isVisible.value = entry.isIntersecting
+    })
+  }, { threshold: 0.1 })
+
+  if (sectionRef.value) {
+    observer.observe(sectionRef.value)
+  }
+})
+
+
 const marketFlags = [
   {
     name: 'Saudi Arabia',
@@ -36,7 +54,11 @@ const statusClass = (status: string) => {
 </script>
 
 <template>
-  <section class="md:mt-24 mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
+  <section 
+    ref="sectionRef"
+    class="md:mt-24 mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-0"
+    :class="{ 'animate-fade-up animation-delay-300': isVisible }"
+  >
     <div class="w-full flex flex-col items-center gap-8 py-5 md:mx-auto px-4 sm:px-6 lg:px-0">
       <span class="text-secondary text-center font-bold text-base">Global Markets</span>
       <h2 class="text-secondary sm:text-2xl md:text-5xl font-bold text-center">

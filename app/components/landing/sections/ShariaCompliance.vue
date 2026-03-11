@@ -1,13 +1,26 @@
 <script setup lang="ts">
 import { MoveRight, X } from 'lucide-vue-next'
-import { ref, type Ref } from 'vue'
-import type { H } from 'vue-router/dist/router-CWoNjPRp.mjs'
+import { ref, type Ref, onMounted } from 'vue'
 
 const dialogShariaHead: Ref<HTMLDialogElement | null> = ref(null)
 const dialogShariaMember1: Ref<HTMLDialogElement | null> = ref(null)
 const dialogShariaMember2: Ref<HTMLDialogElement | null> = ref(null)
 const pdfOpen: Ref<HTMLDialogElement | null> = ref(null)
 const pdfUrl = '/pdf/sharia_certifcate.pdf'
+const sectionRef = ref<HTMLElement | null>(null)
+const isVisible = ref(false)
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      isVisible.value = entry.isIntersecting
+    })
+  }, { threshold: 0.1 })
+
+  if (sectionRef.value) {
+    observer.observe(sectionRef.value)
+  }
+})
 
 function openDialog(dialog: HTMLDialogElement | null) {
   if (!dialog) return
@@ -28,8 +41,10 @@ function closeDialog(dialog: HTMLDialogElement | null) {
 </script>
 <template>
   <section
+    ref="sectionRef"
     aria-labelledby="sharia-compliance"
-    class="flex flex-col justify-center items-center min-h-screen px-4 sm:px-6 lg:px-8 md:mt-24 mt-4"
+    class="flex flex-col justify-center items-center min-h-screen px-4 sm:px-6 lg:px-8 md:mt-24 mt-4 " 
+    :class="{ 'animate-fade-up animation-delay-300': isVisible }"
   >
     <div class="flex flex-col lg:flex-row items-center lg:items-start gap-12 max-w-7xl mx-auto">
       <div

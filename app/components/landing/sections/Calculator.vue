@@ -1,8 +1,31 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed , type Ref, onMounted} from 'vue'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '~/components/ui/card'
 import { Slider } from '~/components/ui/slider'
 import { Label } from '~/components/ui/label'
+
+
+const sectionRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0]
+      if (!entry) return
+      if (entry.isIntersecting) {
+        sectionRef.value?.classList.remove('animate-fade-up')
+        requestAnimationFrame(() => {
+          sectionRef.value?.classList.add('animate-fade-up')
+        })
+        observer.disconnect()
+      }
+    },
+    { threshold: 0.3 }
+  )
+  if (sectionRef.value) observer.observe(sectionRef.value)
+})
+
+
 
 // Shadcn sliders require arrays for v-model
 const monthlyInvestment = ref([1000])
@@ -117,7 +140,11 @@ const chartData = computed(() => {
 </script>
 
 <template>
-  <section class="py-16 md:py-24 px-4 md:mt-24 sm:px-6 flex justify-center font-sans bg-background">
+  <section 
+    ref="sectionRef"
+    class="py-16 md:py-24 px-4 md:mt-24 sm:px-6 flex justify-center font-sans bg-background"
+    
+    >
     <Card class="w-full max-w-6xl rounded-[2.5rem] shadow-sm border-border">
       <CardHeader class="text-center pb-12 md:pb-16 pt-8 md:pt-12">
         <CardTitle class="text-3xl md:text-5xl font-bold text-primary mb-4 tracking-tight">
@@ -141,7 +168,7 @@ const chartData = computed(() => {
                 >Monthly Investment Amount ($)</Label
               >
               <div
-                class="px-4 py-2 border border-border rounded-xl bg-background text-primary font-semibold min-w-[100px] text-center shadow-sm"
+                class="px-4 py-2 border border-border rounded-xl bg-background text-primary font-semibold min-w-25 text-center shadow-sm"
               >
                 ${{ (monthlyInvestment[0] ?? 1000).toLocaleString() }}
               </div>
@@ -159,7 +186,7 @@ const chartData = computed(() => {
             <div class="flex justify-between items-center">
               <Label class="text-primary font-medium text-base">Expected Annual Return (%)</Label>
               <div
-                class="px-4 py-2 border border-border rounded-xl bg-background text-primary font-semibold min-w-[100px] text-center shadow-sm"
+                class="px-4 py-2 border border-border rounded-xl bg-background text-primary font-semibold min-w-25 text-center shadow-sm"
               >
                 {{ expectedReturn[0] ?? 19 }}%
               </div>
@@ -177,7 +204,7 @@ const chartData = computed(() => {
             <div class="flex justify-between items-center">
               <Label class="text-primary font-medium text-base">Investment Period (Years)</Label>
               <div
-                class="px-4 py-2 border border-border rounded-xl bg-background text-primary font-semibold min-w-[100px] text-center shadow-sm"
+                class="px-4 py-2 border border-border rounded-xl bg-background text-primary font-semibold min-w-25 text-center shadow-sm"
               >
                 {{ investmentPeriod[0] ?? 5 }}
               </div>
@@ -192,7 +219,7 @@ const chartData = computed(() => {
           </div>
         </div>
 
-        <div class="relative w-full h-[350px] lg:h-[400px] flex flex-col pt-6 lg:pt-0">
+        <div class="relative w-full h-87.5 lg:h-87.5 flex flex-col pt-6 lg:pt-0">
           <div class="absolute top-0 left-12 lg:left-14 z-10 pointer-events-none">
             <span class="text-sm text-muted-foreground font-medium mb-1"
               >Projected Portfolio Value</span

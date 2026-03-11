@@ -1,5 +1,29 @@
+<script setup lang="ts">
+import { ref, type Ref, onMounted } from 'vue'
+
+const sectionRef = ref<HTMLElement | null>(null)
+const isVisible = ref(false)
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      isVisible.value = entry.isIntersecting
+    })
+  }, { threshold: 0.1 })
+
+  if (sectionRef.value) {
+    observer.observe(sectionRef.value)
+  }
+})
+
+</script>
 <template>
-  <section aria-labelledby="sindbad-founder" class="py-20 md:mt-24 mt-12">
+  <section 
+    ref="sectionRef"
+    aria-labelledby="sindbad-founder" 
+    class="py-20 md:mt-24 mt-12"
+    :class="{ 'animate-fade-up animation-delay-300': isVisible }"
+    >
     <div class="max-w-6xl mx-auto px-6">
       <header class="text-center mb-16 space-y-8">
         <h2 class="text-4xl font-bold">Meet <span class="text-secondary">Our Team</span></h2>
@@ -40,7 +64,7 @@
 
         <figure class="flex flex-col items-center w-60">
           <div
-            class="bg-white rounded-2xl shadow-sm hover:shadow-md hover:bg-[#042637] hover:-translate-y-1 transition-all duration-300 p-3 outline-gray-200 outline-4 cursor-pointer"
+            class="bg-white cursor-pointer hover:bg-[#042637] rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transform transition-all duration-300 p-3 outline-gray-200 outline-4"
           >
             <NuxtImg
               src="/images/teamcard/teamcard-placeholder.png"

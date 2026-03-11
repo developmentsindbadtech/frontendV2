@@ -1,15 +1,12 @@
-export const useBackend = () => {
-  const config = useRuntimeConfig()
-  const baseUrl =
-    config.public.appEnv === 'local'
-      ? config.public.backendEndpointlocal
-      : config.public.backendEndpoint
+import type { Credentials } from '~/types/api/backend'
 
-  const login = async (email: string, password: string) => {
+export const useBackend = () => {
+  const login = async (credentials: Credentials) => {
+    const { $api } = useNuxtApp()
     try {
-      const response = await $fetch(`${baseUrl}/login`, {
+      const response = await $api.backend('/login', {
         method: 'POST',
-        body: { email, password },
+        body: credentials,
       })
 
       return response
@@ -19,7 +16,22 @@ export const useBackend = () => {
     }
   }
 
+  const getUsers = async () => {
+    const { $api } = useNuxtApp()
+    try {
+      const response = await $api.backend('/users', {
+        method: 'GET',
+      })
+
+      return response
+    } catch (error) {
+      console.error(error)
+      throw new Error('Failed to fetch users')
+    }
+  }
+
   return {
     login,
+    getUsers,
   }
 }
