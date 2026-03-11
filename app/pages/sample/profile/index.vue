@@ -9,16 +9,20 @@
 
 <script setup lang="ts">
 // Sample components calls and implemetations
-import UserCredentials from '~/components/profile/UserCredentials.vue'
-import UserImage from '~/components/profile/UserImage.vue'
-import UserInfo from '~/components/profile/UserInfo.vue'
+import UserCredentials from '~/components/sample/profile/UserCredentials.vue'
+import UserImage from '~/components/sample/profile/UserImage.vue'
+import UserInfo from '~/components/sample/profile/UserInfo.vue'
+import { useBackend } from '~/composables/api/useBackend'
 
 definePageMeta({
   layout: 'app',
   middleware: ['auth'],
 })
 
-const { authUser, botToken, token } = useAppAuthStore()
+const { getUsers } = useBackend()
 
-console.log(authUser, botToken, token)
+onMounted(async () => {
+  const res = await getUsers()
+  console.log(res)
+})
 </script>
