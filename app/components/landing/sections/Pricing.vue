@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
+import { type Component, ref, type Ref, onMounted } from 'vue'
 import { Building2, Check, Crown, Gem, Sparkles, User } from 'lucide-vue-next'
 
 type PlanTheme = 'sky' | 'teal' | 'blue' | 'rose'
@@ -105,10 +105,34 @@ const headingToneClasses: Record<PlanTheme, string> = {
   blue: 'text-[#0973E6]',
   rose: 'text-[#E63F5E]',
 }
-</script>
 
+const sectionRef: Ref<HTMLElement | null> = ref(null)
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0]
+      if (!entry) return
+      if (entry.isIntersecting) {
+        const cards = sectionRef.value?.querySelectorAll('article')
+        cards?.forEach((card, i) => {
+          setTimeout(() => {
+            card.classList.remove('opacity-0')
+            card.classList.add('animate-fade-up')
+          }, i * 250)
+        })
+        observer.disconnect()
+      }
+    },
+    { threshold: 0.1 },
+  )
+  if (sectionRef.value) observer.observe(sectionRef.value)
+})
+</script>
 <template>
-  <section class="mx-auto mt-12 w-full max-w-7xl px-4 py-7.5 sm:px-6 md:mt-24 lg:px-0">
+  <section
+    ref="sectionRef"
+    class="mx-auto mt-12 w-full max-w-7xl px-4 py-7.5 sm:px-6 md:mt-24 lg:px-0"
+  >
     <div class="flex w-full flex-col items-center gap-6 md:gap-8">
       <div class="flex w-full flex-col items-center gap-4 text-center">
         <span class="text-base font-bold leading-5.25 text-[#33B5E5]">Pricing</span>
@@ -123,7 +147,12 @@ const headingToneClasses: Record<PlanTheme, string> = {
       </div>
 
       <div class="grid w-full grid-cols-1 gap-7 sm:grid-cols-2 xl:grid-cols-4">
-        <article v-for="plan in plans" :key="plan.name" class="h-full rounded-2xl p-px">
+        <article
+          v-for="(plan, index) in plans"
+          :key="plan.name"
+          class="h-full rounded-2xl p-px opacity-0"
+          :data-index="index"
+        >
           <div class="flex h-full min-h-132 flex-col rounded-2xl bg-[#F7FBFD] p-8">
             <div
               v-if="plan.popular"

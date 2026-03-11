@@ -1,6 +1,31 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
+import { type Component,ref, type Ref,onMounted} from 'vue'
 import { Brain, ShieldCheck, TrendingUp, Zap, ChartColumn, Lock, ArrowRight } from 'lucide-vue-next'
+
+const sectionRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0]
+      if (!entry) return
+      if (entry.isIntersecting) {
+        sectionRef.value?.classList.remove('animate-fade-up')
+        requestAnimationFrame(() => {
+          sectionRef.value?.classList.add('animate-fade-up')
+        })
+        observer.disconnect()
+      }
+    },
+    { threshold: 0.3 }
+  )
+  if (sectionRef.value) observer.observe(sectionRef.value)
+})
+
+
+
+
+
 
 import {
   Accordion,
@@ -46,14 +71,17 @@ const strategyItems: { icon: Component; title: string }[] = [
 </script>
 
 <template>
-  <section class="relative w-full md:mt-24 max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-0">
+  <section 
+    ref="sectionRef"
+    class="relative w-full md:mt-24 max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-0"
+  >
     <div
       class="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
     >
       <!-- Left column -->
 
       <div
-        class="relative mx-auto w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[520px] xl:max-w-[580px] animate-fade-up animation-delay-100"
+        class="relative mx-auto w-full max-w-85 sm:max-w-105 lg:max-w-130 xl:max-w-[580px] animate-fade-up animation-delay-100"
       >
         <div
           class="absolute top-[8%] left-[50.5%] z-30 h-[87.5%] w-[44%] -translate-x-1/2 overflow-hidden"

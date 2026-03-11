@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, type Ref, onMounted } from 'vue'
 
 const email = ref('')
 
@@ -8,10 +8,34 @@ const handleSubscribe = () => {
     console.log('Lead captured:', email.value)
   }
 }
+
+
+const sectionRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        sectionRef.value?.classList.remove('animate-fade-up')
+        requestAnimationFrame(() => {
+          sectionRef.value?.classList.add('animate-fade-up')
+        })
+        observer.disconnect()
+      }
+    })
+  }, { threshold: 0.1 })
+
+  if (sectionRef.value) {
+    observer.observe(sectionRef.value)
+  }
+})
+
 </script>
 
 <template>
-  <section class="w-full bg-background py-112 md:py-24 px-4 sm:px-6 lg:px-8 mt-12 md:mt-24">
+  <section 
+  ref="sectionRef"
+  class="w-full bg-background py-112 md:py-24 px-4 sm:px-6 lg:px-8 mt-12 md:mt-24">
     <div
       class="max-w-[1440px] h-auto lg:h-[600px] mx-auto bg-[#E0F2FE] rounded-[4rem] overflow-hidden relative shadow-sm flex flex-col lg:block"
     >

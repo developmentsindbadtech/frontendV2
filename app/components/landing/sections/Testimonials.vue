@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Star } from 'lucide-vue-next'
+import { ref, type Ref, onMounted} from 'vue'
 
 type Testimonial = {
   id: number
@@ -125,6 +126,26 @@ const testimonials: Testimonial[] = [
   },
 ]
 
+const sectionRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0]
+      if (!entry) return
+      if (entry.isIntersecting) {
+        sectionRef.value?.classList.remove('animate-fade-up')
+        requestAnimationFrame(() => {
+          sectionRef.value?.classList.add('animate-fade-up')
+        })
+        observer.disconnect()
+      }
+    },
+    { threshold: 0.3 }
+  )
+  if (sectionRef.value) observer.observe(sectionRef.value)
+})
+
 const activeIndex = ref(2)
 
 const activeTestimonial = computed<Testimonial>(
@@ -176,28 +197,29 @@ const selectTestimonial = (index: number) => {
 
 <template>
   <section
+    ref="sectionRef"
     class="mx-auto mt-12 flex w-full max-w-275 flex-col items-center justify-center gap-4 px-4 sm:px-6 md:mt-24 lg:px-0"
   >
     <div class="flex w-full flex-col items-center justify-center gap-6 text-center">
       <div class="flex w-full flex-col items-center gap-4">
         <span class="text-base font-bold leading-5.25 text-[#33B5E5]">Testimonials</span>
         <h2
-          class="text-center text-3xl font-bold text-primary mt-[16px] sm:text-4xl md:text-5xl md:leading-15.75 lg:text-[48px]"
+          class="text-center text-3xl font-bold text-primary mt-4 sm:text-4xl md:text-5xl md:leading-15.75 lg:text-[48px]"
         >
           Trusted by <span class="text-secondary">Saudi Traders</span>
         </h2>
       </div>
 
       <div class="flex w-full max-w-181 flex-col items-center gap-6.5">
-        <div class="flex h-4 items-center justify-center mt-[24px] gap-1">
+        <div class="flex h-4 items-center justify-center mt-6 gap-1">
           <Star v-for="index in 5" :key="index" class="size-4 fill-[#00D492] text-[#00D492]" />
         </div>
 
-        <p class="w-full text-center text-base font-normal mt-[26px] leading-5.25 text-primary">
+        <p class="w-full text-center text-base font-normal mt-6.5 leading-5.25 text-primary">
           "{{ activeTestimonial.testimony }}"
         </p>
 
-        <div class="flex w-full mt-[26px] max-w-md items-center justify-center gap-6.5">
+        <div class="flex w-full mt-6.5 max-w-md items-center justify-center gap-6.5">
           <template v-for="person in visibleTestimonials" :key="person.id">
             <button
               v-if="person.offset !== 0"

@@ -195,7 +195,7 @@
     animation: float 4s ease-in-out infinite;
   }
 
- 
+
 
   .animation-delay-100 {
     animation-delay: 100ms;
@@ -224,3 +224,4 @@
   .animation-delay-800 {
     animation-delay: 800ms;
   }
+}
