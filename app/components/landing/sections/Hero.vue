@@ -3,14 +3,16 @@ import { Sparkles, Search } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section class="w-full mx-auto px-4 sm:px-6 lg:px-0 relative">
+  <section class="w-full mx-auto px-4 sm:px-6 py-3 lg:px-0 relative">
     <div class="absolute inset-0 -z-10">
       <NuxtImg
         src="/images/hero_bg.png"
         class="h-full w-full object-cover object-center"
         alt="Hero Background"
       />
-      <div class="absolute inset-0 bg-white/55"></div>
+      <div
+        class="absolute w-full h-[620px] left-1/2 -translate-x-1/2 bottom-[-140px] bg-white/90 blur-[150px] z-[2] pointer-events-none"
+      />
     </div>
     <div class="w-full min-h-155 flex flex-col items-center justify-center pt-6 md:pt-10">
       <span
@@ -41,7 +43,7 @@ import { Sparkles, Search } from 'lucide-vue-next'
 
       <!-- Seach-Bar -->
       <div
-        class="flex mt-6 flex-col sm:flex-row items-stretch animate-fade-in animation-delay-300 sm:items-center gap-3 md:mt-6 justify-between bg-foreground/10 rounded-2xl sm:rounded-full p-3 sm:px-4 sm:py-3 mx-auto w-full max-w-2xl"
+        class="flex mt-6 flex-col sm:flex-row items-stretch animate-fade-in animation-delay-300 sm:items-center gap-3 md:mt-6 justify-between bg-background/70 rounded-2xl sm:rounded-full p-3 sm:px-4 sm:py-3 mx-auto w-full max-w-2xl"
       >
         <!-- Icon -->
 
@@ -52,7 +54,7 @@ import { Sparkles, Search } from 'lucide-vue-next'
           <input
             type="text"
             placeholder="Anything to ask..."
-            class="w-full flex-1 px-4 py-2 rounded-xl sm:rounded-full text-primary focus:outline-none focus:ring-2 focus:ring-secondary"
+            class="w-full flex-1 px-4 py-2 rounded-xl sm:rounded-full text-primary focus:outline-none focus:none focus:none"
           />
         </div>
 
@@ -67,7 +69,7 @@ import { Sparkles, Search } from 'lucide-vue-next'
       <!-- Hero-image -->
       <NuxtImg
         src="/images/Hero.png"
-        class="w-full max-w-7xl mx-auto mt-24 rounded-2xl shadow-lg animate-fade-in animation-delay-400"
+        class="w-full max-w-7xl mx-auto md:mt-24 mt-6 rounded-2xl shadow-lg animate-fade-in animation-delay-400"
         alt="Hero Image"
       />
     </div>
