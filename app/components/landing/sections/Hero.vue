@@ -3,10 +3,18 @@ import { Sparkles, Search } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section class="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-24 md:mt-41 lg:px-0">
-    <div class="w-full flex flex-col items-center justify-center pt-6 md:pt-10">
+  <section class="w-full mx-auto px-4 sm:px-6 lg:px-0 relative">
+    <div class="absolute inset-0 -z-10">
+      <NuxtImg
+        src="/images/hero_bg.png"
+        class="h-full w-full object-cover object-center"
+        alt="Hero Background"
+      />
+      <div class="absolute inset-0 bg-white/55"></div>
+    </div>
+    <div class="w-full min-h-155 flex flex-col items-center justify-center pt-6 md:pt-10">
       <span
-        class="flex items-center gap-2 animate-fade-in animation-delay-100 px-4 py-2 rounded-full border border-secondary font-bold text-base sm:text-sm text-secondary bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
+        class="flex items-center gap-2 mt-24 animate-fade-in animation-delay-100 px-4 py-2 rounded-full border border-secondary font-bold text-base sm:text-sm text-white bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
       >
         <Sparkles class="h-4 w-4" />
         Trading decisions are powered by AI
@@ -33,7 +41,7 @@ import { Sparkles, Search } from 'lucide-vue-next'
 
       <!-- Seach-Bar -->
       <div
-        class="flex flex-col sm:flex-row items-stretch animate-fade-in animation-delay-300 sm:items-center gap-3 md:mt-6 justify-between bg-foreground/10 rounded-2xl sm:rounded-full p-3 sm:px-4 sm:py-3 mx-auto w-full max-w-2xl"
+        class="flex mt-6 flex-col sm:flex-row items-stretch animate-fade-in animation-delay-300 sm:items-center gap-3 md:mt-6 justify-between bg-foreground/10 rounded-2xl sm:rounded-full p-3 sm:px-4 sm:py-3 mx-auto w-full max-w-2xl"
       >
         <!-- Icon -->
 
@@ -60,7 +68,6 @@ import { Sparkles, Search } from 'lucide-vue-next'
       <NuxtImg
         src="/images/Hero.png"
         class="w-full max-w-7xl mx-auto mt-24 rounded-2xl shadow-lg animate-fade-in animation-delay-400"
-        loading="lazy"
         alt="Hero Image"
       />
     </div>
