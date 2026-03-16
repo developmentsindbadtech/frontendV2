@@ -87,11 +87,11 @@ const strategyItems: { icon: Component; title: string }[] = [
 
         <!-- Right column -->
         <div class="animate-fade-up animation-delay-200">
-          <span class="text-secondary font-bold text-sm md:text-base">AI-Driven Features</span>
-          <h1 class="text-secondary text-3xl sm:text-4xl md:text-5xl font-bold mt-3 md:mt-6 line">
+          <span class="text-white font-bold text-sm md:text-base">AI-Driven Features</span>
+          <h1 class="text-white text-3xl sm:text-4xl md:text-5xl font-bold mt-3 md:mt-6 line">
             <span class="text-primary">Smarter Trading, </span>Zero Emotion
           </h1>
-          <p class="text-primary font-semibold mb-3 mt-4">
+          <p class="text-white font-semibold mb-3 mt-4">
             Every trading decision is powered by AI that eliminates emotional bias and executes with
             mathematical precision.
           </p>
@@ -135,11 +135,9 @@ const strategyItems: { icon: Component; title: string }[] = [
       >
         <!-- Left column -->
         <div class="w-full">
-          <span class="text-secondary font-bold text-sm md:text-base"
-            >Built for the Saudi Market</span
-          >
-          <h1 class="text-secondary text-3xl sm:text-4xl md:text-5xl font-bold mt-3 md:mt-6 line">
-            <span class="text-primary">Institutional-Grade, </span>AI Strategies
+          <span class="text-white font-bold text-sm md:text-base">Built for the Saudi Market</span>
+          <h1 class="text-primary text-3xl sm:text-4xl md:text-5xl font-bold mt-3 md:mt-6 line">
+            <span class="text-white">Institutional-Grade, </span>AI Strategies
           </h1>
           <p class="text-primary font-semibold mt-6 md:mt-[16px]">
             Deploy the same AI-powered strategies used by top hedge funds. Our algorithms analyze
@@ -157,7 +155,7 @@ const strategyItems: { icon: Component; title: string }[] = [
                 :is="item.icon"
                 class="h-8 w-8 md:h-10 md:w-10 rounded-sm bg-primary p-2 text-secondary shrink-0"
               />
-              <h3 class="text-secondary text-lg md:text-xl flex-1">{{ item.title }}</h3>
+              <h3 class="text-white text-lg md:text-xl flex-1">{{ item.title }}</h3>
             </div>
           </div>
 
