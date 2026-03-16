@@ -69,73 +69,21 @@ const strategyItems: { icon: Component; title: string }[] = [
 <template>
   <section
     ref="sectionRef"
-    class="relative w-full mx-auto px-4 [background-image:var(--gradient)] sm:px-6 lg:px-8 py-10 md:py-16 overflow-visible"
+    class="relative -top-30 -bottom-30 z-10 w-full mx-auto px-4 bg-[url('/images/bg-gradient.png')] bg-no-repeat bg-size-[100%_100%] sm:px-6 lg:px-8 py-10 md:py-16 overflow-visible"
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1440 320"
-      class="absolute w-full z-10 left-0 -top-45 h-65 text-background pointer-events-none"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id="heroWaveGradient" x1="1%" y1="41%" x2="99%" y2="59%">
-          <stop offset="5%" stop-color="oklch(72.1% 0.16 159)" />
-          <stop offset="95%" stop-color="oklch(56.6% 0.19 255)" />
-        </linearGradient>
-      </defs>
-      <path
-        fill="url(#heroWaveGradient)"
-        fill-opacity="1"
-        d="M0,96L80,122.7C160,149,320,203,480,186.7C640,171,800,85,960,58.7C1120,32,1280,64,1360,80L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
-      />
-    </svg>
-
     <div ref="contentRef" class="relative z-10">
-      <div
-        class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
-      >
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-center">
         <!-- Left column -->
 
         <div
           class="relative mx-auto w-full max-w-85 sm:max-w-105 lg:max-w-130 xl:max-w-[580px] animate-fade-up animation-delay-100"
         >
-          <div
-            class="absolute top-[8%] left-[50.5%] z-30 h-[87.5%] w-[44%] -translate-x-1/2 overflow-hidden"
-          >
-            <img
-              src="/images/mobile_demo.gif"
-              alt="Mobile app demo"
-              class="h-full w-full rounded-b-[2rem] object-cover object-center md:rounded-b-[3rem]"
-            />
-          </div>
-
-          <NuxtImg src="/images/mobile-frame.png" class="relative z-10 w-full" />
-
-          <div
-            class="absolute right-0 top-[14%] z-40 rounded-xl bg-background/45 p-3 backdrop-blur-[2px] xl:hidden"
-          >
-            <NuxtImg src="/images/trade.png" class="w-[118px] sm:w-[138px] object-contain" />
-          </div>
-
-          <div
-            class="absolute left-0 bottom-[8%] z-40 rounded-xl bg-background/45 p-3 backdrop-blur-[2px] xl:hidden"
-          >
-            <NuxtImg src="/images/review.png" class="w-[128px] sm:w-[148px] object-contain" />
-          </div>
-
-          <div
-            class="box-border z-40 hidden h-[140px] w-[209px] flex-row items-start gap-2.5 rounded-2xl bg-background/30 p-6 backdrop-blur-[2px] xl:absolute xl:left-[380px] xl:top-[90px] xl:flex"
-          >
-            <NuxtImg src="/images/trade.png" class="h-full w-full object-contain" />
-          </div>
-
-          <div
-            class="box-border z-40 hidden h-[170.12px] w-[220px] flex-col items-start justify-center gap-2 rounded-2xl bg-background/30 p-6 backdrop-blur-[2px] xl:absolute xl:left-[-27px] xl:top-[350px] xl:flex"
-          >
-            <NuxtImg src="/images/review.png" class="h-full w-full object-contain" />
+          <div class="w-full relative -bottom-20 -left-40">
+            <NuxtImg src="/images/ellipse.png" class="w-full" />
           </div>
         </div>
+
+        <img src="/images/Product.png" alt="product" class="absolute z-1 w-[100] -left-8 -top-26" />
 
         <!-- Right column -->
         <div class="animate-fade-up animation-delay-200">
@@ -166,9 +114,9 @@ const strategyItems: { icon: Component; title: string }[] = [
                 <div class="flex items-center gap-3">
                   <component
                     :is="faq.icon"
-                    class="h-8 w-8 md:h-10 md:w-10 border border-secondary rounded-sm bg-blue/50 p-2 text-secondary shrink-0"
+                    class="h-8 w-8 md:h-10 md:w-10 border border-secondary rounded-sm bg-primary p-2 text-secondary shrink-0"
                   />
-                  <span class="text-secondary">{{ faq.title }}</span>
+                  <span class="text-white">{{ faq.title }}</span>
                 </div>
               </AccordionTrigger>
 

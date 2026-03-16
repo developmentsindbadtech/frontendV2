@@ -46,7 +46,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
   <section
     ref="sectionRef"
     aria-labelledby="sharia-compliance"
-    class="relative flex flex-col justify-center items-center min-h-screen bg-gradient px-4 sm:px-6 lg:px-8 pt-10 md:pt-14 pb-14 md:pb-20 mt-0 overflow-visible"
+    class="relative z-20 -mt-20 md:-mt-28 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-16 md:pb-24 overflow-visible"
     :class="{ 'animate-fade-up animation-delay-300': isVisible }"
   >
     <div class="flex flex-col lg:flex-row items-center lg:items-start gap-12 max-w-7xl mx-auto">
@@ -282,20 +282,6 @@ function closeDialog(dialog: HTMLDialogElement | null) {
         </dialog>
       </div>
     </div>
-
-    <svg
-      viewBox="0 0 1440 390"
-      xmlns="http://www.w3.org/2000/svg"
-      class="pointer-events-none absolute bottom-0 left-0 translate-y-10 md:translate-y-14 h-14 md:h-20 w-full rotate-180 text-background"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M 0,400 L 0,150 C 116.46428571428572,167.5 232.92857142857144,185 353,204 C 473.07142857142856,223 596.7500000000001,243.5 712,213 C 827.2499999999999,182.5 934.0714285714287,101 1054,82 C 1173.9285714285713,63 1306.9642857142858,106.5 1440,150 L 1440,400 L 0,400 Z"
-        stroke="none"
-        fill="currentColor"
-      />
-    </svg>
   </section>
 </template>
 
