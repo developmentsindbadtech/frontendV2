@@ -10,6 +10,7 @@ import {
 } from '~/components/ui/accordion'
 
 const sectionRef = ref<HTMLElement | null>(null)
+const contentRef = ref<HTMLElement | null>(null)
 
 onMounted(() => {
   const observer = new IntersectionObserver(
@@ -17,9 +18,9 @@ onMounted(() => {
       const entry = entries[0]
       if (!entry) return
       if (entry.isIntersecting) {
-        sectionRef.value?.classList.remove('animate-fade-up')
+        contentRef.value?.classList.remove('animate-fade-up')
         requestAnimationFrame(() => {
-          sectionRef.value?.classList.add('animate-fade-up')
+          contentRef.value?.classList.add('animate-fade-up')
         })
         observer.disconnect()
       }
@@ -68,12 +69,12 @@ const strategyItems: { icon: Component; title: string }[] = [
 <template>
   <section
     ref="sectionRef"
-    class="relative w-full mx-auto px-4 bg-gradient! border-none! sm:px-6 lg:px-8 py-10 md:py-16 overflow-visible"
+    class="relative w-full mx-auto px-4 [background-image:var(--gradient)] sm:px-6 lg:px-8 py-10 md:py-16 overflow-visible"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1440 320"
-      class="absolute w-full z-10 left-0 -top-45 h-65 text-background pointer-events-none border-none!"
+      class="absolute w-full z-10 left-0 -top-45 h-65 text-background pointer-events-none"
       preserveAspectRatio="none"
       aria-hidden="true"
     >
@@ -90,7 +91,7 @@ const strategyItems: { icon: Component; title: string }[] = [
       />
     </svg>
 
-    <div class="relative z-10">
+    <div ref="contentRef" class="relative z-10">
       <div
         class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
       >
