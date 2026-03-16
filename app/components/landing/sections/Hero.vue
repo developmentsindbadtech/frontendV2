@@ -1,22 +1,40 @@
 <script setup lang="ts">
-import { Sparkles, Search } from 'lucide-vue-next'
+import { Sparkles } from 'lucide-vue-next'
+
+import { ref, onMounted } from 'vue'
+const divRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0]
+      if (!entry) return
+      if (entry.isIntersecting) {
+        divRef.value?.classList.remove('animate-fade-up')
+        requestAnimationFrame(() => {
+          divRef.value?.classList.add('animate-fade-up')
+        })
+        observer.disconnect()
+      }
+    },
+    { threshold: 0.3 },
+  )
+  if (divRef.value) observer.observe(divRef.value)
+})
 </script>
 
 <template>
-  <section class="w-full mx-auto px-4 sm:px-6 py-3 lg:px-0 relative">
+  <section class="relative h-screen z-1 w-full mx-auto px-4 sm:px-6 py-3 pb-12 md:pb-16 lg:px-0">
     <div class="absolute inset-0 -z-10">
       <NuxtImg
         src="/images/hero_bg.png"
-        class="h-full w-full object-cover object-center"
+        class="h-full w-full object-cover object-top"
         alt="Hero Background"
-      />
-      <div
-        class="absolute w-full h-[620px] left-1/2 -translate-x-1/2 bottom-[-140px] bg-white/90 blur-[150px] z-[2] pointer-events-none"
       />
     </div>
     <div class="w-full min-h-155 flex flex-col items-center justify-center pt-6 md:pt-10">
       <span
-        class="flex items-center gap-2 mt-24 animate-fade-in animation-delay-100 px-4 py-2 rounded-full border border-secondary font-bold text-base sm:text-sm text-white bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
+        class="flex items-center gap-2 mt-16 animate-fade-in animation-delay-100 px-4 py-2 rounded-full border border-secondary font-bold text-base sm:text-sm text-white bg-secondary/45 w-max mx-auto mb-6 shadow-secondary/40 shadow-lg"
       >
         <Sparkles class="h-4 w-4" />
         Trading decisions are powered by AI
@@ -33,7 +51,7 @@ import { Sparkles, Search } from 'lucide-vue-next'
         </h1>
 
         <p
-          class="mt-4 w-full max-w-2xl lg:max-w-4xl text-base md:text-lg text-center text-primary mx-auto"
+          class="mt-4 w-full max-w-2xl lg:max-w-4xl text-base md:text-lg text-center text-white mx-auto"
         >
           The world's most secure automated trading bot. Deploy institutional-grade strategies,
           manage risk with precision stop-losses, and let our AI algorithms handle the volatility —
@@ -41,37 +59,34 @@ import { Sparkles, Search } from 'lucide-vue-next'
         </p>
       </div>
 
-      <!-- Seach-Bar -->
-      <div
-        class="flex mt-6 flex-col sm:flex-row items-stretch animate-fade-in animation-delay-300 sm:items-center gap-3 md:mt-6 justify-between bg-background/70 rounded-2xl sm:rounded-full p-3 sm:px-4 sm:py-3 mx-auto w-full max-w-2xl"
+      <!-- Button -->
+      <button
+        class="w-full cursor-pointer mt-6 sm:w-auto py-4 px-4 bg-gradient! text-white rounded-xl sm:rounded-full font-bold hover:opacity-80 transition-colors"
       >
-        <!-- Icon -->
+        Start a 3 - Day Trial
+      </button>
+    </div>
 
-        <div class="flex items-center gap-2 md:w-md">
-          <Search class="size-5 shrink-0" />
+    <!-- Logo Group -->
+    <div ref="divRef" class="w-full max-w-7xl mx-auto mt-16 px-4 sm:px-6 lg:px-0">
+      <div class="w-full mx-auto">
+        <h1 class="text-md sm:text-xl font-bold text-center text-white mt-6">
+          Trusted by leading institutions in the Saudi market
+        </h1>
 
-          <!-- Input -->
-          <input
-            type="text"
-            placeholder="Anything to ask..."
-            class="w-full flex-1 px-4 py-2 rounded-xl sm:rounded-full text-primary focus:outline-none focus:none focus:none"
+        <!-- Trusted brands logos placeholder -->
+        <div class="flex flex-col md:flex-row gap-6 md:gap-0 justify-between items-center mt-6">
+          <NuxtImg
+            v-for="value in 6"
+            :key="value"
+            src="/images/brand-placeholder.png"
+            alt="Trusted brand logo"
+            width="120"
+            height="48"
+            class="w-30 h-auto mx-auto"
           />
         </div>
-
-        <!-- Button -->
-        <button
-          class="w-full cursor-pointer sm:w-auto px-6 py-2 bg-secondary text-white rounded-xl sm:rounded-full font-bold hover:bg-secondary/80 transition-colors"
-        >
-          Get Started
-        </button>
       </div>
-
-      <!-- Hero-image -->
-      <NuxtImg
-        src="/images/Hero.png"
-        class="w-full max-w-7xl mx-auto md:mt-24 mt-6 rounded-2xl shadow-lg animate-fade-in animation-delay-400"
-        alt="Hero Image"
-      />
     </div>
   </section>
 </template>

@@ -11,11 +11,14 @@ const sectionRef = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
 
 onMounted(() => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      isVisible.value = entry.isIntersecting
-    })
-  }, { threshold: 0.1 })
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        isVisible.value = entry.isIntersecting
+      })
+    },
+    { threshold: 0.1 },
+  )
 
   if (sectionRef.value) {
     observer.observe(sectionRef.value)
@@ -43,7 +46,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
   <section
     ref="sectionRef"
     aria-labelledby="sharia-compliance"
-    class="flex flex-col justify-center items-center min-h-screen px-4 sm:px-6 lg:px-8 md:mt-24 mt-4 " 
+    class="relative flex flex-col justify-center items-center min-h-screen bg-gradient px-4 sm:px-6 lg:px-8 pt-10 md:pt-14 pb-14 md:pb-20 mt-0 overflow-visible"
     :class="{ 'animate-fade-up animation-delay-300': isVisible }"
   >
     <div class="flex flex-col lg:flex-row items-center lg:items-start gap-12 max-w-7xl mx-auto">
@@ -63,9 +66,9 @@ function closeDialog(dialog: HTMLDialogElement | null) {
           <span class="block">regulations.</span>
         </p>
         <a
-          @click="openDialog(pdfOpen)"
           target="_blank"
           class="cursor-pointer bg-secondary font-bold mt-4 text-sm rounded-3xl text-white hover:bg-secondary/90 px-4 py-2 inline-flex items-center gap-2"
+          @click="openDialog(pdfOpen)"
         >
           Sharia Laws
           <MoveRight class="w-4 h-4" />
@@ -84,7 +87,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
             :src="pdfUrl"
             class="w-full h-full rounded-lg border"
           /> -->
-        <a 
+        <a
           :href="pdfUrl"
           download
           class="bg-secondary text-white px-6 py-2 rounded-lg font-bold text-sm hover:bg-secondary/90"
@@ -96,7 +99,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
       <div class="flex flex-col lg:flex-row gap-14 items-center lg:items-start w-full">
         <figure class="flex flex-col items-center mt-6 lg:mt-16">
           <div
-            class="p-1 bg-white rounded-2xl inline-block  cursor-pointer hover:bg-[#042637] hover:-translate-y-1 transition-all duration-300 outline-gray-200 outline-4"
+            class="p-1 bg-white rounded-2xl inline-block cursor-pointer hover:bg-[#042637] hover:-translate-y-1 transition-all duration-300 outline-gray-200 outline-4"
             @click="openDialog(dialogShariaMember1)"
           >
             <NuxtImg
@@ -279,6 +282,20 @@ function closeDialog(dialog: HTMLDialogElement | null) {
         </dialog>
       </div>
     </div>
+
+    <svg
+      viewBox="0 0 1440 390"
+      xmlns="http://www.w3.org/2000/svg"
+      class="pointer-events-none absolute bottom-0 left-0 translate-y-10 md:translate-y-14 h-14 md:h-20 w-full rotate-180 text-background"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M 0,400 L 0,150 C 116.46428571428572,167.5 232.92857142857144,185 353,204 C 473.07142857142856,223 596.7500000000001,243.5 712,213 C 827.2499999999999,182.5 934.0714285714287,101 1054,82 C 1173.9285714285713,63 1306.9642857142858,106.5 1440,150 L 1440,400 L 0,400 Z"
+        stroke="none"
+        fill="currentColor"
+      />
+    </svg>
   </section>
 </template>
 

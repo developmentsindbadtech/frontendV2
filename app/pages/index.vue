@@ -8,7 +8,6 @@ import Calculator from '~/components/landing/sections/Calculator.vue'
 import TeamCard from '~/components/landing/sections/TeamCard.vue'
 import CallToAction from '~/components/landing/sections/CallToAction.vue'
 import Testimonials from '~/components/landing/sections/Testimonials.vue'
-import LogoGroup from '~/components/landing/sections/LogoGroup.vue'
 import Pricing from '~/components/landing/sections/Pricing.vue'
 
 definePageMeta({
@@ -34,7 +33,6 @@ useHead({
 <template>
   <div>
     <Hero />
-    <LogoGroup />
     <Feature />
     <SharCompliance />
     <StockMarkets />

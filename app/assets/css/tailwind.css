@@ -42,6 +42,7 @@
   --color-blue: var(--blue);
   --color-blue-50: var(--blue-50);
   --color-natural: var(--natural);
+  --color-gradient: var(--gradient);
   --font-family-sans: var(--font-lufga);
 }
 
@@ -51,6 +52,7 @@
   --background: oklch(1 0 0);
   --foreground: oklch(0.22 0.04 230);
   --card: oklch(1 0 0);
+  --gradient: linear-gradient(111.34deg, oklch(72.1% 0.16 159) 0%, oklch(56.6% 0.19 255) 100%);
   --card-foreground: oklch(0.22 0.04 230);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.22 0.04 230);
@@ -217,4 +219,9 @@
   .animation-delay-800 {
     animation-delay: 800ms;
   }
+}
+
+/* Custom gradient background */
+@utility bg-gradient {
+  background: var(--gradient);
 }

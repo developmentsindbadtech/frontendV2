@@ -69,18 +69,22 @@ const closeMobileNav = () => {
             <Button
               variant="default"
               size="lg"
-              class="bg-secondary cursor-pointer text-white hover:bg-secondary/90"
+              class="bg-gradient! py-4 px-4 rounded-full cursor-pointer text-white hover:opacity-90"
             >
               Sign Up</Button
             >
-            <Button variant="outline" size="lg" class="cursor-pointer text-secondary">
+            <Button
+              variant="outline"
+              size="lg"
+              class="cursor-pointer bg-transparent! text-secondary rounded-full py-4 px-4"
+            >
               Book a Demo</Button
             >
 
             <Button
               variant="outline"
-              size="lg"
-              class="cursor-pointer text-primary border-primary! hover:bg-primary/10 hover:text-primary"
+              size="sm"
+              class="cursor-pointer rounded-full text-primary border-primary! hover:bg-primary/10 hover:text-primary bg-transparent!"
             >
               EN</Button
             >
