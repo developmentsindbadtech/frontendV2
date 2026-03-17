@@ -90,6 +90,7 @@ onMounted(() => {
             :key="brand.name"
             :src="brand.logo"
             :alt="`${brand.name} Logo`"
+            class="w-30"
           />
         </div>
       </div>

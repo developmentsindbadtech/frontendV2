@@ -69,7 +69,7 @@ const strategyItems: { icon: Component; title: string }[] = [
 <template>
   <section
     ref="sectionRef"
-    class="relative top-10 md:top-20 bottom-0 md:-bottom-30 z-10 w-full mx-auto px-4 bg-[url('/images/bg-gradient.png')] bg-no-repeat bg-center bg-cover md:bg-size-[100%_100%] sm:px-6 lg:px-8 py-10 md:py-16 overflow-hidden md:overflow-visible"
+    class="relative top-10 md:top-2 bottom-0 md:-bottom-30 z-10 w-full mx-auto px-4 bg-[url('/images/bg-gradient.png')] bg-no-repeat bg-center bg-cover md:bg-size-[100%_100%] sm:px-6 lg:px-8 py-10 md:py-16 overflow-hidden md:overflow-visible"
   >
     <div ref="contentRef" class="relative z-10">
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-center">

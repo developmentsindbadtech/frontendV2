@@ -35,9 +35,9 @@ useHead({
     <Hero />
     <Feature />
     <SharCompliance />
+    <TeamCard />
     <StockMarkets />
     <Calculator />
-    <TeamCard />
     <Testimonials />
     <Pricing />
     <CallToAction />

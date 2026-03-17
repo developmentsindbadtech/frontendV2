@@ -46,7 +46,7 @@ function closeDialog(dialog: HTMLDialogElement | null) {
   <section
     ref="sectionRef"
     aria-labelledby="sharia-compliance"
-    class="relative z-20 -mt-20 md:mt-16 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-16 md:pb-24 overflow-visible"
+    class="relative z-20 mt-12 md:mt-16 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-16 md:pb-24 overflow-visible"
     :class="{ 'animate-fade-up animation-delay-300': isVisible }"
   >
     <div class="flex flex-col lg:flex-row items-center lg:items-start gap-12 max-w-7xl mx-auto">
