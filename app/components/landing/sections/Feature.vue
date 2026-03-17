@@ -69,21 +69,27 @@ const strategyItems: { icon: Component; title: string }[] = [
 <template>
   <section
     ref="sectionRef"
-    class="relative top-20 -bottom-30 z-10 w-full mx-auto px-4 bg-[url('/images/bg-gradient.png')] bg-no-repeat bg-size-[100%_100%] sm:px-6 lg:px-8 py-10 md:py-16 overflow-visible"
+    class="relative top-10 md:top-20 bottom-0 md:-bottom-30 z-10 w-full mx-auto px-4 bg-[url('/images/bg-gradient.png')] bg-no-repeat bg-center bg-cover md:bg-size-[100%_100%] sm:px-6 lg:px-8 py-10 md:py-16 overflow-hidden md:overflow-visible"
   >
     <div ref="contentRef" class="relative z-10">
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-center">
         <!-- Left column -->
 
         <div
-          class="relative mx-auto w-full max-w-85 sm:max-w-105 lg:max-w-130 xl:max-w-[580px] animate-fade-up animation-delay-100"
+          class="relative mx-auto w-full max-w-85 sm:max-w-105 lg:max-w-130 xl:max-w-145 animate-fade-up animation-delay-100"
         >
-          <div class="w-full relative -bottom-20 -left-40">
-            <NuxtImg src="/images/ellipse.png" class="w-full" />
+          <div
+            class="w-full relative -bottom-4 -left-1 sm:-bottom-10 sm:-left-20 md:-bottom-20 md:-left-44"
+          >
+            <NuxtImg src="/images/ellipse.png" class="w-80 md:w-full" />
           </div>
         </div>
 
-        <img src="/images/Product.png" alt="product" class="absolute z-1 w-[100] -left-8 -top-26" />
+        <img
+          src="/images/Product.png"
+          alt="product"
+          class="absolute z-1 w-80 sm:w-60 left-35 -translate-x-1/2 -top-19 sm:-top-14 md:w-[40%] md:-left-8 md:-top-26 md:translate-x-0"
+        />
 
         <!-- Right column -->
         <div class="animate-fade-up animation-delay-200">
@@ -131,7 +137,7 @@ const strategyItems: { icon: Component; title: string }[] = [
       </div>
 
       <div
-        class="max-w-7xl mx-auto md:mt-24 mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
+        class="max-w-7xl mx-auto pb-15 md:mt-24 mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
       >
         <!-- Left column -->
         <div class="w-full">

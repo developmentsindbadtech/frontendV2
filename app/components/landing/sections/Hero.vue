@@ -43,10 +43,10 @@ onMounted(() => {
       <NuxtImg src="/images/hero_bg.png" class="h-full w-full object-cover" alt="Hero Background" />
     </div>
     <div class="w-full min-h-155 flex flex-col items-center justify-center pt-6 md:pt-10">
-      <div class="flex flex-wrap items-center gap-6 mx-auto text-white">
+      <div class="flex items-center gap-6 mx-auto text-white">
         <NuxtImg src="/images/cma.png" alt="CMA Logo" />
         <span>|</span>
-        <p class="text-base">Permit No.:2023-155-05</p>
+        <p class="text-sm md:text-base">Permit No.:2023-155-05</p>
       </div>
 
       <!-- Text-Content -->
@@ -77,7 +77,7 @@ onMounted(() => {
     </div>
 
     <!-- Logo Group -->
-    <div ref="divRef" class="w-full max-w-7xl mx-auto mt-16 px-4 sm:px-6 lg:px-0">
+    <div ref="divRef" class="w-full max-w-7xl mx-auto mt-6 md:mt-16 px-4 sm:px-6 lg:px-0">
       <div class="w-full mx-auto">
         <h1 class="text-md sm:text-xl font-bold text-center text-white mt-6">
           Trusted by leading institutions in the Saudi market
