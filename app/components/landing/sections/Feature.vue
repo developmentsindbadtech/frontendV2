@@ -69,8 +69,15 @@ const strategyItems: { icon: Component; title: string }[] = [
 <template>
   <section
     ref="sectionRef"
-    class="relative top-20 md:-top-10 bottom-0 md:-bottom-30 z-10 w-full mx-auto px-4 bg-[url('/images/bg-gradient.png')] bg-no-repeat bg-center bg-cover md:bg-size-[100%_100%] sm:px-6 lg:px-8 py-10 md:py-16 overflow-hidden md:overflow-visible"
+    class="relative md:-top-25 z-10 w-full mt-18 mx-auto px-10 sm:px-6 py-10 overflow-hidden md:overflow-visible"
   >
+    <div class="absolute inset-0 z-10 w-full -top-20">
+      <NuxtImg
+        src="/svg/bg-gradient.svg"
+        class="w-full object-cover object-center"
+        alt="Hero Background"
+      />
+    </div>
     <div ref="contentRef" class="relative z-10">
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-center">
         <!-- Left column -->
@@ -137,7 +144,7 @@ const strategyItems: { icon: Component; title: string }[] = [
       </div>
 
       <div
-        class="max-w-7xl mx-auto pb-15 md:mt-24 mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
+        class="max-w-7xl mx-auto pb-15 md:mt-18 mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-10 py-4 md:py-8 lg:py-10 items-center"
       >
         <!-- Left column -->
         <div class="w-full">
