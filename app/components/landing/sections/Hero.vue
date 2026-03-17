@@ -38,11 +38,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="relative z-1 w-full mx-auto px-4 sm:px-6 py-3 pb-12 md:pb-16 lg:px-0">
-    <div class="absolute inset-0 -z-10 -bottom-190">
-      <NuxtImg src="/images/hero_bg.png" class="h-full w-full object-cover" alt="Hero Background" />
+  <section
+    class="relative h-screen z-1 w-full mx-auto px-4 sm:px-6 py-3 pb-12 md:pb-16 lg:px-0 bg-[url('/svg/sky.svg')] bg-no-repeat bg-center bg-cover"
+  >
+    <div class="absolute inset-0 -z-10 -bottom-270">
+      <NuxtImg
+        src="/svg/buildings.svg"
+        class="h-full w-full object-contain"
+        alt="Hero Background"
+      />
     </div>
-    <div class="w-full min-h-155 flex flex-col items-center justify-center pt-6 md:pt-10">
+
+    <div class="w-full min-h-155 flex flex-col items-center justify-center pt-6 md:mt-18">
       <div class="flex items-center gap-6 mx-auto text-white">
         <NuxtImg src="/images/cma.png" alt="CMA Logo" />
         <span>|</span>
