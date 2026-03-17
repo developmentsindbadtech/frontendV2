@@ -39,7 +39,7 @@ onMounted(() => {
 
 <template>
   <section
-    class="relative h-screen z-1 w-full mx-auto px-4 sm:px-6 py-3 pb-12 md:pb-16 lg:px-0 bg-[url('/svg/sky.svg')] bg-no-repeat bg-center bg-cover"
+    class="relative h-[1000px] z-1 w-full mx-auto px-4 sm:px-6 py-3 pb-12 md:pb-16 lg:px-0 bg-[url('/svg/sky.svg')] bg-no-repeat bg-center bg-cover"
   >
     <div class="absolute inset-0 -z-10 -bottom-270">
       <NuxtImg
