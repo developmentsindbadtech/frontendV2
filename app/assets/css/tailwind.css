@@ -219,6 +219,26 @@
   .animation-delay-800 {
     animation-delay: 800ms;
   }
+
+  .bg-gradient {
+    background: var(--gradient);
+  }
+
+  .hover\:bg-gradient:hover {
+    background: var(--gradient);
+  }
+
+  .feature-bullet {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  }
+
+  .gradient-beginner {
+    --gradient: linear-gradient(111.34deg, #33b5e5 0%, #6ec8f4 100%);
+  }
+
+  .gradient-superior {
+    --gradient: linear-gradient(111.34deg, #22c0d9 0%, #15b6c0 100%);
+  }
 }
 
 /* Custom gradient background */

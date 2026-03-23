@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { LayoutDashboard } from 'lucide-vue-next'
+import { CreditCard, type LucideComponent } from 'lucide-vue-next'
 
-const navItems = [
+const navItems: { title: string; icon: typeof LucideComponent; to: string }[] = [
   {
-    title: 'Dashboard',
-    icon: LayoutDashboard,
-    to: '/',
+    title: 'Subscriptions',
+    icon: CreditCard,
+    to: '/subscriptions',
   },
 ]
 </script>
@@ -17,15 +17,7 @@ const navItems = [
         <SidebarMenuItem>
           <SidebarMenuButton size="lg" as-child>
             <NuxtLink to="/">
-              <div
-                class="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground"
-              >
-                <LayoutDashboard class="size-4" />
-              </div>
-              <div class="flex flex-col gap-0.5 leading-none">
-                <span class="font-semibold">My App</span>
-                <span class="text-xs text-muted-foreground">Dashboard</span>
-              </div>
+              <NuxtImg src="svg/sindbad-logo.svg" alt="Sindbad Tech Logo" />
             </NuxtLink>
           </SidebarMenuButton>
         </SidebarMenuItem>
@@ -40,8 +32,10 @@ const navItems = [
               <SidebarMenuItem v-for="item in navItems" :key="item.title">
                 <SidebarMenuButton as-child>
                   <NuxtLink :to="item.to">
-                    <component :is="item.icon" />
-                    <span>{{ item.title }}</span>
+                    <component :is="item.icon" class="h-10 w-10 text-secondary" />
+                    <span class="text-sm md:text-base font-bold text-primary">{{
+                      item.title
+                    }}</span>
                   </NuxtLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
