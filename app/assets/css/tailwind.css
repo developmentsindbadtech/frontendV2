@@ -95,8 +95,52 @@
   --sidebar-foreground: #f8fafc;
   --primary: #ffffff;
   --secondary: #6ec8f4;
-  --border: rgba(255,255,255,0.08);
-  --input: rgba(255,255,255,0.08);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+}
+
+.dark .landing-page {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.22 0.04 230);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.04 230);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.04 230);
+  --primary: oklch(0.22 0.04 230);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.72 0.12 220);
+  --secondary-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.22 0 0 230);
+  --sidebar-primary: oklch(0.22 0 0 230);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.78 0.09 220);
+  --sidebar-accent-foreground: oklch(0.22 0 0 230);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark .landing-page.landing-dark {
+  --background: #061021;
+  --foreground: #f8fafc;
+  --card: #081a2b;
+  --card-foreground: #f8fafc;
+  --popover: #081a2b;
+  --popover-foreground: #f8fafc;
+  --primary: #ffffff;
+  --secondary: #6ec8f4;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --sidebar: #041728;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #f8fafc;
+  --sidebar-accent: #6ec8f4;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: rgba(255, 255, 255, 0.08);
 }
 
 @layer base {

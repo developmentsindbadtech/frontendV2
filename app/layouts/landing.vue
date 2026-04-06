@@ -26,7 +26,7 @@ const closeMobileNav = () => {
 </script>
 
 <template>
-  <div class="w-full min-h-screen">
+  <div class="w-full min-h-screen landing-page">
     <header
       class="fixed inset-x-0 top-0 z-50 border-b border-b-primary/30 bg-background/80 backdrop-blur supports-backdrop-filter:backdrop-blur"
     >
