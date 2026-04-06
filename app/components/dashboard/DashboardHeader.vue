@@ -5,7 +5,9 @@
     <div class="flex items-center gap-2">
       <SidebarTrigger class="-ml-1" />
       <Separator orientation="vertical" class="mr-2 h-4" />
-      <h1 class="text-sm font-medium">Dashboard</h1>
+        <NuxtLink to="/">
+            <NuxtImg src="svg/sindbad-logo.svg" alt="Sindbad Tech Logo" class="h-30 w-30" />
+          </NuxtLink>
     </div>
     <div class="ml-auto flex items-center gap-2">
       <DashboardThemeToggle />

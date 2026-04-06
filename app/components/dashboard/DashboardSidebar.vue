@@ -1,11 +1,37 @@
 <script setup lang="ts">
-import { CreditCard, type LucideComponent } from 'lucide-vue-next'
+import { CreditCard, type LucideComponent,Megaphone,Banknote,TvMinimalPlay,Bot,ShieldUser
+} from 'lucide-vue-next'
 
 const navItems: { title: string; icon: typeof LucideComponent; to: string }[] = [
   {
-    title: 'Subscriptions',
+    title: 'Referrals',
+    icon: Megaphone,
+    to: '/dashboard/referrals',
+  },
+  {
+    title: 'Profile',
     icon: CreditCard,
-    to: '/subscriptions',
+    to: '/dashboard/profile',
+  },
+  {
+    title: 'DPM',
+    icon: Banknote,
+    to: '/dashboard/dpm',
+  },
+  {
+    title: 'Subscriptions',
+    icon: TvMinimalPlay,
+    to: '/dashboard/subscriptions',
+  },
+  {
+    title: 'Trading bot',
+    icon: Bot,
+    to: '/dashboard/trading-bot',
+  },
+  {
+    title: 'Admin',
+    icon: ShieldUser,
+    to: '/dashboard/admin',
   },
 ]
 </script>
@@ -16,9 +42,7 @@ const navItems: { title: string; icon: typeof LucideComponent; to: string }[] = 
       <SidebarMenu>
         <SidebarMenuItem>
           <SidebarMenuButton size="lg" as-child>
-            <NuxtLink to="/">
-              <NuxtImg src="svg/sindbad-logo.svg" alt="Sindbad Tech Logo" />
-            </NuxtLink>
+
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
