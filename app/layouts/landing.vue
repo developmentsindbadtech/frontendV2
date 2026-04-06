@@ -1,8 +1,24 @@
 <script setup lang="ts">
 import { ChevronDown, Menu, X } from 'lucide-vue-next'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 
 const isMobileNavOpen = ref(false)
 const expandedMobileSections = ref<string[]>([])
+let originalDarkClass = false
+
+onMounted(() => {
+  // Store whether dark class was on the html element
+  originalDarkClass = document.documentElement.classList.contains('dark')
+  // Remove dark class from html element for landing page
+  document.documentElement.classList.remove('dark')
+})
+
+onUnmounted(() => {
+  // Restore dark class if it was on before
+  if (originalDarkClass) {
+    document.documentElement.classList.add('dark')
+  }
+})
 
 const toggleMobileNav = () => {
   isMobileNavOpen.value = !isMobileNavOpen.value

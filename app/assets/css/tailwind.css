@@ -110,16 +110,108 @@
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.72 0.12 220);
   --secondary-foreground: oklch(0.985 0 0);
+  --blue: oklch(0.72 0.12 220);
+  --blue-50: oklch(0.78 0.09 220);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.22 0 0 230);
-  --sidebar-primary: oklch(0.22 0 0 230);
+  --sidebar-foreground: oklch(0.22 0.04 230);
+  --sidebar-primary: oklch(0.22 0.04 230);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.78 0.09 220);
-  --sidebar-accent-foreground: oklch(0.22 0 0 230);
+  --sidebar-accent-foreground: oklch(0.22 0.04 230);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  color-scheme: light;
+  /* Force light mode appearance */
+  filter: invert(0);
+}
+
+/* Catch-all: override any dark mode styles applied to landing-page children */
+.dark .landing-page,
+.dark .landing-page * {
+  background-blend-mode: normal !important;
+  mix-blend-mode: normal !important;
+}
+
+/* Ensure all text in landing stays dark/readable */
+.dark .landing-page,
+.dark .landing-page p,
+.dark .landing-page span,
+.dark .landing-page h1,
+.dark .landing-page h2,
+.dark .landing-page h3,
+.dark .landing-page h4,
+.dark .landing-page h5,
+.dark .landing-page h6,
+.dark .landing-page a,
+.dark .landing-page button,
+.dark .landing-page li,
+.dark .landing-page div {
+  color-scheme: light !important;
+}
+
+.dark .landing-page .text-white {
+  color: #1e293b !important;
+}
+
+.dark .landing-page [class*='bg-blue'] {
+  background-color: #f0f9ff !important;
+}
+
+/* Prevent all dark mode text colors in landing page */
+.dark .landing-page {
+  color: oklch(0.22 0.04 230) !important;
+}
+
+.dark .landing-page * {
+  --tw-bg-opacity: 1;
+  --tw-border-opacity: 1;
+  --tw-text-opacity: 1;
+}
+
+/* Override all Tailwind color utilities inside landing-page during dark mode */
+.dark .landing-page .text-slate-50,
+.dark .landing-page .text-slate-100,
+.dark .landing-page .text-slate-200,
+.dark .landing-page .text-slate-300,
+.dark .landing-page .text-white,
+.dark .landing-page .text-gray-50,
+.dark .landing-page .text-gray-100,
+.dark .landing-page .text-gray-200,
+.dark .landing-page .text-stone-50,
+.dark .landing-page .text-stone-100 {
+  color: #1e293b !important;
+}
+
+.dark .landing-page .bg-slate-800,
+.dark .landing-page .bg-slate-900,
+.dark .landing-page .bg-slate-950,
+.dark .landing-page .bg-gray-800,
+.dark .landing-page .bg-gray-900,
+.dark .landing-page .bg-stone-800,
+.dark .landing-page .bg-stone-900 {
+  background-color: #f1f5f9 !important;
+}
+
+.dark .landing-page .border-slate-700,
+.dark .landing-page .border-slate-800,
+.dark .landing-page .border-gray-700,
+.dark .landing-page .border-gray-800,
+.dark .landing-page .border-stone-700,
+.dark .landing-page .border-stone-800 {
+  border-color: #cbd5e1 !important;
 }
 
 .dark .landing-page.landing-dark {
