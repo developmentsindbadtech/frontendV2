@@ -1,178 +1,350 @@
 <template>
-  <div class="auth-page">
-    <!-- Language toggle -->
+  <div class="auth-page" :dir="lang === 'ar' ? 'rtl' : 'ltr'">
+    <!-- Skip to main content (Accessibility) -->
+    <a href="#register-form" class="skip-link">
+      {{ lang === 'en' ? 'Skip to registration form' : 'انتقل إلى نموذج التسجيل' }}
+    </a>
+
+    <!-- Language toggle with tooltip -->
     <div class="lang-toggle">
-      <button class="btn-lang" @click="toggleLang">{{ lang === 'en' ? 'AR' : 'EN' }}</button>
+      <button
+        class="btn-lang"
+        @click="toggleLang"
+        :aria-label="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'"
+        :title="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'"
+      >
+        {{ lang === 'en' ? 'AR' : 'EN' }}
+      </button>
     </div>
 
     <div class="auth-wrapper">
-      <div class="card-raised">
-        <div class="card-body">
-          <!-- Logo -->
-          <div class="text-center">
-            <NuxtLink to="/">
-              <img class="auth-logo" src="/images/logo.png" alt="Sindbad.Tech Logo" />
-            </NuxtLink>
+      <div class="card-raised" role="main">
+        <div class="row">
+          <!-- Form column (left) -->
+          <div class="form-col">
+            <div class="form-body">
+              <!-- Logo with clear branding -->
+              <div class="text-center">
+                <NuxtLink to="/" aria-label="Sindbad.Tech Home">
+                  <img class="auth-logo" src="/images/logo.png" alt="Sindbad.Tech Logo" />
+                </NuxtLink>
+                <p class="welcome-heading">
+                  {{ lang === 'en' ? 'Create Your Account' : 'أنشئ حسابك' }}
+                </p>
+              </div>
+
+              <!-- Error banner with animation -->
+              <Transition name="slide">
+                <div v-if="error" class="error-message" role="alert" aria-live="assertive">
+                  <span class="error-icon material-icon">error_outline</span>
+                  {{ error }}
+                </div>
+              </Transition>
+
+              <!-- Register form -->
+              <form id="register-form" class="auth-form" @submit.prevent="handleRegister" novalidate>
+                <!-- Name fields (side by side) -->
+                <div class="name-row">
+                  <div class="form-group half">
+                    <label for="firstname" class="form-label">
+                      <span class="label-icon material-icon">person</span>
+                      {{ lang === 'en' ? 'First Name' : 'الاسم الأول' }}
+                    </label>
+                    <input
+                      id="firstname"
+                      ref="firstnameInput"
+                      v-model="form.firstname"
+                      type="text"
+                      class="form-control"
+                      :class="{ 'is-invalid': errors.firstname, 'is-valid': form.firstname && !errors.firstname && firstnameTouched }"
+                      :placeholder="lang === 'en' ? 'John' : 'محمد'"
+                      required
+                      autofocus
+                      autocomplete="given-name"
+                      aria-describedby="firstname-error"
+                      @blur="firstnameTouched = true"
+                    />
+                    <Transition name="slide">
+                      <div v-if="errors.firstname" id="firstname-error" class="field-error" role="alert">
+                        <span class="error-icon material-icon">error</span>
+                        {{ errors.firstname }}
+                      </div>
+                    </Transition>
+                  </div>
+
+                  <div class="form-group half">
+                    <label for="lastname" class="form-label">
+                      <span class="label-icon material-icon">person_outline</span>
+                      {{ lang === 'en' ? 'Last Name' : 'الاسم الأخير' }}
+                    </label>
+                    <input
+                      id="lastname"
+                      v-model="form.lastname"
+                      type="text"
+                      class="form-control"
+                      :class="{ 'is-invalid': errors.lastname, 'is-valid': form.lastname && !errors.lastname && lastnameTouched }"
+                      :placeholder="lang === 'en' ? 'Doe' : 'أحمد'"
+                      required
+                      autocomplete="family-name"
+                      aria-describedby="lastname-error"
+                      @blur="lastnameTouched = true"
+                    />
+                    <Transition name="slide">
+                      <div v-if="errors.lastname" id="lastname-error" class="field-error" role="alert">
+                        <span class="error-icon material-icon">error</span>
+                        {{ errors.lastname }}
+                      </div>
+                    </Transition>
+                  </div>
+                </div>
+
+                <!-- Email field -->
+                <div class="form-group">
+                  <label for="email" class="form-label">
+                    <span class="label-icon material-icon">mail</span>
+                    {{ lang === 'en' ? 'Email Address' : 'البريد الإلكتروني' }}
+                  </label>
+                  <input
+                    id="email"
+                    v-model="form.email"
+                    type="email"
+                    class="form-control"
+                    :class="{ 'is-invalid': errors.email, 'is-valid': form.email && !errors.email && emailTouched }"
+                    :placeholder="lang === 'en' ? 'name@company.com' : 'name@company.com'"
+                    required
+                    autocomplete="email"
+                    aria-describedby="email-error"
+                    @blur="emailTouched = true"
+                  />
+                  <Transition name="slide">
+                    <div v-if="errors.email" id="email-error" class="field-error" role="alert">
+                      <span class="error-icon material-icon">error</span>
+                      {{ errors.email }}
+                    </div>
+                  </Transition>
+                </div>
+
+                <!-- Password field -->
+                <div class="form-group">
+                  <label for="password" class="form-label">
+                    <span class="label-icon material-icon">lock</span>
+                    {{ lang === 'en' ? 'Password' : 'كلمة المرور' }}
+                  </label>
+                  <div class="input-wrapper">
+                    <input
+                      id="password"
+                      v-model="form.password"
+                      :type="showPassword ? 'text' : 'password'"
+                      class="form-control has-toggle"
+                      :class="{ 'is-invalid': errors.password }"
+                      :placeholder="lang === 'en' ? 'Create a strong password' : 'أنشئ كلمة مرور قوية'"
+                      required
+                      autocomplete="new-password"
+                      aria-describedby="password-error password-strength"
+                      @input="validatePassword"
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      @click="togglePassword"
+                      :aria-label="showPassword
+                        ? (lang === 'en' ? 'Hide password' : 'إخفاء كلمة المرور')
+                        : (lang === 'en' ? 'Show password' : 'إظهار كلمة المرور')"
+                    >
+                      <span class="material-icon">{{ showPassword ? 'visibility_off' : 'visibility' }}</span>
+                    </button>
+                  </div>
+
+                  <!-- Password strength indicator -->
+                  <div id="password-strength" class="pw-strength" role="status" aria-live="polite">
+                    <div class="pw-bar-track">
+                      <div class="pw-bar-fill" :style="{ width: pwStrengthPercent + '%' }" :class="pwStrengthClass"></div>
+                    </div>
+                    <span class="pw-strength-label" :class="pwStrengthClass">{{ pwStrengthLabel }}</span>
+                  </div>
+
+                  <!-- Password requirements checklist -->
+                  <ul class="pw-rules" aria-label="Password requirements">
+                    <li :class="pwChecks.lower ? 'valid' : 'pending'">
+                      <span class="material-icon rule-icon">{{ pwChecks.lower ? 'check_circle' : 'radio_button_unchecked' }}</span>
+                      {{ lang === 'en' ? 'Lowercase letter (a-z)' : 'حرف صغير (a-z)' }}
+                    </li>
+                    <li :class="pwChecks.upper ? 'valid' : 'pending'">
+                      <span class="material-icon rule-icon">{{ pwChecks.upper ? 'check_circle' : 'radio_button_unchecked' }}</span>
+                      {{ lang === 'en' ? 'Uppercase letter (A-Z)' : 'حرف كبير (A-Z)' }}
+                    </li>
+                    <li :class="pwChecks.number ? 'valid' : 'pending'">
+                      <span class="material-icon rule-icon">{{ pwChecks.number ? 'check_circle' : 'radio_button_unchecked' }}</span>
+                      {{ lang === 'en' ? 'Number (0-9)' : 'رقم (0-9)' }}
+                    </li>
+                    <li :class="pwChecks.symbol ? 'valid' : 'pending'">
+                      <span class="material-icon rule-icon">{{ pwChecks.symbol ? 'check_circle' : 'radio_button_unchecked' }}</span>
+                      {{ lang === 'en' ? 'Special character (!@#$...)' : 'رمز خاص (!@#$...)' }}
+                    </li>
+                    <li :class="pwChecks.length ? 'valid' : 'pending'">
+                      <span class="material-icon rule-icon">{{ pwChecks.length ? 'check_circle' : 'radio_button_unchecked' }}</span>
+                      {{ lang === 'en' ? 'Minimum 8 characters' : '8 أحرف على الأقل' }}
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Confirm password field -->
+                <div class="form-group">
+                  <label for="password-confirm" class="form-label">
+                    <span class="label-icon material-icon">lock_outline</span>
+                    {{ lang === 'en' ? 'Confirm Password' : 'تأكيد كلمة المرور' }}
+                  </label>
+                  <div class="input-wrapper">
+                    <input
+                      id="password-confirm"
+                      v-model="form.password_confirmation"
+                      :type="showPassword2 ? 'text' : 'password'"
+                      class="form-control has-toggle"
+                      :class="{
+                        'is-invalid': form.password_confirmation && form.password !== form.password_confirmation,
+                        'is-valid': form.password_confirmation && form.password === form.password_confirmation
+                      }"
+                      :placeholder="lang === 'en' ? 'Re-enter your password' : 'أعد إدخال كلمة المرور'"
+                      required
+                      autocomplete="new-password"
+                      aria-describedby="confirm-error"
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      @click="togglePassword2"
+                      :aria-label="showPassword2
+                        ? (lang === 'en' ? 'Hide password' : 'إخفاء كلمة المرور')
+                        : (lang === 'en' ? 'Show password' : 'إظهار كلمة المرور')"
+                    >
+                      <span class="material-icon">{{ showPassword2 ? 'visibility_off' : 'visibility' }}</span>
+                    </button>
+                  </div>
+                  <Transition name="slide">
+                    <div
+                      v-if="form.password_confirmation && form.password !== form.password_confirmation"
+                      id="confirm-error"
+                      class="field-error"
+                      role="alert"
+                    >
+                      <span class="error-icon material-icon">error</span>
+                      {{ lang === 'en' ? 'Passwords do not match' : 'كلمتا المرور غير متطابقتين' }}
+                    </div>
+                  </Transition>
+                  <Transition name="slide">
+                    <div
+                      v-if="form.password_confirmation && form.password === form.password_confirmation"
+                      class="field-success"
+                      role="status"
+                    >
+                      <span class="material-icon success-icon">check_circle</span>
+                      {{ lang === 'en' ? 'Passwords match' : 'كلمتا المرور متطابقتان' }}
+                    </div>
+                  </Transition>
+                </div>
+
+                <!-- Terms & Conditions checkbox -->
+                <div class="agree-row">
+                  <label class="check-label" for="agree-terms">
+                    <input
+                      id="agree-terms"
+                      v-model="form.agree"
+                      type="checkbox"
+                      class="form-check-input"
+                      required
+                    />
+                    <span class="checkmark"></span>
+                    <span class="check-text">
+                      {{ lang === 'en' ? 'I agree to the' : 'أوافق على' }}
+                      <a href="/terms" target="_blank" rel="noopener">
+                        {{ lang === 'en' ? 'Terms & Conditions' : 'الشروط والأحكام' }}
+                      </a>
+                    </span>
+                  </label>
+                </div>
+
+                <!-- Submit button -->
+                <button
+                  type="submit"
+                  class="btn-register"
+                  :class="{ 'btn-loading': loading }"
+                  :disabled="loading || !isFormValid"
+                  :aria-busy="loading"
+                >
+                  <span v-if="loading" class="spinner" aria-hidden="true"></span>
+                  {{ loading
+                    ? (lang === 'en' ? 'Creating Account...' : 'جار إنشاء الحساب...')
+                    : (lang === 'en' ? 'Create Account' : 'إنشاء حساب') }}
+                </button>
+
+                <!-- Divider -->
+                <div class="divider" aria-hidden="true">
+                  <span>{{ lang === 'en' ? 'or' : 'أو' }}</span>
+                </div>
+
+                <!-- Sign in link -->
+                <div class="signin-row">
+                  <span>{{ lang === 'en' ? 'Already have an account?' : 'لديك حساب بالفعل؟' }}</span>
+                  <NuxtLink to="/login" class="btn-signin-link">
+                    {{ lang === 'en' ? 'SIGN IN' : 'تسجيل الدخول' }}
+                  </NuxtLink>
+                </div>
+              </form>
+            </div>
           </div>
 
-          <!-- Register form -->
-          <form class="auth-form" @submit.prevent="handleRegister">
-            <!-- Error banner -->
-            <div v-if="error" class="error-banner">
-              <strong>Oh Snap!</strong> {{ error }}
+          <!-- Image column (right) -->
+          <div class="image-col" aria-hidden="true">
+            <div class="image-overlay">
+              <img class="hero-image" src="/images/stay-connected.png" alt="" />
             </div>
-
-            <div class="form-row">
-              <div class="form-col-half">
-                <div class="form-floating">
-                  <input
-                    id="firstname"
-                    v-model="form.firstname"
-                    type="text"
-                    class="form-control rounded-pill"
-                    :class="{ 'is-invalid': errors.firstname }"
-                    :placeholder="lang === 'en' ? 'First Name' : 'الاسم الأول'"
-                    required
-                  />
-                  <label for="firstname">{{ lang === 'en' ? 'First Name' : 'الاسم الأول' }}</label>
-                  <div v-if="errors.firstname" class="invalid-feedback">{{ errors.firstname }}</div>
-                </div>
-              </div>
-              <div class="form-col-half">
-                <div class="form-floating">
-                  <input
-                    id="lastname"
-                    v-model="form.lastname"
-                    type="text"
-                    class="form-control rounded-pill"
-                    :class="{ 'is-invalid': errors.lastname }"
-                    :placeholder="lang === 'en' ? 'Last Name' : 'الاسم الأخير'"
-                    required
-                  />
-                  <label for="lastname">{{ lang === 'en' ? 'Last Name' : 'الاسم الأخير' }}</label>
-                  <div v-if="errors.lastname" class="invalid-feedback">{{ errors.lastname }}</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-floating">
-              <input
-                id="email"
-                v-model="form.email"
-                type="email"
-                class="form-control rounded-pill"
-                :class="{ 'is-invalid': errors.email }"
-                :placeholder="lang === 'en' ? 'Email Address' : 'البريد الإلكتروني'"
-                required
-              />
-              <label for="email">{{ lang === 'en' ? 'Email Address' : 'البريد الإلكتروني' }}</label>
-              <div v-if="errors.email" class="invalid-feedback">{{ errors.email }}</div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-col-half">
-                <div class="input-group">
-                  <span class="input-group-text rounded-pill-left" @click="togglePassword">
-                    <span class="material-icon">{{ showPassword ? 'visibility_off' : 'visibility' }}</span>
-                  </span>
-                  <input
-                    id="password"
-                    v-model="form.password"
-                    :type="showPassword ? 'text' : 'password'"
-                    class="form-control rounded-pill-right"
-                    :class="{ 'is-invalid': errors.password }"
-                    :placeholder="lang === 'en' ? 'Password' : 'كلمة المرور'"
-                    required
-                    @input="validatePassword"
-                  />
-                </div>
-                <ul class="pw-rules">
-                  <li :class="pwChecks.lower ? 'valid' : 'invalid'">{{ lang === 'en' ? 'At least 1 lowercase [a-z]' : 'حرف صغير واحد على الأقل' }}</li>
-                  <li :class="pwChecks.upper ? 'valid' : 'invalid'">{{ lang === 'en' ? 'At least 1 uppercase [A-Z]' : 'حرف كبير واحد على الأقل' }}</li>
-                  <li :class="pwChecks.number ? 'valid' : 'invalid'">{{ lang === 'en' ? 'At least 1 number [0-9]' : 'رقم واحد على الأقل' }}</li>
-                  <li :class="pwChecks.symbol ? 'valid' : 'invalid'">{{ lang === 'en' ? 'At least 1 symbol' : 'رمز واحد على الأقل' }}</li>
-                  <li :class="pwChecks.length ? 'valid' : 'invalid'">{{ lang === 'en' ? 'Minimum 8 characters' : '8 أحرف على الأقل' }}</li>
-                </ul>
-              </div>
-              <div class="form-col-half">
-                <div class="input-group">
-                  <span class="input-group-text rounded-pill-left" @click="togglePassword2">
-                    <span class="material-icon">{{ showPassword2 ? 'visibility_off' : 'visibility' }}</span>
-                  </span>
-                  <input
-                    id="password-confirm"
-                    v-model="form.password_confirmation"
-                    :type="showPassword2 ? 'text' : 'password'"
-                    class="form-control rounded-pill-right"
-                    :placeholder="lang === 'en' ? 'Password Confirmation' : 'تأكيد كلمة المرور'"
-                    required
-                  />
-                </div>
-                <ul class="pw-rules">
-                  <li :class="form.password && form.password === form.password_confirmation ? 'valid' : 'invalid'">
-                    {{ lang === 'en' ? 'Passwords must match' : 'يجب أن تتطابق كلمتا المرور' }}
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="agree-row">
-              <label class="check-label">
-                <input v-model="form.agree" type="checkbox" class="form-check-input" required />
-                <span>
-                  {{ lang === 'en' ? 'I agree to the' : 'أوافق على' }}
-                  <a href="/terms" target="_blank">{{ lang === 'en' ? 'Terms & Conditions' : 'الشروط والأحكام' }}</a>
-                </span>
-              </label>
-            </div>
-
-            <div class="signup-actions">
-              <div class="signin-link">
-                {{ lang === 'en' ? 'Already have an account?' : 'لديك حساب بالفعل؟' }}
-                <NuxtLink to="/login">{{ lang === 'en' ? 'Sign In instead' : 'تسجيل الدخول' }}</NuxtLink>
-              </div>
-              <div class="signup-btn-wrap">
-                <button type="submit" class="btn-signup-submit" :disabled="loading">
-                  {{ loading
-                    ? (lang === 'en' ? 'Signing up...' : 'جار التسجيل...')
-                    : (lang === 'en' ? 'Sign Up' : 'إنشاء حساب') }}
-                </button>
-                <a href="/contact" target="_blank" class="help-link">
-                  {{ lang === 'en' ? 'Click here for help' : 'انقر هنا للمساعدة' }}
-                </a>
-              </div>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Footer -->
-    <footer class="auth-footer">
+    <footer class="auth-footer" role="contentinfo">
       <div class="footer-inner">
         <div class="footer-left">
           Copyright &copy; <a href="/">Sindbad.Tech</a> {{ new Date().getFullYear() }}
         </div>
         <div class="footer-right">
-          <a href="/terms" target="_blank">{{ lang === 'en' ? 'Terms & Conditions' : 'الشروط والأحكام' }}</a>
-          <a href="/privacy" target="_blank">{{ lang === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية' }}</a>
+          <a href="/terms" target="_blank" rel="noopener">
+            {{ lang === 'en' ? 'Terms & Conditions' : 'الشروط والأحكام' }}
+          </a>
+          <a href="/privacy" target="_blank" rel="noopener">
+            {{ lang === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية' }}
+          </a>
         </div>
       </div>
     </footer>
+
+    <!-- Preloader -->
+    <Transition name="fade">
+      <div v-if="preloading" class="preloader" aria-label="Loading">
+        <img src="/images/logo-preloader.png" alt="" />
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
 
-definePageMeta({ auth: false })
+definePageMeta({ middleware: 'auth', layout: false })
 
 const lang = ref('en')
 const showPassword = ref(false)
 const showPassword2 = ref(false)
+const preloading = ref(true)
 const loading = ref(false)
 const error = ref('')
 const errors = ref<Record<string, string>>({})
+const firstnameTouched = ref(false)
+const lastnameTouched = ref(false)
+const emailTouched = ref(false)
+const firstnameInput = ref<HTMLInputElement | null>(null)
 
 const form = ref({
   firstname: '',
@@ -191,6 +363,38 @@ const pwChecks = reactive({
   length: false
 })
 
+const pwStrengthPercent = computed(() => {
+  const passed = Object.values(pwChecks).filter(Boolean).length
+  return (passed / 5) * 100
+})
+
+const pwStrengthClass = computed(() => {
+  const p = pwStrengthPercent.value
+  if (p === 0) return ''
+  if (p <= 40) return 'weak'
+  if (p <= 80) return 'medium'
+  return 'strong'
+})
+
+const pwStrengthLabel = computed(() => {
+  const p = pwStrengthPercent.value
+  if (p === 0) return ''
+  if (p <= 40) return lang.value === 'en' ? 'Weak' : 'ضعيفة'
+  if (p <= 80) return lang.value === 'en' ? 'Medium' : 'متوسطة'
+  return lang.value === 'en' ? 'Strong' : 'قوية'
+})
+
+const isFormValid = computed(() => {
+  return form.value.firstname
+    && form.value.lastname
+    && form.value.email
+    && form.value.password
+    && form.value.password_confirmation
+    && form.value.password === form.value.password_confirmation
+    && form.value.agree
+    && Object.values(pwChecks).every(Boolean)
+})
+
 const toggleLang = () => { lang.value = lang.value === 'en' ? 'ar' : 'en' }
 const togglePassword = () => { showPassword.value = !showPassword.value }
 const togglePassword2 = () => { showPassword2.value = !showPassword2.value }
@@ -200,24 +404,46 @@ const validatePassword = () => {
   pwChecks.lower = /[a-z]/.test(pw)
   pwChecks.upper = /[A-Z]/.test(pw)
   pwChecks.number = /[0-9]/.test(pw)
-  pwChecks.symbol = /[`$*@!?#%&]/.test(pw)
+  pwChecks.symbol = /[^a-zA-Z0-9]/.test(pw)
   pwChecks.length = pw.length >= 8
 }
 
 const handleRegister = async () => {
+  errors.value = {}
+
+  // Client-side validation (Error Prevention)
+  if (!form.value.firstname) {
+    errors.value.firstname = lang.value === 'en' ? 'First name is required' : 'الاسم الأول مطلوب'
+    firstnameInput.value?.focus()
+    return
+  }
+  if (!form.value.lastname) {
+    errors.value.lastname = lang.value === 'en' ? 'Last name is required' : 'الاسم الأخير مطلوب'
+    return
+  }
+  if (!form.value.email) {
+    errors.value.email = lang.value === 'en' ? 'Email is required' : 'البريد الإلكتروني مطلوب'
+    return
+  }
+  if (!form.value.password) {
+    errors.value.password = lang.value === 'en' ? 'Password is required' : 'كلمة المرور مطلوبة'
+    return
+  }
   if (form.value.password !== form.value.password_confirmation) {
-    error.value = 'Passwords do not match'
+    error.value = lang.value === 'en' ? 'Passwords do not match' : 'كلمتا المرور غير متطابقتين'
+    return
+  }
+  if (!form.value.agree) {
+    error.value = lang.value === 'en' ? 'You must agree to the Terms & Conditions' : 'يجب الموافقة على الشروط والأحكام'
     return
   }
 
   loading.value = true
   error.value = ''
-  errors.value = {}
-
-  const config = useRuntimeConfig()
 
   try {
-    await $fetch(`${config.public.apiBase}/register`, {
+    const { $api } = useNuxtApp()
+    await $api.backend('/register', {
       method: 'POST',
       body: {
         firstname: form.value.firstname,
@@ -233,276 +459,608 @@ const handleRegister = async () => {
     if (err.data?.errors) {
       errors.value = err.data.errors
     }
-    error.value = err.data?.message || err.message || 'Registration failed. Please try again.'
+    error.value = err.data?.message || err.message || (lang.value === 'en'
+      ? 'Registration failed. Please try again.'
+      : 'فشل التسجيل. حاول مرة أخرى.')
   } finally {
     loading.value = false
   }
 }
+
+onMounted(() => {
+  setTimeout(() => { preloading.value = false }, 600)
+})
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Material+Icons&display=swap');
 
-:global(body) { margin: 0; }
+/*
+ * HCI Design Principles Applied:
+ * 1. Visibility — Labels, icons, password strength always visible
+ * 2. Feedback — Animated transitions, strength bar, match indicator
+ * 3. Consistency — Same spacing, radius, and color system as login
+ * 4. Affordance — Buttons look clickable, inputs look editable
+ * 5. Error Prevention — Disabled submit until valid, live password checks
+ * 6. Recognition > Recall — Icons with labels, placeholder hints
+ * 7. Aesthetic & Minimalist — Clean hierarchy, no clutter
+ * 8. Accessibility — ARIA labels, focus rings, skip links, contrast ratios
+ *
+ * Color: 60-30-10 Rule
+ *   60% — #0f1923 / #1a2836 (surface)
+ *   30% — #e8edf1 / #8fa3b3 (text)
+ *   10% — #22c9a0 (accent/CTA)
+ */
+
+:global(body) {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 .auth-page {
-  font-family: 'Roboto', sans-serif;
-  background: #0d1b2a;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #0f1923;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  color: #e8edf1;
 }
 
-/* Language toggle */
+/* ── Skip Link (Accessibility) ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #22c9a0;
+  color: #0f1923;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 100;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
+/* ── Language Toggle ── */
 .lang-toggle {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 1rem;
+  right: 1rem;
   z-index: 10;
-  padding: 0.5rem;
 }
 .btn-lang {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  border: none;
-  background: rgba(255,255,255,0.3);
-  color: #fff;
+  border: 2px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+  color: #e8edf1;
   font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
+  font-size: 0.78rem;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
 }
-.btn-lang:hover { background: #fff; color: #2299b7; }
+.btn-lang:hover {
+  background: #22c9a0;
+  border-color: #22c9a0;
+  color: #0f1923;
+  transform: scale(1.05);
+}
+.btn-lang:focus-visible {
+  outline: 2px solid #22c9a0;
+  outline-offset: 2px;
+}
 
-/* Wrapper */
+/* ── Wrapper ── */
 .auth-wrapper {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1rem;
+  padding: 2rem 1.5rem;
 }
 
-/* Card */
+/* ── Card ── */
 .card-raised {
   width: 100%;
-  max-width: 780px;
-  border-radius: 0.5rem;
+  max-width: 1060px;
+  border-radius: 1rem;
   overflow: hidden;
   box-shadow:
-    0px 6px 6px -3px rgba(0,0,0,0.2),
-    0px 10px 14px 1px rgba(0,0,0,0.14),
-    0px 4px 18px 3px rgba(0,0,0,0.12);
+    0 4px 6px rgba(0,0,0,0.15),
+    0 20px 40px rgba(0,0,0,0.25);
 }
-.card-body {
-  background: #222e3a;
-  padding: 2.5rem;
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 560px;
+}
+
+/* ── Form Column ── */
+.form-col {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.form-body {
+  background: #1a2836;
+  padding: 2rem 2.5rem 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
 }
 .text-center { text-align: center; }
 .auth-logo {
-  height: 48px;
-  margin-bottom: 2rem;
+  height: 40px;
+  margin-bottom: 0.75rem;
+  transition: opacity 0.3s;
+}
+.auth-logo:hover { opacity: 0.85; }
+.welcome-heading {
+  color: #e8edf1;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1.25rem;
+  letter-spacing: -0.01em;
 }
 
-/* Form elements */
-.auth-form { }
-.form-floating {
-  position: relative;
-  margin-bottom: 1rem;
+/* ── Form Groups ── */
+.auth-form { display: flex; flex-direction: column; gap: 0; }
+.form-group {
+  margin-bottom: 0.75rem;
 }
-.form-floating input {
-  width: 100%;
-  padding: 1.6rem 1rem 0.6rem;
-  font-size: 1rem;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: #fff;
-  box-sizing: border-box;
-}
-.form-floating label {
-  position: absolute;
-  top: 0.45rem;
-  left: 1rem;
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.5);
-  pointer-events: none;
-}
-.rounded-pill { border-radius: 50rem !important; }
-
-.form-row {
+.name-row {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 0;
+  gap: 0.75rem;
 }
-.form-col-half { flex: 1; }
-
-.input-group {
-  display: flex;
-  margin-bottom: 0.3rem;
-}
-.input-group-text {
+.name-row .half { flex: 1; }
+.form-label {
   display: flex;
   align-items: center;
-  padding: 0 0.85rem;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-right: none;
-  color: rgba(255,255,255,0.6);
-  cursor: pointer;
-  transition: background 0.2s;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #8fa3b3;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.02em;
 }
-.input-group-text:hover { background: rgba(255,255,255,0.15); }
-.rounded-pill-left {
-  border-top-left-radius: 50rem;
-  border-bottom-left-radius: 50rem;
-}
-.rounded-pill-right {
-  border-top-right-radius: 50rem;
-  border-bottom-right-radius: 50rem;
-}
-.input-group .form-control {
-  flex: 1;
-  padding: 1rem;
-  font-size: 1rem;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-left: none;
-  color: #fff;
-  height: 3.5rem;
+.label-icon {
+  font-size: 0.95rem;
+  opacity: 0.7;
 }
 .material-icon {
   font-family: 'Material Icons';
-  font-size: 1.3rem;
   font-style: normal;
   font-weight: normal;
   -webkit-font-feature-settings: 'liga';
   font-feature-settings: 'liga';
 }
-.form-control::placeholder { color: rgba(255,255,255,0.4); }
+
+/* ── Inputs ── */
+.form-control {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-family: inherit;
+  font-size: 0.88rem;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 0.6rem;
+  color: #e8edf1;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+.form-control::placeholder { color: #5a7182; }
+.form-control:hover { border-color: rgba(255,255,255,0.22); }
 .form-control:focus {
   outline: none;
-  border-color: #2299b7;
-  box-shadow: 0 0 0 2px rgba(34,153,183,0.25);
+  border-color: #22c9a0;
+  box-shadow: 0 0 0 3px rgba(34,201,160,0.15);
+  background: rgba(255,255,255,0.08);
 }
-.input-group .form-control:focus { box-shadow: none; }
-.is-invalid { border-color: #dc3545 !important; }
-.invalid-feedback {
-  color: #ff6b6b;
-  font-size: 0.82rem;
+.form-control.is-invalid {
+  border-color: #ef5350;
+  box-shadow: 0 0 0 3px rgba(239,83,80,0.1);
+}
+.form-control.is-valid {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76,175,80,0.1);
+}
+.form-control.has-toggle {
+  padding-right: 3rem;
+}
+
+/* ── Password Toggle ── */
+.input-wrapper {
+  position: relative;
+}
+.password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #5a7182;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+.password-toggle:hover { color: #e8edf1; }
+.password-toggle .material-icon { font-size: 1.15rem; }
+
+/* ── Field Errors & Success ── */
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   margin-top: 0.3rem;
-}
-
-/* Password rules */
-.pw-rules {
-  list-style: none;
-  padding: 0 0.5rem;
-  margin: 0 0 0.8rem;
-}
-.pw-rules li {
   font-size: 0.75rem;
-  margin-bottom: 0.15rem;
+  color: #ef5350;
 }
-.pw-rules .invalid { color: #ff6b6b; }
-.pw-rules .valid { color: #4caf50; }
+.field-error .error-icon { font-size: 0.85rem; }
+.field-success {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  color: #4caf50;
+}
+.success-icon { font-size: 0.85rem; }
 
-/* Agree row */
-.agree-row { margin-bottom: 1rem; }
-.check-label {
+/* ── Error Banner ── */
+.error-message {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #fff;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-.check-label a {
-  color: #2299b7;
-  text-decoration: underline;
-}
-.form-check-input {
-  width: 1rem;
-  height: 1rem;
-  cursor: pointer;
-}
-
-/* Error banner */
-.error-banner {
   margin-bottom: 1rem;
-  padding: 0.75rem;
-  background: rgba(220,53,69,0.15);
-  color: #ff6b6b;
-  border: 1px solid rgba(220,53,69,0.3);
-  border-radius: 0.5rem;
-  font-size: 0.88rem;
+  padding: 0.75rem 1rem;
+  background: rgba(239,83,80,0.08);
+  border-left: 3px solid #ef5350;
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: #ef5350;
+  font-size: 0.82rem;
 }
+.error-message .error-icon { font-size: 1.1rem; }
 
-/* Signup actions */
-.signup-actions {
+/* ── Password Strength Bar ── */
+.pw-strength {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-.signin-link {
-  color: #fff;
-  font-size: 0.88rem;
-  font-weight: 500;
-  flex: 1;
-}
-.signin-link a {
-  color: #fff;
-  text-decoration: underline;
-}
-.signup-btn-wrap {
-  flex: 1;
-  text-align: center;
-}
-.btn-signup-submit {
-  width: 100%;
-  padding: 0.85rem;
-  background: linear-gradient(135deg, #18b4a0, #2299b7);
-  color: #fff;
-  border: none;
-  border-radius: 50rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.btn-signup-submit:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(24,180,160,0.35);
-}
-.btn-signup-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-.help-link {
-  display: block;
+  gap: 0.6rem;
   margin-top: 0.4rem;
-  color: #fff;
-  text-decoration: underline;
+  margin-bottom: 0.3rem;
+}
+.pw-bar-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.pw-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.35s ease, background 0.35s ease;
+}
+.pw-bar-fill.weak { background: #ef5350; }
+.pw-bar-fill.medium { background: #ffb74d; }
+.pw-bar-fill.strong { background: #4caf50; }
+.pw-strength-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  min-width: 3.5rem;
+}
+.pw-strength-label.weak { color: #ef5350; }
+.pw-strength-label.medium { color: #ffb74d; }
+.pw-strength-label.strong { color: #4caf50; }
+
+/* ── Password Rules Checklist ── */
+.pw-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.15rem 0.5rem;
+}
+.pw-rules li {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  transition: color 0.25s;
+}
+.pw-rules .pending {
+  color: #5a7182;
+}
+.pw-rules .valid {
+  color: #4caf50;
+}
+.rule-icon {
   font-size: 0.8rem;
 }
 
-/* Footer */
-.auth-footer { padding: 1rem 2rem; }
+/* ── Terms Checkbox ── */
+.agree-row {
+  margin-bottom: 1rem;
+  margin-top: 0.25rem;
+}
+.check-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: #8fa3b3;
+  user-select: none;
+}
+.form-check-input {
+  width: 1.1rem;
+  height: 1.1rem;
+  cursor: pointer;
+  accent-color: #22c9a0;
+  flex-shrink: 0;
+}
+.check-text a {
+  color: #22c9a0;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.check-text a:hover {
+  color: #1db08a;
+  text-decoration: underline;
+}
+
+/* ── Register Button ── */
+.btn-register {
+  width: 100%;
+  padding: 0.8rem;
+  background: linear-gradient(135deg, #22c9a0, #1a9d80);
+  color: #0f1923;
+  border: none;
+  border-radius: 0.75rem;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-register:hover:not(:disabled) {
+  background: linear-gradient(135deg, #28d4aa, #22c9a0);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(34,201,160,0.3);
+}
+.btn-register:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(34,201,160,0.2);
+}
+.btn-register:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-register:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Loading spinner */
+.btn-loading { pointer-events: none; }
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(15,25,35,0.3);
+  border-top-color: #0f1923;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Divider ── */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 0.75rem 0;
+  color: rgba(255,255,255,0.2);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+.divider span {
+  padding: 0 1rem;
+  color: #5a7182;
+}
+
+/* ── Sign In Row ── */
+.signin-row {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #8fa3b3;
+}
+.btn-signin-link {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.45rem 1.5rem;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  color: #e8edf1;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.25s;
+}
+.btn-signin-link:hover {
+  border-color: #22c9a0;
+  color: #22c9a0;
+  background: rgba(34,201,160,0.05);
+}
+.btn-signin-link:focus-visible {
+  outline: 2px solid #22c9a0;
+  outline-offset: 2px;
+}
+
+/* ── Image Column ── */
+.image-col {
+  flex: 0 0 50%;
+  max-width: 50%;
+  background: #0c1a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Footer ── */
+.auth-footer {
+  padding: 1rem 2rem;
+}
 .footer-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
+  color: #5a7182;
 }
-.footer-left { color: #fff; font-weight: 500; }
-.footer-left a { color: #fff; text-decoration: none; }
-.footer-right { display: flex; gap: 1.5rem; }
-.footer-right a { color: #fff; text-decoration: none; font-weight: 500; }
-.footer-right a:hover { text-decoration: underline; }
+.footer-left a {
+  color: #8fa3b3;
+  text-decoration: none;
+}
+.footer-left a:hover { color: #22c9a0; }
+.footer-right {
+  display: flex;
+  gap: 1.5rem;
+}
+.footer-right a {
+  color: #5a7182;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-right a:hover { color: #8fa3b3; }
 
-/* Responsive */
+/* ── Preloader ── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: #0f1923;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.preloader img {
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.92); }
+}
+
+/* ── Transitions ── */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.slide-enter-active {
+  transition: all 0.25s ease;
+}
+.slide-leave-active {
+  transition: all 0.15s ease;
+}
+.slide-enter-from {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+.slide-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+/* ── RTL Support ── */
+[dir="rtl"] .input-wrapper .form-control.has-toggle {
+  padding-right: 1rem;
+  padding-left: 3rem;
+}
+[dir="rtl"] .password-toggle {
+  right: auto;
+  left: 0.75rem;
+}
+[dir="rtl"] .error-message {
+  border-left: none;
+  border-right: 3px solid #ef5350;
+}
+[dir="rtl"] .btn-signin-link {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+[dir="rtl"] .spinner {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  .form-row { flex-direction: column; gap: 0; }
-  .signup-actions { flex-direction: column; text-align: center; }
+  .form-col { flex: 0 0 100%; max-width: 100%; }
+  .image-col { display: none; }
+  .form-body { padding: 2rem 1.5rem; }
+  .name-row { flex-direction: column; gap: 0; }
+  .pw-rules { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+
+@media (max-width: 380px) {
+  .form-body { padding: 1.5rem 1.25rem; }
+}
+
+/* ── Focus visible for keyboard nav ── */
+*:focus-visible {
+  outline: 2px solid #22c9a0;
+  outline-offset: 2px;
+}
+input:focus-visible {
+  outline: none;
 }
 </style>

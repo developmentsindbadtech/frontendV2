@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { LogOut, Settings, User } from 'lucide-vue-next'
+
+const authStore = useAppAuthStore()
+
+const handleLogout = () => {
+  authStore.logout()
+}
 </script>
 
 <template>
@@ -23,7 +29,7 @@ import { LogOut, Settings, User } from 'lucide-vue-next'
         Settings
       </DropdownMenuItem>
       <DropdownMenuSeparator />
-      <DropdownMenuItem>
+      <DropdownMenuItem @click="handleLogout">
         <LogOut class="mr-2 h-4 w-4" />
         Log out
       </DropdownMenuItem>

@@ -2,25 +2,31 @@ import type { ApiInstances, ApiClientOptions } from '~/types/api/plugin'
 import { APP_ENV_LOCAL } from '~/lib/const'
 import { useAppAuthStore } from '~/stores/useAppAuthStore'
 
-function createApiClient(options: ApiClientOptions) {
-  return $fetch.create({
-    baseURL: options.baseURL,
-
-    onRequest({ options: fetchOptions }) {
-      const token = options.getToken()
+function createApiClient(clientOptions: ApiClientOptions) {
+  const client = $fetch.create({
+    baseURL: clientOptions.baseURL,
+    onRequest({ request, options: fetchOptions }) {
+      console.log('📡 API Request:', request)
+      console.log('📡 Base URL:', clientOptions.baseURL)
+      const token = clientOptions.getToken?.()
       if (token) {
+        if (!fetchOptions.headers) {
+          fetchOptions.headers = {}
+        }
         const headers = new Headers(fetchOptions.headers as HeadersInit)
         headers.set('Authorization', `Bearer ${token}`)
         fetchOptions.headers = headers
       }
     },
-
     onResponseError({ response }) {
+      console.error('❌ API Response Error:', response.status)
       if (response.status === 401 || response.status === 403) {
-        options.onAuthError(response.status)
+        clientOptions.onAuthError(response.status)
       }
     },
   })
+
+  return client
 }
 
 export default defineNuxtPlugin({
@@ -29,10 +35,16 @@ export default defineNuxtPlugin({
     const config = useRuntimeConfig()
     const authStore = useAppAuthStore()
 
+    console.log('🔧 Initializing API Plugin')
+    console.log('App Environment:', config.public.appEnv)
+    console.log('Backend Endpoint (local):', config.public.backendEndpointlocal)
+
     const backendBaseUrl =
       config.public.appEnv === APP_ENV_LOCAL
         ? config.public.backendEndpointlocal
         : config.public.backendEndpoint
+
+    console.log('Using Backend URL:', backendBaseUrl)
 
     const api: ApiInstances = {
       backend: createApiClient({
@@ -48,7 +60,7 @@ export default defineNuxtPlugin({
         getToken: () => authStore.dpmToken,
         onAuthError: () => {
           authStore.dpmToken = null
-          navigateTo('/sample/auth/login')
+          navigateTo('/login')
         },
       }),
 
@@ -57,7 +69,7 @@ export default defineNuxtPlugin({
         getToken: () => authStore.alkhabeerToken,
         onAuthError: () => {
           authStore.alkhabeerToken = null
-          navigateTo('/sample/auth/login')
+          navigateTo('/login')
         },
       }),
     }

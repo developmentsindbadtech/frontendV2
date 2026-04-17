@@ -1,10 +1,19 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-  const { authUser } = useAppAuthStore()
+  const authStore = useAppAuthStore()
 
-  if (!authUser && to.path === '/sample/auth/login') return
-  else if (authUser && to.path === '/sample/auth/login') return navigateTo('/')
+  const publicPages = ['/login', '/register', '/forgot-password']
+  const isPublicPage = publicPages.includes(to.path)
+  const hasValidSession = authStore.ensureSession()
 
-  if (!authUser) {
-    return navigateTo('/sample/auth/login')
+  if (isPublicPage && hasValidSession) {
+    return navigateTo('/dashboard', { replace: true })
+  }
+
+  if (!isPublicPage && !hasValidSession) {
+    return navigateTo('/login', { replace: true })
+  }
+
+  if (!isPublicPage && hasValidSession) {
+    authStore.extendSession()
   }
 })

@@ -1,5 +1,4 @@
 import tailwindcss from '@tailwindcss/vite'
-import { env } from 'node:process'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -31,11 +30,11 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      backendEndpoint: env.BACKEND_ENDPOINT,
-      backendEndpointlocal: env.LOCAL_BACKEND_ENDPOINT,
-      alkhabeerEndpoint: env.ALKHABER_ENDPOINT,
-      dpmEndpoint: env.DPM_ENDPOINT,
-      appEnv: env.APP_ENV,
+      backendEndpoint: process.env.NUXT_PUBLIC_BACKEND_ENDPOINT || 'http://127.0.0.1:8000/api',
+      backendEndpointlocal: process.env.NUXT_PUBLIC_LOCAL_BACKEND_ENDPOINT || 'http://127.0.0.1:8000/api',
+      alkhabeerEndpoint: process.env.NUXT_PUBLIC_ALKHABER_ENDPOINT || '',
+      dpmEndpoint: process.env.NUXT_PUBLIC_DPM_ENDPOINT || '',
+      appEnv: process.env.NUXT_PUBLIC_APP_ENV || 'local',
     },
   },
   css: ['~/assets/css/tailwind.css'],
