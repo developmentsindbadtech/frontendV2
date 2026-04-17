@@ -14,7 +14,6 @@ const tabs = [
 
 <template>
   <section class="grid w-full max-w-10xl gap-6 xl:px-0">
-    <!-- Tab Bar -->
     <div class="flex items-center gap-2 rounded-xl border border-border p-1 w-fit ">
       <NuxtLink
         v-for="tab in tabs"
@@ -27,7 +26,6 @@ const tabs = [
       </NuxtLink>
     </div>
 
-    <!-- Page Content -->
     <div class="mt-6">
       <NuxtPage />
     </div>

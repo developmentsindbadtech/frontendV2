@@ -4,7 +4,6 @@
             <h1>API Test Utility</h1>
             <p class="description">Test the backend API connection and see the exact response format.</p>
 
-            <!-- Configuration Display -->
             <div class="test-section">
                 <h2>0. Current Configuration</h2>
                 <div class="config-display">
@@ -15,7 +14,6 @@
                 </div>
             </div>
 
-            <!-- Connection Test -->
             <div class="test-section">
                 <h2>1. Test Backend Connection</h2>
                 <button :disabled="testing" class="btn-test" @click="testConnection">
@@ -26,7 +24,6 @@
                 </div>
             </div>
 
-            <!-- Login Test -->
             <div class="test-section">
                 <h2>2. Test Login Endpoint</h2>
                 <div class="form-group">
@@ -46,7 +43,6 @@
                 </div>
             </div>
 
-            <!-- Custom Endpoint Tester -->
             <div class="test-section">
                 <h2>2b. Test Custom Endpoint (Optional)</h2>
                 <p class="note">If the standard /login endpoint doesn't work, try these common alternatives:</p>
@@ -62,7 +58,6 @@
                 </div>
             </div>
 
-            <!-- Response Format Checker -->
             <div v-if="loginResult && loginResult.response" class="test-section">
                 <h2>3. Response Structure Analysis</h2>
                 <div class="analysis">
@@ -81,7 +76,6 @@
                 </div>
             </div>
 
-            <!-- Clear Storage -->
             <div class="test-section">
                 <h2>4. Storage Management</h2>
                 <button class="btn-danger" @click="clearStorage">Clear LocalStorage</button>
@@ -114,8 +108,6 @@ const testConnection = async () => {
 
         console.log('Testing connection to:', baseUrl)
 
-        // Test by checking if backend responds to ANY request
-        // We'll use OPTIONS method as it's lightweight
         const response = await fetch(`${baseUrl}/login`, {
             method: 'GET',
             headers: {
@@ -123,7 +115,6 @@ const testConnection = async () => {
             }
         })
 
-        // GET /login might return 405 (Method Not Allowed) but that's still a response
         if (response.status === 404) {
             connectionResult.value = { status: 'error', message: `✗ Backend endpoint not found - Check BACKEND_ENDPOINT in .env.local` }
         } else if (response.ok || response.status === 401 || response.status === 403 || response.status === 405 || response.status === 422) {
@@ -161,14 +152,12 @@ const testLogin = async () => {
             })
         })
 
-        // Check if response is JSON
         const contentType = response.headers.get('content-type')
         let data
 
         if (contentType && contentType.includes('application/json')) {
             data = await response.json()
         } else {
-            // If it's HTML (error page), show that
             const html = await response.text()
             data = {
                 error: 'Backend returned HTML instead of JSON',
@@ -221,7 +210,6 @@ const clearStorage = () => {
     setTimeout(() => { storageCleared.value = false }, 2000)
 }
 
-// Computed for response analysis
 const hasUser = computed(() => {
     if (!loginResult.value?.response) return false
     const response = loginResult.value.response

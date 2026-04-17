@@ -1,11 +1,9 @@
 <template>
   <div class="auth-page" :dir="lang === 'ar' ? 'rtl' : 'ltr'">
-    <!-- Skip to main content (Accessibility) -->
     <a href="#login-form" class="skip-link">
       {{ lang === 'en' ? 'Skip to login form' : 'انتقل إلى نموذج تسجيل الدخول' }}
     </a>
 
-    <!-- Language toggle with tooltip -->
     <div class="lang-toggle">
       <button class="btn-lang" @click="toggleLang"
         :aria-label="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'"
@@ -17,10 +15,8 @@
     <div class="auth-wrapper">
       <div class="card-raised" role="main">
         <div class="row">
-          <!-- Form column (left) -->
           <div class="form-col">
             <div class="form-body">
-              <!-- Logo with clear branding -->
               <div class="text-center">
                 <NuxtLink to="/" aria-label="Sindbad.Tech Home">
                   <img class="auth-logo" src="/images/logo.png" alt="Sindbad.Tech Logo" />
@@ -30,7 +26,6 @@
                 </p>
               </div>
 
-              <!-- Status message (success feedback) -->
               <Transition name="fade">
                 <div v-if="statusMsg" class="status-message" role="status" aria-live="polite">
                   <span class="status-icon material-icon">check_circle</span>
@@ -38,7 +33,6 @@
                 </div>
               </Transition>
 
-              <!-- Error message -->
               <Transition name="slide">
                 <div v-if="error" class="error-message" role="alert" aria-live="assertive">
                   <span class="error-icon material-icon">error_outline</span>
@@ -46,9 +40,7 @@
                 </div>
               </Transition>
 
-              <!-- Login form -->
               <form id="login-form" class="auth-form" @submit.prevent="handleLogin" novalidate>
-                <!-- Email field -->
                 <div class="form-group">
                   <label for="email" class="form-label">
                     <span class="label-icon material-icon">mail</span>
@@ -66,7 +58,6 @@
                   </Transition>
                 </div>
 
-                <!-- Password field -->
                 <div class="form-group">
                   <label for="password" class="form-label">
                     <span class="label-icon material-icon">lock</span>
@@ -82,15 +73,11 @@
                       : (lang === 'en' ? 'Show password' : 'إظهار كلمة المرور')">
                       <svg class="eye-icon" :class="{ 'eye-open': showPassword }" width="22" height="22"
                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Eye outline -->
                         <path class="eye-outline" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z" stroke="currentColor"
                           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-                        <!-- Iris -->
                         <circle class="eye-iris" cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"
                           fill="none" />
-                        <!-- Pupil -->
                         <circle class="eye-pupil" cx="12" cy="12" r="1.5" fill="currentColor" />
-                        <!-- Strike-through line (visible when hidden) -->
                         <line class="eye-strike" x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="1.8"
                           stroke-linecap="round" />
                       </svg>
@@ -104,18 +91,16 @@
                   </Transition>
                 </div>
 
-                <!-- Remember me + Forgot password (same row for scannability) -->
                 <div class="options-row">
                   <label class="check-label">
                     <input v-model="form.remember" type="checkbox" class="form-check-input" />
                     <span>{{ lang === 'en' ? 'Remember Me' : 'تذكرني' }}</span>
                   </label>
-                  <NuxtLink to="/forgot-password" class="forgot-link">
+                  <NuxtLink to="/login/forgot-password" class="forgot-link">
                     {{ lang === 'en' ? 'Forgot Password?' : 'نسيت كلمة المرور؟' }}
                   </NuxtLink>
                 </div>
 
-                <!-- Sign in button with loading state -->
                 <button type="submit" class="btn-signin" :class="{ 'btn-loading': loading }"
                   :disabled="loading || !form.email || !form.password" :aria-busy="loading">
                   <span v-if="loading" class="spinner" aria-hidden="true"></span>
@@ -125,7 +110,6 @@
                 </button>
               </form>
 
-              <!-- Error message with icon -->
               <Transition name="fade">
                 <div v-if="error" class="error-message" role="alert" aria-live="assertive">
                   <span class="error-icon material-icon">warning</span>
@@ -136,12 +120,10 @@
                 </div>
               </Transition>
 
-              <!-- Divider -->
               <div class="divider">
                 <span>{{ lang === 'en' ? 'or' : 'أو' }}</span>
               </div>
 
-              <!-- Sign up link -->
               <div class="signup-row">
                 <span>{{ lang === 'en' ? "Don't have an account?" : 'ليس لديك حساب؟' }}</span>
                 <NuxtLink to="/register" class="btn-signup">
@@ -151,7 +133,6 @@
             </div>
           </div>
 
-          <!-- Image column (right) -->
           <div class="image-col" aria-hidden="true">
             <div class="image-overlay">
               <img class="hero-image" src="/images/stay-connected.png" alt="" />
@@ -161,7 +142,6 @@
       </div>
     </div>
 
-    <!-- Footer -->
     <footer class="auth-footer" role="contentinfo">
       <div class="footer-inner">
         <div class="footer-left">
@@ -178,7 +158,6 @@
       </div>
     </footer>
 
-    <!-- Preloader -->
     <Transition name="fade">
       <div v-if="preloading" class="preloader" aria-label="Loading">
         <img src="/images/logo-preloader.png" alt="" />
@@ -219,7 +198,6 @@ const togglePassword = () => {
 }
 
 const handleLogin = async () => {
-  // Client-side validation (Error Prevention)
   errors.value = {}
   if (!form.value.email) {
     errors.value.email = lang.value === 'en' ? 'Email is required' : 'البريد الإلكتروني مطلوب'
@@ -262,26 +240,6 @@ onMounted(() => {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Material+Icons&display=swap');
 
-/*
- * HCI Design Principles Applied:
- * 1. Visibility — Labels, icons, and states are always visible
- * 2. Feedback — Every interaction has visual/animated feedback
- * 3. Consistency — Unified spacing scale (0.5rem increments), consistent radius
- * 4. Affordance — Buttons look clickable, inputs look editable
- * 5. Error Prevention — Disabled submit until fields filled, client-side validation
- * 6. Recognition > Recall — Icons accompany labels, placeholder hints
- * 7. Aesthetic & Minimalist — Only essential elements, clean hierarchy
- * 8. Accessibility — ARIA labels, focus rings, skip links, contrast ratios
- *
- * Color Principles Applied:
- * 60-30-10 Rule:
- *   60% — Background/surface (#0f1923 / #1a2836)
- *   30% — Text/secondary (#e8edf1 / #8fa3b3)
- *   10% — Accent/CTA (#22c9a0 teal)
- * Contrast: All text meets WCAG AA (4.5:1+ ratio)
- * Semantic colors: Teal=action, Red=error, Green=success, Amber=warning
- */
-
 :global(body) {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -297,7 +255,6 @@ onMounted(() => {
   color: #e8edf1;
 }
 
-/* ── Skip Link (Accessibility) ── */
 .skip-link {
   position: absolute;
   top: -100%;
@@ -316,7 +273,6 @@ onMounted(() => {
   top: 0;
 }
 
-/* ── Language Toggle ── */
 .lang-toggle {
   position: fixed;
   top: 1rem;
@@ -327,7 +283,6 @@ onMounted(() => {
 .btn-lang {
   width: 44px;
   height: 44px;
-  /* 44px minimum touch target — WCAG */
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.08);
@@ -352,7 +307,6 @@ onMounted(() => {
   outline-offset: 2px;
 }
 
-/* ── Wrapper ── */
 .auth-wrapper {
   flex: 1;
   display: flex;
@@ -361,7 +315,6 @@ onMounted(() => {
   padding: 2rem 1.5rem;
 }
 
-/* ── Card ── */
 .card-raised {
   width: 100%;
   max-width: 1060px;
@@ -378,7 +331,6 @@ onMounted(() => {
   min-height: 560px;
 }
 
-/* ── Form Column ── */
 .form-col {
   flex: 0 0 42%;
   max-width: 42%;
@@ -416,7 +368,6 @@ onMounted(() => {
   letter-spacing: 0.02em;
 }
 
-/* ── Form Groups ── */
 .auth-form {
   margin-bottom: 1.25rem;
 }
@@ -441,7 +392,6 @@ onMounted(() => {
   opacity: 0.7;
 }
 
-/* ── Inputs ── */
 .form-control {
   width: 100%;
   padding: 0.85rem 1rem;
@@ -471,7 +421,6 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.07);
 }
 
-/* Valid / Invalid states with semantic colors */
 .form-control.is-valid {
   border-color: #22c9a0;
 }
@@ -481,13 +430,11 @@ onMounted(() => {
   box-shadow: 0 0 0 3px rgba(239, 83, 80, 0.12);
 }
 
-/* Hide browser's built-in password reveal button */
 input[type="password"]::-ms-reveal,
 input[type="password"]::-webkit-credentials-auto-fill-button {
   display: none;
 }
 
-/* Password input wrapper */
 .input-wrapper {
   position: relative;
 }
@@ -521,7 +468,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   outline-offset: 2px;
 }
 
-/* Animated eye icon */
 .eye-icon .eye-iris,
 .eye-icon .eye-pupil {
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -543,7 +489,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   stroke-dashoffset: 0;
 }
 
-/* Material icon */
 .material-icon {
   font-family: 'Material Icons';
   font-size: 1.25rem;
@@ -554,7 +499,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   line-height: 1;
 }
 
-/* Field-level error */
 .field-error {
   display: flex;
   align-items: center;
@@ -568,7 +512,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   font-size: 0.95rem;
 }
 
-/* ── Options Row (Remember + Forgot) ── */
 .options-row {
   display: flex;
   justify-content: space-between;
@@ -617,7 +560,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   border-radius: 0.25rem;
 }
 
-/* ── Sign In Button ── */
 .btn-signin {
   width: 100%;
   padding: 0.9rem;
@@ -657,7 +599,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   outline-offset: 2px;
 }
 
-/* Loading spinner */
 .btn-loading {
   pointer-events: none;
 }
@@ -680,7 +621,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   }
 }
 
-/* ── Error Message (Global) ── */
 .error-message {
   display: flex;
   align-items: flex-start;
@@ -716,7 +656,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   margin: 0;
 }
 
-/* Status message */
 .status-message {
   display: flex;
   align-items: center;
@@ -735,7 +674,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   font-size: 1.1rem;
 }
 
-/* ── Divider ── */
 .divider {
   display: flex;
   align-items: center;
@@ -759,7 +697,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   color: #5a7182;
 }
 
-/* ── Sign Up Row ── */
 .signup-row {
   text-align: center;
   font-size: 0.88rem;
@@ -792,7 +729,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   outline-offset: 2px;
 }
 
-/* ── Image Column ── */
 .image-col {
   flex: 0 0 58%;
   max-width: 58%;
@@ -817,7 +753,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   display: block;
 }
 
-/* ── Footer ── */
 .auth-footer {
   padding: 1rem 2rem;
 }
@@ -854,7 +789,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   color: #8fa3b3;
 }
 
-/* ── Preloader ── */
 .preloader {
   position: fixed;
   inset: 0;
@@ -883,7 +817,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   }
 }
 
-/* ── Transitions ── */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -912,7 +845,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   transform: translateY(-4px);
 }
 
-/* ── RTL Support ── */
 [dir="rtl"] .input-wrapper .form-control.has-toggle {
   padding-right: 1rem;
   padding-left: 3rem;
@@ -948,7 +880,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   margin-left: 0.5rem;
 }
 
-/* ── Responsive ── */
 @media (max-width: 768px) {
   .form-col {
     flex: 0 0 100%;
@@ -982,7 +913,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   }
 }
 
-/* ── Focus visible for keyboard nav ── */
 *:focus-visible {
   outline: 2px solid #22c9a0;
   outline-offset: 2px;
@@ -990,6 +920,5 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
 
 input:focus-visible {
   outline: none;
-  /* handled by border-color + box-shadow */
 }
 </style>

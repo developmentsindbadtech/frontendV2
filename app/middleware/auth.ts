@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware((to, from) => {
   const authStore = useAppAuthStore()
 
-  const publicPages = ['/login', '/register', '/forgot-password']
+  const publicPages = ['/login', '/register', '/login/forgot-password']
   const isPublicPage = publicPages.includes(to.path)
   const hasValidSession = authStore.ensureSession()
 

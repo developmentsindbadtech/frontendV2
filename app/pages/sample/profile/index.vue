@@ -8,7 +8,6 @@
 </template>
 
 <script setup lang="ts">
-// Sample components calls and implemetations
 import UserCredentials from '~/components/sample/profile/UserCredentials.vue'
 import UserImage from '~/components/sample/profile/UserImage.vue'
 import UserInfo from '~/components/sample/profile/UserInfo.vue'

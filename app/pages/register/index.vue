@@ -1,11 +1,9 @@
 <template>
   <div class="auth-page" :dir="lang === 'ar' ? 'rtl' : 'ltr'">
-    <!-- Skip to main content (Accessibility) -->
     <a href="#register-form" class="skip-link">
       {{ lang === 'en' ? 'Skip to registration form' : 'انتقل إلى نموذج التسجيل' }}
     </a>
 
-    <!-- Language toggle with tooltip -->
     <div class="lang-toggle">
       <button
         class="btn-lang"
@@ -20,10 +18,8 @@
     <div class="auth-wrapper">
       <div class="card-raised" role="main">
         <div class="row">
-          <!-- Form column (left) -->
           <div class="form-col">
             <div class="form-body">
-              <!-- Logo with clear branding -->
               <div class="text-center">
                 <NuxtLink to="/" aria-label="Sindbad.Tech Home">
                   <img class="auth-logo" src="/images/logo.png" alt="Sindbad.Tech Logo" />
@@ -33,7 +29,6 @@
                 </p>
               </div>
 
-              <!-- Error banner with animation -->
               <Transition name="slide">
                 <div v-if="error" class="error-message" role="alert" aria-live="assertive">
                   <span class="error-icon material-icon">error_outline</span>
@@ -41,9 +36,7 @@
                 </div>
               </Transition>
 
-              <!-- Register form -->
               <form id="register-form" class="auth-form" @submit.prevent="handleRegister" novalidate>
-                <!-- Name fields (side by side) -->
                 <div class="name-row">
                   <div class="form-group half">
                     <label for="firstname" class="form-label">
@@ -98,7 +91,6 @@
                   </div>
                 </div>
 
-                <!-- Email field -->
                 <div class="form-group">
                   <label for="email" class="form-label">
                     <span class="label-icon material-icon">mail</span>
@@ -124,7 +116,6 @@
                   </Transition>
                 </div>
 
-                <!-- Password field -->
                 <div class="form-group">
                   <label for="password" class="form-label">
                     <span class="label-icon material-icon">lock</span>
@@ -155,7 +146,6 @@
                     </button>
                   </div>
 
-                  <!-- Password strength indicator -->
                   <div id="password-strength" class="pw-strength" role="status" aria-live="polite">
                     <div class="pw-bar-track">
                       <div class="pw-bar-fill" :style="{ width: pwStrengthPercent + '%' }" :class="pwStrengthClass"></div>
@@ -163,7 +153,6 @@
                     <span class="pw-strength-label" :class="pwStrengthClass">{{ pwStrengthLabel }}</span>
                   </div>
 
-                  <!-- Password requirements checklist -->
                   <ul class="pw-rules" aria-label="Password requirements">
                     <li :class="pwChecks.lower ? 'valid' : 'pending'">
                       <span class="material-icon rule-icon">{{ pwChecks.lower ? 'check_circle' : 'radio_button_unchecked' }}</span>
@@ -188,7 +177,6 @@
                   </ul>
                 </div>
 
-                <!-- Confirm password field -->
                 <div class="form-group">
                   <label for="password-confirm" class="form-label">
                     <span class="label-icon material-icon">lock_outline</span>
@@ -243,7 +231,6 @@
                   </Transition>
                 </div>
 
-                <!-- Terms & Conditions checkbox -->
                 <div class="agree-row">
                   <label class="check-label" for="agree-terms">
                     <input
@@ -263,7 +250,6 @@
                   </label>
                 </div>
 
-                <!-- Submit button -->
                 <button
                   type="submit"
                   class="btn-register"
@@ -277,12 +263,10 @@
                     : (lang === 'en' ? 'Create Account' : 'إنشاء حساب') }}
                 </button>
 
-                <!-- Divider -->
                 <div class="divider" aria-hidden="true">
                   <span>{{ lang === 'en' ? 'or' : 'أو' }}</span>
                 </div>
 
-                <!-- Sign in link -->
                 <div class="signin-row">
                   <span>{{ lang === 'en' ? 'Already have an account?' : 'لديك حساب بالفعل؟' }}</span>
                   <NuxtLink to="/login" class="btn-signin-link">
@@ -293,7 +277,6 @@
             </div>
           </div>
 
-          <!-- Image column (right) -->
           <div class="image-col" aria-hidden="true">
             <div class="image-overlay">
               <img class="hero-image" src="/images/stay-connected.png" alt="" />
@@ -303,7 +286,6 @@
       </div>
     </div>
 
-    <!-- Footer -->
     <footer class="auth-footer" role="contentinfo">
       <div class="footer-inner">
         <div class="footer-left">
@@ -320,7 +302,6 @@
       </div>
     </footer>
 
-    <!-- Preloader -->
     <Transition name="fade">
       <div v-if="preloading" class="preloader" aria-label="Loading">
         <img src="/images/logo-preloader.png" alt="" />
@@ -411,7 +392,6 @@ const validatePassword = () => {
 const handleRegister = async () => {
   errors.value = {}
 
-  // Client-side validation (Error Prevention)
   if (!form.value.firstname) {
     errors.value.firstname = lang.value === 'en' ? 'First name is required' : 'الاسم الأول مطلوب'
     firstnameInput.value?.focus()
@@ -476,23 +456,6 @@ onMounted(() => {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Material+Icons&display=swap');
 
-/*
- * HCI Design Principles Applied:
- * 1. Visibility — Labels, icons, password strength always visible
- * 2. Feedback — Animated transitions, strength bar, match indicator
- * 3. Consistency — Same spacing, radius, and color system as login
- * 4. Affordance — Buttons look clickable, inputs look editable
- * 5. Error Prevention — Disabled submit until valid, live password checks
- * 6. Recognition > Recall — Icons with labels, placeholder hints
- * 7. Aesthetic & Minimalist — Clean hierarchy, no clutter
- * 8. Accessibility — ARIA labels, focus rings, skip links, contrast ratios
- *
- * Color: 60-30-10 Rule
- *   60% — #0f1923 / #1a2836 (surface)
- *   30% — #e8edf1 / #8fa3b3 (text)
- *   10% — #22c9a0 (accent/CTA)
- */
-
 :global(body) {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -508,7 +471,6 @@ onMounted(() => {
   color: #e8edf1;
 }
 
-/* ── Skip Link (Accessibility) ── */
 .skip-link {
   position: absolute;
   top: -100%;
@@ -524,7 +486,6 @@ onMounted(() => {
 }
 .skip-link:focus { top: 0; }
 
-/* ── Language Toggle ── */
 .lang-toggle {
   position: fixed;
   top: 1rem;
@@ -556,7 +517,6 @@ onMounted(() => {
   outline-offset: 2px;
 }
 
-/* ── Wrapper ── */
 .auth-wrapper {
   flex: 1;
   display: flex;
@@ -565,7 +525,6 @@ onMounted(() => {
   padding: 2rem 1.5rem;
 }
 
-/* ── Card ── */
 .card-raised {
   width: 100%;
   max-width: 1060px;
@@ -581,7 +540,6 @@ onMounted(() => {
   min-height: 560px;
 }
 
-/* ── Form Column ── */
 .form-col {
   flex: 0 0 50%;
   max-width: 50%;
@@ -610,7 +568,6 @@ onMounted(() => {
   letter-spacing: -0.01em;
 }
 
-/* ── Form Groups ── */
 .auth-form { display: flex; flex-direction: column; gap: 0; }
 .form-group {
   margin-bottom: 0.75rem;
@@ -642,7 +599,6 @@ onMounted(() => {
   font-feature-settings: 'liga';
 }
 
-/* ── Inputs ── */
 .form-control {
   width: 100%;
   padding: 0.7rem 1rem;
@@ -675,7 +631,6 @@ onMounted(() => {
   padding-right: 3rem;
 }
 
-/* ── Password Toggle ── */
 .input-wrapper {
   position: relative;
 }
@@ -696,7 +651,6 @@ onMounted(() => {
 .password-toggle:hover { color: #e8edf1; }
 .password-toggle .material-icon { font-size: 1.15rem; }
 
-/* ── Field Errors & Success ── */
 .field-error {
   display: flex;
   align-items: center;
@@ -716,7 +670,6 @@ onMounted(() => {
 }
 .success-icon { font-size: 0.85rem; }
 
-/* ── Error Banner ── */
 .error-message {
   display: flex;
   align-items: center;
@@ -731,7 +684,6 @@ onMounted(() => {
 }
 .error-message .error-icon { font-size: 1.1rem; }
 
-/* ── Password Strength Bar ── */
 .pw-strength {
   display: flex;
   align-items: center;
@@ -764,7 +716,6 @@ onMounted(() => {
 .pw-strength-label.medium { color: #ffb74d; }
 .pw-strength-label.strong { color: #4caf50; }
 
-/* ── Password Rules Checklist ── */
 .pw-rules {
   list-style: none;
   padding: 0;
@@ -790,7 +741,6 @@ onMounted(() => {
   font-size: 0.8rem;
 }
 
-/* ── Terms Checkbox ── */
 .agree-row {
   margin-bottom: 1rem;
   margin-top: 0.25rem;
@@ -822,7 +772,6 @@ onMounted(() => {
   text-decoration: underline;
 }
 
-/* ── Register Button ── */
 .btn-register {
   width: 100%;
   padding: 0.8rem;
@@ -858,7 +807,6 @@ onMounted(() => {
   outline-offset: 2px;
 }
 
-/* Loading spinner */
 .btn-loading { pointer-events: none; }
 .spinner {
   display: inline-block;
@@ -875,7 +823,6 @@ onMounted(() => {
   to { transform: rotate(360deg); }
 }
 
-/* ── Divider ── */
 .divider {
   display: flex;
   align-items: center;
@@ -897,7 +844,6 @@ onMounted(() => {
   color: #5a7182;
 }
 
-/* ── Sign In Row ── */
 .signin-row {
   text-align: center;
   font-size: 0.85rem;
@@ -927,7 +873,6 @@ onMounted(() => {
   outline-offset: 2px;
 }
 
-/* ── Image Column ── */
 .image-col {
   flex: 0 0 50%;
   max-width: 50%;
@@ -950,7 +895,6 @@ onMounted(() => {
   display: block;
 }
 
-/* ── Footer ── */
 .auth-footer {
   padding: 1rem 2rem;
 }
@@ -977,7 +921,6 @@ onMounted(() => {
 }
 .footer-right a:hover { color: #8fa3b3; }
 
-/* ── Preloader ── */
 .preloader {
   position: fixed;
   inset: 0;
@@ -995,7 +938,6 @@ onMounted(() => {
   50% { opacity: 0.4; transform: scale(0.92); }
 }
 
-/* ── Transitions ── */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -1019,7 +961,6 @@ onMounted(() => {
   transform: translateY(-4px);
 }
 
-/* ── RTL Support ── */
 [dir="rtl"] .input-wrapper .form-control.has-toggle {
   padding-right: 1rem;
   padding-left: 3rem;
@@ -1041,7 +982,6 @@ onMounted(() => {
   margin-left: 0.5rem;
 }
 
-/* ── Responsive ── */
 @media (max-width: 768px) {
   .form-col { flex: 0 0 100%; max-width: 100%; }
   .image-col { display: none; }
@@ -1055,7 +995,6 @@ onMounted(() => {
   .form-body { padding: 1.5rem 1.25rem; }
 }
 
-/* ── Focus visible for keyboard nav ── */
 *:focus-visible {
   outline: 2px solid #22c9a0;
   outline-offset: 2px;

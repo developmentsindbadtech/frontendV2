@@ -70,7 +70,6 @@ definePageMeta({
           </div>
         </div>
         <div class="flex flex-col bg-card p-4 rounded-lg flex-1">
-          <!-- her -->
           <div class="flex flex-row gap-2 mb-2">
             <div class="flex flex-col bg-card p-4 rounded-lg flex-1 mt-2">
               <div class="item center-left font-semibold mb-2">
@@ -227,7 +226,6 @@ definePageMeta({
               </p>
             </div>
 
-          
         </div>
       </div>
     </div>
