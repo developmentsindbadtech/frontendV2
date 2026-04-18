@@ -2,15 +2,18 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // app: {
-  //   head: {
-  //     link: [
-  //       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-  //       // or PNG:
-  //       // { rel: 'icon', type: 'image/png', href: '/favicon.png' }
-  //     ],
-  //   },
-  // },
+  app: {
+    head: {
+      link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap',
+        },
+      ],
+    },
+  },
   compatibilityDate: '2025-07-15',
   devServer: {
     port: 5173,
@@ -21,12 +24,26 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
-    // '@sidebase/nuxt-auth',
     '@nuxt/image',
     '@nuxtjs/color-mode',
+    '@nuxtjs/i18n',
   ],
   colorMode: {
     classSuffix: '',
+  },
+  i18n: {
+    locales: [
+      { code: 'en', file: 'en.json', language: 'en-US', dir: 'ltr' },
+      { code: 'ar', file: 'ar.json', language: 'ar-SA', dir: 'rtl' },
+    ],
+    langDir: 'locales/',
+    defaultLocale: 'en',
+    strategy: 'no_prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'sindbad_locale',
+      redirectOn: 'root',
+    },
   },
   runtimeConfig: {
     public: {

@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "label": "Navigation",
+    "dashboard": "Dashboard",
+    "referrals": "Referrals",
+    "profile": "Profile",
+    "dpm": "DPM",
+    "subscriptions": "Subscriptions",
+    "tradingBot": "Trading Bot",
+    "admin": "Admin"
+  },
+  "user": {
+    "myAccount": "My Account",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out"
+  },
+  "referrals": {
+    "title": "Referrals",
+    "subtitle": "Invite friends and earn rewards when they join Sindbad.Tech.",
+    "stats": {
+      "totalReferrals": "Total Referrals",
+      "activeReferrals": "Active Referrals",
+      "totalEarned": "Total Earned",
+      "pendingRewards": "Pending Rewards"
+    },
+    "link": {
+      "title": "Your Referral Link",
+      "copy": "Copy Link",
+      "copied": "Copied!",
+      "whatsapp": "WhatsApp",
+      "email": "Email"
+    },
+    "rewards": {
+      "title": "Rewards Structure",
+      "commissionRate": "Commission Rate",
+      "commissionDesc": "Of your referee's subscription fee",
+      "duration": "Months Duration",
+      "durationDesc": "Earn for up to 3 months per referral",
+      "noLimit": "No Referral Limit",
+      "noLimitDesc": "Refer as many people as you want"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1Title": "Share Your Link",
+      "step1Desc": "Copy your unique referral link and share it with friends, family, or your network.",
+      "step2Title": "Friend Signs Up",
+      "step2Desc": "Your friend registers on Sindbad.Tech using your referral link and subscribes to a plan.",
+      "step3Title": "You Both Earn",
+      "step3Desc": "You receive 10% of their subscription fee for up to 3 months. Your friend gets a welcome bonus."
+    },
+    "table": {
+      "title": "My Referrals",
+      "total": "total",
+      "name": "Name",
+      "dateJoined": "Date Joined",
+      "status": "Status",
+      "earned": "Earned",
+      "emptyTitle": "No referrals yet",
+      "emptyDesc": "Share your referral link above and start earning when friends sign up."
+    },
+    "status": {
+      "active": "Active",
+      "pending": "Pending",
+      "inactive": "Inactive"
+    }
+  },
+  "lang": {
+    "toggle": "AR",
+    "current": "EN"
+  }
+}

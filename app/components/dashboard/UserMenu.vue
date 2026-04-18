@@ -3,6 +3,7 @@ import { LogOut, Settings, User } from 'lucide-vue-next'
 import { useAppAuthStore } from '~/stores/useAppAuthStore'
 
 const authStore = useAppAuthStore()
+const { t } = useI18n()
 
 const handleLogout = () => {
   authStore.logout()
@@ -19,20 +20,20 @@ const handleLogout = () => {
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent class="w-56" align="end">
-      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuLabel>{{ t('user.myAccount') }}</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuItem>
         <User class="mr-2 h-4 w-4" />
-        Profile
+        {{ t('user.profile') }}
       </DropdownMenuItem>
       <DropdownMenuItem>
         <Settings class="mr-2 h-4 w-4" />
-        Settings
+        {{ t('user.settings') }}
       </DropdownMenuItem>
       <DropdownMenuSeparator />
       <DropdownMenuItem @click="handleLogout">
         <LogOut class="mr-2 h-4 w-4" />
-        Log out
+        {{ t('user.logout') }}
       </DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>

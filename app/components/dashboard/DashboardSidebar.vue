@@ -1,43 +1,25 @@
 <script setup lang="ts">
-import { CreditCard, type LucideComponent,Megaphone,Banknote,TvMinimalPlay,Bot,ShieldUser
+import {
+  CreditCard, type LucideComponent, Megaphone, Banknote, TvMinimalPlay, Bot, ShieldUser, LayoutDashboard
 } from 'lucide-vue-next'
 
-const navItems: { title: string; icon: typeof LucideComponent; to: string }[] = [
-  {
-    title: 'Referrals',
-    icon: Megaphone,
-    to: '/dashboard/referrals',
-  },
-  {
-    title: 'Profile',
-    icon: CreditCard,
-    to: '/dashboard/profile',
-  },
-  {
-    title: 'DPM',
-    icon: Banknote,
-    to: '/dashboard/dpm',
-  },
-  {
-    title: 'Subscriptions',
-    icon: TvMinimalPlay,
-    to: '/dashboard/subscriptions',
-  },
-  {
-    title: 'Trading bot',
-    icon: Bot,
-    to: '/dashboard/trading-bot',
-  },
-  {
-    title: 'Admin',
-    icon: ShieldUser,
-    to: '/dashboard/admin',
-  },
+const { t, locale } = useI18n()
+
+const sidebarSide = computed(() => locale.value === 'ar' ? 'right' : 'left')
+
+const navItems: { key: string; icon: typeof LucideComponent; to: string }[] = [
+  { key: 'dashboard', icon: LayoutDashboard, to: '/dashboard' },
+  { key: 'referrals', icon: Megaphone, to: '/dashboard/referrals' },
+  { key: 'profile', icon: CreditCard, to: '/dashboard/profile' },
+  { key: 'dpm', icon: Banknote, to: '/dashboard/dpm' },
+  { key: 'subscriptions', icon: TvMinimalPlay, to: '/dashboard/subscriptions' },
+  { key: 'tradingBot', icon: Bot, to: '/dashboard/trading-bot' },
+  { key: 'admin', icon: ShieldUser, to: '/dashboard/admin' },
 ]
 </script>
 
 <template>
-  <Sidebar>
+  <Sidebar :side="sidebarSide">
     <SidebarHeader>
       <SidebarMenu>
         <SidebarMenuItem>
@@ -49,16 +31,16 @@ const navItems: { title: string; icon: typeof LucideComponent; to: string }[] = 
     </SidebarHeader>
     <SidebarContent>
       <SidebarGroup>
-        <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+        <SidebarGroupLabel>{{ t('nav.label') }}</SidebarGroupLabel>
         <SidebarGroupContent>
           <nav>
             <SidebarMenu>
-              <SidebarMenuItem v-for="item in navItems" :key="item.title">
+              <SidebarMenuItem v-for="item in navItems" :key="item.key">
                 <SidebarMenuButton as-child>
                   <NuxtLink :to="item.to">
                     <component :is="item.icon" class="h-10 w-10 text-secondary" />
                     <span class="text-sm md:text-base font-bold text-primary">{{
-                      item.title
+                      t(`nav.${item.key}`)
                     }}</span>
                   </NuxtLink>
                 </SidebarMenuButton>
