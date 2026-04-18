@@ -5,6 +5,7 @@ import { Label } from '~/components/ui/label'
 import { Button } from '~/components/ui/button'
 import { EyeOff, Eye } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
+import { useAppAuthStore } from '~/stores/useAppAuthStore'
 
 const isLoading = ref(false)
 const showPassword = ref(false)
