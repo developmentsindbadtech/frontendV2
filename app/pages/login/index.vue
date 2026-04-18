@@ -1,3 +1,78 @@
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { useAppAuthStore } from '~/stores/useAppAuthStore'
+
+definePageMeta({ middleware: 'auth', layout: false })
+
+const authStore = useAppAuthStore()
+
+const lang = ref('en')
+const showPassword = ref(false)
+const preloading = ref(true)
+const loading = ref(false)
+const error = ref('')
+const statusMsg = ref('')
+const errors = ref<Record<string, string>>({})
+const emailTouched = ref(false)
+const emailInput = ref<HTMLInputElement | null>(null)
+
+const form = ref({
+  email: '',
+  password: '',
+  remember: false,
+})
+
+const toggleLang = () => {
+  lang.value = lang.value === 'en' ? 'ar' : 'en'
+}
+
+const togglePassword = () => {
+  showPassword.value = !showPassword.value
+}
+
+const handleLogin = async () => {
+  errors.value = {}
+  if (!form.value.email) {
+    errors.value.email = lang.value === 'en' ? 'Email is required' : 'البريد الإلكتروني مطلوب'
+    emailInput.value?.focus()
+    return
+  }
+  if (!form.value.password) {
+    errors.value.password = lang.value === 'en' ? 'Password is required' : 'كلمة المرور مطلوبة'
+    return
+  }
+
+  loading.value = true
+  error.value = ''
+
+  try {
+    await authStore.login({
+      email: form.value.email,
+      password: form.value.password,
+    })
+
+    await navigateTo('/dashboard', { replace: true })
+  } catch (err: any) {
+    if (err.data?.errors) {
+      errors.value = err.data.errors
+    }
+    error.value =
+      err.data?.message ||
+      err.message ||
+      (lang.value === 'en'
+        ? 'Invalid email or password. Please try again.'
+        : 'بريد إلكتروني أو كلمة مرور غير صحيحة. حاول مرة أخرى.')
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(() => {
+  setTimeout(() => {
+    preloading.value = false
+  }, 600)
+})
+</script>
 <template>
   <div class="auth-page" :dir="lang === 'ar' ? 'rtl' : 'ltr'">
     <a href="#login-form" class="skip-link">
@@ -5,9 +80,12 @@
     </a>
 
     <div class="lang-toggle">
-      <button class="btn-lang" @click="toggleLang"
+      <button
+        class="btn-lang"
+        @click="toggleLang"
         :aria-label="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'"
-        :title="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'">
+        :title="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'"
+      >
         {{ lang === 'en' ? 'AR' : 'EN' }}
       </button>
     </div>
@@ -46,10 +124,23 @@
                     <span class="label-icon material-icon">mail</span>
                     {{ lang === 'en' ? 'Email Address' : 'البريد الإلكتروني' }}
                   </label>
-                  <input id="email" ref="emailInput" v-model="form.email" type="email" class="form-control"
-                    :class="{ 'is-invalid': errors.email, 'is-valid': form.email && !errors.email && emailTouched }"
-                    :placeholder="lang === 'en' ? 'name@company.com' : 'name@company.com'" required autofocus
-                    autocomplete="email" aria-describedby="email-error" @blur="emailTouched = true" />
+                  <input
+                    id="email"
+                    ref="emailInput"
+                    v-model="form.email"
+                    type="email"
+                    class="form-control"
+                    :class="{
+                      'is-invalid': errors.email,
+                      'is-valid': form.email && !errors.email && emailTouched,
+                    }"
+                    :placeholder="lang === 'en' ? 'name@company.com' : 'name@company.com'"
+                    required
+                    autofocus
+                    autocomplete="email"
+                    aria-describedby="email-error"
+                    @blur="emailTouched = true"
+                  />
                   <Transition name="slide">
                     <div v-if="errors.email" id="email-error" class="field-error" role="alert">
                       <span class="error-icon material-icon">error</span>
@@ -64,27 +155,78 @@
                     {{ lang === 'en' ? 'Password' : 'كلمة المرور' }}
                   </label>
                   <div class="input-wrapper">
-                    <input id="password" v-model="form.password" :type="showPassword ? 'text' : 'password'"
-                      class="form-control has-toggle" :class="{ 'is-invalid': errors.password }"
-                      :placeholder="lang === 'en' ? 'Enter your password' : 'أدخل كلمة المرور'" required
-                      autocomplete="current-password" aria-describedby="password-error" />
-                    <button type="button" class="password-toggle" @click="togglePassword" :aria-label="showPassword
-                      ? (lang === 'en' ? 'Hide password' : 'إخفاء كلمة المرور')
-                      : (lang === 'en' ? 'Show password' : 'إظهار كلمة المرور')">
-                      <svg class="eye-icon" :class="{ 'eye-open': showPassword }" width="22" height="22"
-                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="eye-outline" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z" stroke="currentColor"
-                          stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-                        <circle class="eye-iris" cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"
-                          fill="none" />
+                    <input
+                      id="password"
+                      v-model="form.password"
+                      :type="showPassword ? 'text' : 'password'"
+                      class="form-control has-toggle"
+                      :class="{ 'is-invalid': errors.password }"
+                      :placeholder="lang === 'en' ? 'Enter your password' : 'أدخل كلمة المرور'"
+                      required
+                      autocomplete="current-password"
+                      aria-describedby="password-error"
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      @click="togglePassword"
+                      :aria-label="
+                        showPassword
+                          ? lang === 'en'
+                            ? 'Hide password'
+                            : 'إخفاء كلمة المرور'
+                          : lang === 'en'
+                            ? 'Show password'
+                            : 'إظهار كلمة المرور'
+                      "
+                    >
+                      <svg
+                        class="eye-icon"
+                        :class="{ 'eye-open': showPassword }"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          class="eye-outline"
+                          d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <circle
+                          class="eye-iris"
+                          cx="12"
+                          cy="12"
+                          r="3.5"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          fill="none"
+                        />
                         <circle class="eye-pupil" cx="12" cy="12" r="1.5" fill="currentColor" />
-                        <line class="eye-strike" x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="1.8"
-                          stroke-linecap="round" />
+                        <line
+                          class="eye-strike"
+                          x1="4"
+                          y1="4"
+                          x2="20"
+                          y2="20"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                        />
                       </svg>
                     </button>
                   </div>
                   <Transition name="slide">
-                    <div v-if="errors.password" id="password-error" class="field-error" role="alert">
+                    <div
+                      v-if="errors.password"
+                      id="password-error"
+                      class="field-error"
+                      role="alert"
+                    >
                       <span class="error-icon material-icon">error</span>
                       {{ errors.password }}
                     </div>
@@ -101,12 +243,23 @@
                   </NuxtLink>
                 </div>
 
-                <button type="submit" class="btn-signin" :class="{ 'btn-loading': loading }"
-                  :disabled="loading || !form.email || !form.password" :aria-busy="loading">
+                <button
+                  type="submit"
+                  class="btn-signin"
+                  :class="{ 'btn-loading': loading }"
+                  :disabled="loading || !form.email || !form.password"
+                  :aria-busy="loading"
+                >
                   <span v-if="loading" class="spinner" aria-hidden="true"></span>
-                  {{ loading
-                    ? (lang === 'en' ? 'Signing in...' : 'جار تسجيل الدخول...')
-                    : (lang === 'en' ? 'SIGN IN' : 'تسجيل الدخول') }}
+                  {{
+                    loading
+                      ? lang === 'en'
+                        ? 'Signing in...'
+                        : 'جار تسجيل الدخول...'
+                      : lang === 'en'
+                        ? 'SIGN IN'
+                        : 'تسجيل الدخول'
+                  }}
                 </button>
               </form>
 
@@ -166,76 +319,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
-definePageMeta({ middleware: 'auth', layout: false })
-
-const authStore = useAppAuthStore()
-
-const lang = ref('en')
-const showPassword = ref(false)
-const preloading = ref(true)
-const loading = ref(false)
-const error = ref('')
-const statusMsg = ref('')
-const errors = ref<Record<string, string>>({})
-const emailTouched = ref(false)
-const emailInput = ref<HTMLInputElement | null>(null)
-
-const form = ref({
-  email: '',
-  password: '',
-  remember: false
-})
-
-const toggleLang = () => {
-  lang.value = lang.value === 'en' ? 'ar' : 'en'
-}
-
-const togglePassword = () => {
-  showPassword.value = !showPassword.value
-}
-
-const handleLogin = async () => {
-  errors.value = {}
-  if (!form.value.email) {
-    errors.value.email = lang.value === 'en' ? 'Email is required' : 'البريد الإلكتروني مطلوب'
-    emailInput.value?.focus()
-    return
-  }
-  if (!form.value.password) {
-    errors.value.password = lang.value === 'en' ? 'Password is required' : 'كلمة المرور مطلوبة'
-    return
-  }
-
-  loading.value = true
-  error.value = ''
-
-  try {
-    await authStore.login({
-      email: form.value.email,
-      password: form.value.password,
-    })
-
-    await navigateTo('/dashboard', { replace: true })
-  } catch (err: any) {
-    if (err.data?.errors) {
-      errors.value = err.data.errors
-    }
-    error.value = err.data?.message || err.message || (lang.value === 'en'
-      ? 'Invalid email or password. Please try again.'
-      : 'بريد إلكتروني أو كلمة مرور غير صحيحة. حاول مرة أخرى.')
-  } finally {
-    loading.value = false
-  }
-}
-
-onMounted(() => {
-  setTimeout(() => { preloading.value = false }, 600)
-})
-</script>
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Material+Icons&display=swap');
@@ -247,7 +330,11 @@ onMounted(() => {
 }
 
 .auth-page {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
   background: #0f1923;
   min-height: 100vh;
   display: flex;
@@ -402,7 +489,10 @@ onMounted(() => {
   border-radius: 0.75rem;
   color: #e8edf1;
   box-sizing: border-box;
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
 }
 
 .form-control::placeholder {
@@ -430,8 +520,8 @@ onMounted(() => {
   box-shadow: 0 0 0 3px rgba(239, 83, 80, 0.12);
 }
 
-input[type="password"]::-ms-reveal,
-input[type="password"]::-webkit-credentials-auto-fill-button {
+input[type='password']::-ms-reveal,
+input[type='password']::-webkit-credentials-auto-fill-button {
   display: none;
 }
 
@@ -546,7 +636,9 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   font-size: 0.85rem;
   font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s, text-decoration 0.2s;
+  transition:
+    color 0.2s,
+    text-decoration 0.2s;
 }
 
 .forgot-link:hover {
@@ -804,7 +896,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     opacity: 1;
@@ -845,37 +936,37 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   transform: translateY(-4px);
 }
 
-[dir="rtl"] .input-wrapper .form-control.has-toggle {
+[dir='rtl'] .input-wrapper .form-control.has-toggle {
   padding-right: 1rem;
   padding-left: 3rem;
 }
 
-[dir="rtl"] .password-toggle {
+[dir='rtl'] .password-toggle {
   right: auto;
   left: 0.75rem;
 }
 
-[dir="rtl"] .eye-icon .eye-iris,
-[dir="rtl"] .eye-icon .eye-pupil {
+[dir='rtl'] .eye-icon .eye-iris,
+[dir='rtl'] .eye-icon .eye-pupil {
   transform: translateX(2.5px);
 }
 
-[dir="rtl"] .eye-icon.eye-open .eye-iris,
-[dir="rtl"] .eye-icon.eye-open .eye-pupil {
+[dir='rtl'] .eye-icon.eye-open .eye-iris,
+[dir='rtl'] .eye-icon.eye-open .eye-pupil {
   transform: translateX(-2.5px);
 }
 
-[dir="rtl"] .error-message {
+[dir='rtl'] .error-message {
   border-left: none;
   border-right: 3px solid #ef5350;
 }
 
-[dir="rtl"] .btn-signup {
+[dir='rtl'] .btn-signup {
   margin-left: 0;
   margin-right: 0.5rem;
 }
 
-[dir="rtl"] .spinner {
+[dir='rtl'] .spinner {
   margin-right: 0;
   margin-left: 0.5rem;
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ChevronDown, Menu, X } from 'lucide-vue-next'
 import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { useAppAuthStore } from '~/stores/useAppAuthStore'
 
 const isMobileNavOpen = ref(false)
 const expandedMobileSections = ref<string[]>([])

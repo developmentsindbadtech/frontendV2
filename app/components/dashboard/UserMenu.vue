@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { LogOut, Settings, User } from 'lucide-vue-next'
+import { useAppAuthStore } from '~/stores/useAppAuthStore'
 
 const authStore = useAppAuthStore()
 

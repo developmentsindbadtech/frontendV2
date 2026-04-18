@@ -4,17 +4,17 @@ definePageMeta({
 })
 
 const tabs = [
-  { label: 'DPM (Low-risk)',      path: '/dpm/low-risk' },
-  { label: 'DPM (Medium-risk)',   path: '/dpm/medium-risk' },
-  { label: 'DPM (High-risk)',     path: '/dpm/high-risk' },
-  { label: 'DPM (Custom)',        path: '/dpm/custom' },
-  { label: 'DPM (Paper Trading)', path: '/dpm/paper-trading' },
+  { label: 'DPM (Low-risk)', path: '/dashboard/dpm/low-risk' },
+  { label: 'DPM (Medium-risk)', path: '/dashboard/dpm/medium-risk' },
+  { label: 'DPM (High-risk)', path: '/dashboard/dpm/high-risk' },
+  { label: 'DPM (Custom)', path: '/dashboard/dpm/custom' },
+  { label: 'DPM (Paper Trading)', path: '/dashboard/dpm/paper-trading' },
 ]
 </script>
 
 <template>
   <section class="grid w-full max-w-10xl gap-6 xl:px-0">
-    <div class="flex items-center gap-2 rounded-xl border border-border p-1 w-fit ">
+    <div class="flex items-center gap-2 rounded-xl border border-border p-1 w-fit">
       <NuxtLink
         v-for="tab in tabs"
         :key="tab.path"
