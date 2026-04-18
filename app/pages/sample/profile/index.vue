@@ -15,7 +15,6 @@ import { useBackend } from '~/composables/api/useBackend'
 
 definePageMeta({
   layout: 'app',
-  middleware: ['auth'],
 })
 
 const { getUsers } = useBackend()

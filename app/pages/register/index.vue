@@ -5,12 +5,9 @@
     </a>
 
     <div class="lang-toggle">
-      <button
-        class="btn-lang"
-        @click="toggleLang"
+      <button class="btn-lang" @click="toggleLang"
         :aria-label="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'"
-        :title="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'"
-      >
+        :title="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'">
         {{ lang === 'en' ? 'AR' : 'EN' }}
       </button>
     </div>
@@ -43,20 +40,10 @@
                       <span class="label-icon material-icon">person</span>
                       {{ lang === 'en' ? 'First Name' : 'الاسم الأول' }}
                     </label>
-                    <input
-                      id="firstname"
-                      ref="firstnameInput"
-                      v-model="form.firstname"
-                      type="text"
-                      class="form-control"
+                    <input id="firstname" ref="firstnameInput" v-model="form.firstname" type="text" class="form-control"
                       :class="{ 'is-invalid': errors.firstname, 'is-valid': form.firstname && !errors.firstname && firstnameTouched }"
-                      :placeholder="lang === 'en' ? 'John' : 'محمد'"
-                      required
-                      autofocus
-                      autocomplete="given-name"
-                      aria-describedby="firstname-error"
-                      @blur="firstnameTouched = true"
-                    />
+                      :placeholder="lang === 'en' ? 'John' : 'محمد'" required autofocus autocomplete="given-name"
+                      aria-describedby="firstname-error" @blur="firstnameTouched = true" />
                     <Transition name="slide">
                       <div v-if="errors.firstname" id="firstname-error" class="field-error" role="alert">
                         <span class="error-icon material-icon">error</span>
@@ -70,18 +57,10 @@
                       <span class="label-icon material-icon">person_outline</span>
                       {{ lang === 'en' ? 'Last Name' : 'الاسم الأخير' }}
                     </label>
-                    <input
-                      id="lastname"
-                      v-model="form.lastname"
-                      type="text"
-                      class="form-control"
+                    <input id="lastname" v-model="form.lastname" type="text" class="form-control"
                       :class="{ 'is-invalid': errors.lastname, 'is-valid': form.lastname && !errors.lastname && lastnameTouched }"
-                      :placeholder="lang === 'en' ? 'Doe' : 'أحمد'"
-                      required
-                      autocomplete="family-name"
-                      aria-describedby="lastname-error"
-                      @blur="lastnameTouched = true"
-                    />
+                      :placeholder="lang === 'en' ? 'Doe' : 'أحمد'" required autocomplete="family-name"
+                      aria-describedby="lastname-error" @blur="lastnameTouched = true" />
                     <Transition name="slide">
                       <div v-if="errors.lastname" id="lastname-error" class="field-error" role="alert">
                         <span class="error-icon material-icon">error</span>
@@ -96,18 +75,10 @@
                     <span class="label-icon material-icon">mail</span>
                     {{ lang === 'en' ? 'Email Address' : 'البريد الإلكتروني' }}
                   </label>
-                  <input
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="form-control"
+                  <input id="email" v-model="form.email" type="email" class="form-control"
                     :class="{ 'is-invalid': errors.email, 'is-valid': form.email && !errors.email && emailTouched }"
-                    :placeholder="lang === 'en' ? 'name@company.com' : 'name@company.com'"
-                    required
-                    autocomplete="email"
-                    aria-describedby="email-error"
-                    @blur="emailTouched = true"
-                  />
+                    :placeholder="lang === 'en' ? 'name@company.com' : 'name@company.com'" required autocomplete="email"
+                    aria-describedby="email-error" @blur="emailTouched = true" />
                   <Transition name="slide">
                     <div v-if="errors.email" id="email-error" class="field-error" role="alert">
                       <span class="error-icon material-icon">error</span>
@@ -122,56 +93,50 @@
                     {{ lang === 'en' ? 'Password' : 'كلمة المرور' }}
                   </label>
                   <div class="input-wrapper">
-                    <input
-                      id="password"
-                      v-model="form.password"
-                      :type="showPassword ? 'text' : 'password'"
-                      class="form-control has-toggle"
-                      :class="{ 'is-invalid': errors.password }"
-                      :placeholder="lang === 'en' ? 'Create a strong password' : 'أنشئ كلمة مرور قوية'"
-                      required
-                      autocomplete="new-password"
-                      aria-describedby="password-error password-strength"
-                      @input="validatePassword"
-                    />
-                    <button
-                      type="button"
-                      class="password-toggle"
-                      @click="togglePassword"
-                      :aria-label="showPassword
-                        ? (lang === 'en' ? 'Hide password' : 'إخفاء كلمة المرور')
-                        : (lang === 'en' ? 'Show password' : 'إظهار كلمة المرور')"
-                    >
+                    <input id="password" v-model="form.password" :type="showPassword ? 'text' : 'password'"
+                      class="form-control has-toggle" :class="{ 'is-invalid': errors.password }"
+                      :placeholder="lang === 'en' ? 'Create a strong password' : 'أنشئ كلمة مرور قوية'" required
+                      autocomplete="new-password" aria-describedby="password-error password-strength"
+                      @input="validatePassword" />
+                    <button type="button" class="password-toggle" @click="togglePassword" :aria-label="showPassword
+                      ? (lang === 'en' ? 'Hide password' : 'إخفاء كلمة المرور')
+                      : (lang === 'en' ? 'Show password' : 'إظهار كلمة المرور')">
                       <span class="material-icon">{{ showPassword ? 'visibility_off' : 'visibility' }}</span>
                     </button>
                   </div>
 
                   <div id="password-strength" class="pw-strength" role="status" aria-live="polite">
                     <div class="pw-bar-track">
-                      <div class="pw-bar-fill" :style="{ width: pwStrengthPercent + '%' }" :class="pwStrengthClass"></div>
+                      <div class="pw-bar-fill" :style="{ width: pwStrengthPercent + '%' }" :class="pwStrengthClass">
+                      </div>
                     </div>
                     <span class="pw-strength-label" :class="pwStrengthClass">{{ pwStrengthLabel }}</span>
                   </div>
 
                   <ul class="pw-rules" aria-label="Password requirements">
                     <li :class="pwChecks.lower ? 'valid' : 'pending'">
-                      <span class="material-icon rule-icon">{{ pwChecks.lower ? 'check_circle' : 'radio_button_unchecked' }}</span>
+                      <span class="material-icon rule-icon">{{ pwChecks.lower ? 'check_circle' :
+                        'radio_button_unchecked' }}</span>
                       {{ lang === 'en' ? 'Lowercase letter (a-z)' : 'حرف صغير (a-z)' }}
                     </li>
                     <li :class="pwChecks.upper ? 'valid' : 'pending'">
-                      <span class="material-icon rule-icon">{{ pwChecks.upper ? 'check_circle' : 'radio_button_unchecked' }}</span>
+                      <span class="material-icon rule-icon">{{ pwChecks.upper ? 'check_circle' :
+                        'radio_button_unchecked' }}</span>
                       {{ lang === 'en' ? 'Uppercase letter (A-Z)' : 'حرف كبير (A-Z)' }}
                     </li>
                     <li :class="pwChecks.number ? 'valid' : 'pending'">
-                      <span class="material-icon rule-icon">{{ pwChecks.number ? 'check_circle' : 'radio_button_unchecked' }}</span>
+                      <span class="material-icon rule-icon">{{ pwChecks.number ? 'check_circle' :
+                        'radio_button_unchecked' }}</span>
                       {{ lang === 'en' ? 'Number (0-9)' : 'رقم (0-9)' }}
                     </li>
                     <li :class="pwChecks.symbol ? 'valid' : 'pending'">
-                      <span class="material-icon rule-icon">{{ pwChecks.symbol ? 'check_circle' : 'radio_button_unchecked' }}</span>
+                      <span class="material-icon rule-icon">{{ pwChecks.symbol ? 'check_circle' :
+                        'radio_button_unchecked' }}</span>
                       {{ lang === 'en' ? 'Special character (!@#$...)' : 'رمز خاص (!@#$...)' }}
                     </li>
                     <li :class="pwChecks.length ? 'valid' : 'pending'">
-                      <span class="material-icon rule-icon">{{ pwChecks.length ? 'check_circle' : 'radio_button_unchecked' }}</span>
+                      <span class="material-icon rule-icon">{{ pwChecks.length ? 'check_circle' :
+                        'radio_button_unchecked' }}</span>
                       {{ lang === 'en' ? 'Minimum 8 characters' : '8 أحرف على الأقل' }}
                     </li>
                   </ul>
@@ -183,48 +148,28 @@
                     {{ lang === 'en' ? 'Confirm Password' : 'تأكيد كلمة المرور' }}
                   </label>
                   <div class="input-wrapper">
-                    <input
-                      id="password-confirm"
-                      v-model="form.password_confirmation"
-                      :type="showPassword2 ? 'text' : 'password'"
-                      class="form-control has-toggle"
-                      :class="{
+                    <input id="password-confirm" v-model="form.password_confirmation"
+                      :type="showPassword2 ? 'text' : 'password'" class="form-control has-toggle" :class="{
                         'is-invalid': form.password_confirmation && form.password !== form.password_confirmation,
                         'is-valid': form.password_confirmation && form.password === form.password_confirmation
-                      }"
-                      :placeholder="lang === 'en' ? 'Re-enter your password' : 'أعد إدخال كلمة المرور'"
-                      required
-                      autocomplete="new-password"
-                      aria-describedby="confirm-error"
-                    />
-                    <button
-                      type="button"
-                      class="password-toggle"
-                      @click="togglePassword2"
-                      :aria-label="showPassword2
-                        ? (lang === 'en' ? 'Hide password' : 'إخفاء كلمة المرور')
-                        : (lang === 'en' ? 'Show password' : 'إظهار كلمة المرور')"
-                    >
+                      }" :placeholder="lang === 'en' ? 'Re-enter your password' : 'أعد إدخال كلمة المرور'" required
+                      autocomplete="new-password" aria-describedby="confirm-error" />
+                    <button type="button" class="password-toggle" @click="togglePassword2" :aria-label="showPassword2
+                      ? (lang === 'en' ? 'Hide password' : 'إخفاء كلمة المرور')
+                      : (lang === 'en' ? 'Show password' : 'إظهار كلمة المرور')">
                       <span class="material-icon">{{ showPassword2 ? 'visibility_off' : 'visibility' }}</span>
                     </button>
                   </div>
                   <Transition name="slide">
-                    <div
-                      v-if="form.password_confirmation && form.password !== form.password_confirmation"
-                      id="confirm-error"
-                      class="field-error"
-                      role="alert"
-                    >
+                    <div v-if="form.password_confirmation && form.password !== form.password_confirmation"
+                      id="confirm-error" class="field-error" role="alert">
                       <span class="error-icon material-icon">error</span>
                       {{ lang === 'en' ? 'Passwords do not match' : 'كلمتا المرور غير متطابقتين' }}
                     </div>
                   </Transition>
                   <Transition name="slide">
-                    <div
-                      v-if="form.password_confirmation && form.password === form.password_confirmation"
-                      class="field-success"
-                      role="status"
-                    >
+                    <div v-if="form.password_confirmation && form.password === form.password_confirmation"
+                      class="field-success" role="status">
                       <span class="material-icon success-icon">check_circle</span>
                       {{ lang === 'en' ? 'Passwords match' : 'كلمتا المرور متطابقتان' }}
                     </div>
@@ -233,13 +178,7 @@
 
                 <div class="agree-row">
                   <label class="check-label" for="agree-terms">
-                    <input
-                      id="agree-terms"
-                      v-model="form.agree"
-                      type="checkbox"
-                      class="form-check-input"
-                      required
-                    />
+                    <input id="agree-terms" v-model="form.agree" type="checkbox" class="form-check-input" required />
                     <span class="checkmark"></span>
                     <span class="check-text">
                       {{ lang === 'en' ? 'I agree to the' : 'أوافق على' }}
@@ -250,13 +189,8 @@
                   </label>
                 </div>
 
-                <button
-                  type="submit"
-                  class="btn-register"
-                  :class="{ 'btn-loading': loading }"
-                  :disabled="loading || !isFormValid"
-                  :aria-busy="loading"
-                >
+                <button type="submit" class="btn-register" :class="{ 'btn-loading': loading }"
+                  :disabled="loading || !isFormValid" :aria-busy="loading">
                   <span v-if="loading" class="spinner" aria-hidden="true"></span>
                   {{ loading
                     ? (lang === 'en' ? 'Creating Account...' : 'جار إنشاء الحساب...')
@@ -313,7 +247,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue'
 
-definePageMeta({ middleware: 'auth', layout: false })
+definePageMeta({ layout: false })
 
 const lang = ref('en')
 const showPassword = ref(false)
@@ -484,7 +418,10 @@ onMounted(() => {
   z-index: 100;
   transition: top 0.2s;
 }
-.skip-link:focus { top: 0; }
+
+.skip-link:focus {
+  top: 0;
+}
 
 .lang-toggle {
   position: fixed;
@@ -492,12 +429,13 @@ onMounted(() => {
   right: 1rem;
   z-index: 10;
 }
+
 .btn-lang {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
   color: #e8edf1;
   font-weight: 700;
   font-size: 0.78rem;
@@ -506,12 +444,14 @@ onMounted(() => {
   transition: all 0.25s ease;
   backdrop-filter: blur(8px);
 }
+
 .btn-lang:hover {
   background: #22c9a0;
   border-color: #22c9a0;
   color: #0f1923;
   transform: scale(1.05);
 }
+
 .btn-lang:focus-visible {
   outline: 2px solid #22c9a0;
   outline-offset: 2px;
@@ -531,9 +471,10 @@ onMounted(() => {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow:
-    0 4px 6px rgba(0,0,0,0.15),
-    0 20px 40px rgba(0,0,0,0.25);
+    0 4px 6px rgba(0, 0, 0, 0.15),
+    0 20px 40px rgba(0, 0, 0, 0.25);
 }
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -544,6 +485,7 @@ onMounted(() => {
   flex: 0 0 50%;
   max-width: 50%;
 }
+
 .form-body {
   background: #1a2836;
   padding: 2rem 2.5rem 2rem;
@@ -553,13 +495,21 @@ onMounted(() => {
   justify-content: center;
   box-sizing: border-box;
 }
-.text-center { text-align: center; }
+
+.text-center {
+  text-align: center;
+}
+
 .auth-logo {
   height: 40px;
   margin-bottom: 0.75rem;
   transition: opacity 0.3s;
 }
-.auth-logo:hover { opacity: 0.85; }
+
+.auth-logo:hover {
+  opacity: 0.85;
+}
+
 .welcome-heading {
   color: #e8edf1;
   font-size: 1.2rem;
@@ -568,15 +518,25 @@ onMounted(() => {
   letter-spacing: -0.01em;
 }
 
-.auth-form { display: flex; flex-direction: column; gap: 0; }
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
 .form-group {
   margin-bottom: 0.75rem;
 }
+
 .name-row {
   display: flex;
   gap: 0.75rem;
 }
-.name-row .half { flex: 1; }
+
+.name-row .half {
+  flex: 1;
+}
+
 .form-label {
   display: flex;
   align-items: center;
@@ -587,10 +547,12 @@ onMounted(() => {
   margin-bottom: 0.35rem;
   letter-spacing: 0.02em;
 }
+
 .label-icon {
   font-size: 0.95rem;
   opacity: 0.7;
 }
+
 .material-icon {
   font-family: 'Material Icons';
   font-style: normal;
@@ -604,29 +566,39 @@ onMounted(() => {
   padding: 0.7rem 1rem;
   font-family: inherit;
   font-size: 0.88rem;
-  background: rgba(255,255,255,0.06);
-  border: 1.5px solid rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
   border-radius: 0.6rem;
   color: #e8edf1;
   transition: all 0.2s ease;
   box-sizing: border-box;
 }
-.form-control::placeholder { color: #5a7182; }
-.form-control:hover { border-color: rgba(255,255,255,0.22); }
+
+.form-control::placeholder {
+  color: #5a7182;
+}
+
+.form-control:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
 .form-control:focus {
   outline: none;
   border-color: #22c9a0;
-  box-shadow: 0 0 0 3px rgba(34,201,160,0.15);
-  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(34, 201, 160, 0.15);
+  background: rgba(255, 255, 255, 0.08);
 }
+
 .form-control.is-invalid {
   border-color: #ef5350;
-  box-shadow: 0 0 0 3px rgba(239,83,80,0.1);
+  box-shadow: 0 0 0 3px rgba(239, 83, 80, 0.1);
 }
+
 .form-control.is-valid {
   border-color: #4caf50;
-  box-shadow: 0 0 0 3px rgba(76,175,80,0.1);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
 }
+
 .form-control.has-toggle {
   padding-right: 3rem;
 }
@@ -634,6 +606,7 @@ onMounted(() => {
 .input-wrapper {
   position: relative;
 }
+
 .password-toggle {
   position: absolute;
   right: 0.75rem;
@@ -648,8 +621,14 @@ onMounted(() => {
   display: flex;
   align-items: center;
 }
-.password-toggle:hover { color: #e8edf1; }
-.password-toggle .material-icon { font-size: 1.15rem; }
+
+.password-toggle:hover {
+  color: #e8edf1;
+}
+
+.password-toggle .material-icon {
+  font-size: 1.15rem;
+}
 
 .field-error {
   display: flex;
@@ -659,7 +638,11 @@ onMounted(() => {
   font-size: 0.75rem;
   color: #ef5350;
 }
-.field-error .error-icon { font-size: 0.85rem; }
+
+.field-error .error-icon {
+  font-size: 0.85rem;
+}
+
 .field-success {
   display: flex;
   align-items: center;
@@ -668,7 +651,10 @@ onMounted(() => {
   font-size: 0.75rem;
   color: #4caf50;
 }
-.success-icon { font-size: 0.85rem; }
+
+.success-icon {
+  font-size: 0.85rem;
+}
 
 .error-message {
   display: flex;
@@ -676,13 +662,16 @@ onMounted(() => {
   gap: 0.5rem;
   margin-bottom: 1rem;
   padding: 0.75rem 1rem;
-  background: rgba(239,83,80,0.08);
+  background: rgba(239, 83, 80, 0.08);
   border-left: 3px solid #ef5350;
   border-radius: 0 0.5rem 0.5rem 0;
   color: #ef5350;
   font-size: 0.82rem;
 }
-.error-message .error-icon { font-size: 1.1rem; }
+
+.error-message .error-icon {
+  font-size: 1.1rem;
+}
 
 .pw-strength {
   display: flex;
@@ -691,30 +680,51 @@ onMounted(() => {
   margin-top: 0.4rem;
   margin-bottom: 0.3rem;
 }
+
 .pw-bar-track {
   flex: 1;
   height: 4px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 2px;
   overflow: hidden;
 }
+
 .pw-bar-fill {
   height: 100%;
   border-radius: 2px;
   transition: width 0.35s ease, background 0.35s ease;
 }
-.pw-bar-fill.weak { background: #ef5350; }
-.pw-bar-fill.medium { background: #ffb74d; }
-.pw-bar-fill.strong { background: #4caf50; }
+
+.pw-bar-fill.weak {
+  background: #ef5350;
+}
+
+.pw-bar-fill.medium {
+  background: #ffb74d;
+}
+
+.pw-bar-fill.strong {
+  background: #4caf50;
+}
+
 .pw-strength-label {
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   min-width: 3.5rem;
 }
-.pw-strength-label.weak { color: #ef5350; }
-.pw-strength-label.medium { color: #ffb74d; }
-.pw-strength-label.strong { color: #4caf50; }
+
+.pw-strength-label.weak {
+  color: #ef5350;
+}
+
+.pw-strength-label.medium {
+  color: #ffb74d;
+}
+
+.pw-strength-label.strong {
+  color: #4caf50;
+}
 
 .pw-rules {
   list-style: none;
@@ -724,6 +734,7 @@ onMounted(() => {
   grid-template-columns: 1fr 1fr;
   gap: 0.15rem 0.5rem;
 }
+
 .pw-rules li {
   display: flex;
   align-items: center;
@@ -731,12 +742,15 @@ onMounted(() => {
   font-size: 0.7rem;
   transition: color 0.25s;
 }
+
 .pw-rules .pending {
   color: #5a7182;
 }
+
 .pw-rules .valid {
   color: #4caf50;
 }
+
 .rule-icon {
   font-size: 0.8rem;
 }
@@ -745,6 +759,7 @@ onMounted(() => {
   margin-bottom: 1rem;
   margin-top: 0.25rem;
 }
+
 .check-label {
   display: flex;
   align-items: center;
@@ -754,6 +769,7 @@ onMounted(() => {
   color: #8fa3b3;
   user-select: none;
 }
+
 .form-check-input {
   width: 1.1rem;
   height: 1.1rem;
@@ -761,12 +777,14 @@ onMounted(() => {
   accent-color: #22c9a0;
   flex-shrink: 0;
 }
+
 .check-text a {
   color: #22c9a0;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
 }
+
 .check-text a:hover {
   color: #1db08a;
   text-decoration: underline;
@@ -788,57 +806,69 @@ onMounted(() => {
   position: relative;
   overflow: hidden;
 }
+
 .btn-register:hover:not(:disabled) {
   background: linear-gradient(135deg, #28d4aa, #22c9a0);
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(34,201,160,0.3);
+  box-shadow: 0 8px 24px rgba(34, 201, 160, 0.3);
 }
+
 .btn-register:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(34,201,160,0.2);
+  box-shadow: 0 4px 12px rgba(34, 201, 160, 0.2);
 }
+
 .btn-register:disabled {
   opacity: 0.45;
   cursor: not-allowed;
   transform: none;
 }
+
 .btn-register:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
 
-.btn-loading { pointer-events: none; }
+.btn-loading {
+  pointer-events: none;
+}
+
 .spinner {
   display: inline-block;
   width: 1rem;
   height: 1rem;
-  border: 2px solid rgba(15,25,35,0.3);
+  border: 2px solid rgba(15, 25, 35, 0.3);
   border-top-color: #0f1923;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
   margin-right: 0.5rem;
   vertical-align: middle;
 }
+
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .divider {
   display: flex;
   align-items: center;
   margin: 0.75rem 0;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255, 255, 255, 0.2);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
+
 .divider::before,
 .divider::after {
   content: '';
   flex: 1;
   height: 1px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
+
 .divider span {
   padding: 0 1rem;
   color: #5a7182;
@@ -849,12 +879,13 @@ onMounted(() => {
   font-size: 0.85rem;
   color: #8fa3b3;
 }
+
 .btn-signin-link {
   display: inline-block;
   margin-left: 0.5rem;
   padding: 0.45rem 1.5rem;
   background: transparent;
-  border: 1.5px solid rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
   color: #e8edf1;
   border-radius: 0.75rem;
   text-decoration: none;
@@ -863,11 +894,13 @@ onMounted(() => {
   letter-spacing: 0.5px;
   transition: all 0.25s;
 }
+
 .btn-signin-link:hover {
   border-color: #22c9a0;
   color: #22c9a0;
-  background: rgba(34,201,160,0.05);
+  background: rgba(34, 201, 160, 0.05);
 }
+
 .btn-signin-link:focus-visible {
   outline: 2px solid #22c9a0;
   outline-offset: 2px;
@@ -881,6 +914,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
 }
+
 .image-overlay {
   width: 100%;
   height: 100%;
@@ -888,6 +922,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
 }
+
 .hero-image {
   width: 100%;
   height: 100%;
@@ -898,6 +933,7 @@ onMounted(() => {
 .auth-footer {
   padding: 1rem 2rem;
 }
+
 .footer-inner {
   display: flex;
   justify-content: space-between;
@@ -905,21 +941,30 @@ onMounted(() => {
   font-size: 0.78rem;
   color: #5a7182;
 }
+
 .footer-left a {
   color: #8fa3b3;
   text-decoration: none;
 }
-.footer-left a:hover { color: #22c9a0; }
+
+.footer-left a:hover {
+  color: #22c9a0;
+}
+
 .footer-right {
   display: flex;
   gap: 1.5rem;
 }
+
 .footer-right a {
   color: #5a7182;
   text-decoration: none;
   transition: color 0.2s;
 }
-.footer-right a:hover { color: #8fa3b3; }
+
+.footer-right a:hover {
+  color: #8fa3b3;
+}
 
 .preloader {
   position: fixed;
@@ -930,32 +975,48 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
 }
+
 .preloader img {
   animation: pulse 1.2s ease-in-out infinite;
 }
+
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.92); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.92);
+  }
 }
 
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
 }
+
 .slide-enter-active {
   transition: all 0.25s ease;
 }
+
 .slide-leave-active {
   transition: all 0.15s ease;
 }
+
 .slide-enter-from {
   opacity: 0;
   transform: translateY(-4px);
 }
+
 .slide-leave-to {
   opacity: 0;
   transform: translateY(-4px);
@@ -965,40 +1026,68 @@ onMounted(() => {
   padding-right: 1rem;
   padding-left: 3rem;
 }
+
 [dir="rtl"] .password-toggle {
   right: auto;
   left: 0.75rem;
 }
+
 [dir="rtl"] .error-message {
   border-left: none;
   border-right: 3px solid #ef5350;
 }
+
 [dir="rtl"] .btn-signin-link {
   margin-left: 0;
   margin-right: 0.5rem;
 }
+
 [dir="rtl"] .spinner {
   margin-right: 0;
   margin-left: 0.5rem;
 }
 
 @media (max-width: 768px) {
-  .form-col { flex: 0 0 100%; max-width: 100%; }
-  .image-col { display: none; }
-  .form-body { padding: 2rem 1.5rem; }
-  .name-row { flex-direction: column; gap: 0; }
-  .pw-rules { grid-template-columns: 1fr; }
-  .footer-inner { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .form-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .image-col {
+    display: none;
+  }
+
+  .form-body {
+    padding: 2rem 1.5rem;
+  }
+
+  .name-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pw-rules {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
 }
 
 @media (max-width: 380px) {
-  .form-body { padding: 1.5rem 1.25rem; }
+  .form-body {
+    padding: 1.5rem 1.25rem;
+  }
 }
 
 *:focus-visible {
   outline: 2px solid #22c9a0;
   outline-offset: 2px;
 }
+
 input:focus-visible {
   outline: none;
 }

@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useAppAuthStore } from '~/stores/useAppAuthStore'
 
-definePageMeta({ middleware: 'auth', layout: false })
+definePageMeta({ layout: false })
 
 const authStore = useAppAuthStore()
 
@@ -80,12 +80,9 @@ onMounted(() => {
     </a>
 
     <div class="lang-toggle">
-      <button
-        class="btn-lang"
-        @click="toggleLang"
+      <button class="btn-lang" @click="toggleLang"
         :aria-label="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'"
-        :title="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'"
-      >
+        :title="lang === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'">
         {{ lang === 'en' ? 'AR' : 'EN' }}
       </button>
     </div>
@@ -124,23 +121,11 @@ onMounted(() => {
                     <span class="label-icon material-icon">mail</span>
                     {{ lang === 'en' ? 'Email Address' : 'البريد الإلكتروني' }}
                   </label>
-                  <input
-                    id="email"
-                    ref="emailInput"
-                    v-model="form.email"
-                    type="email"
-                    class="form-control"
-                    :class="{
-                      'is-invalid': errors.email,
-                      'is-valid': form.email && !errors.email && emailTouched,
-                    }"
-                    :placeholder="lang === 'en' ? 'name@company.com' : 'name@company.com'"
-                    required
-                    autofocus
-                    autocomplete="email"
-                    aria-describedby="email-error"
-                    @blur="emailTouched = true"
-                  />
+                  <input id="email" ref="emailInput" v-model="form.email" type="email" class="form-control" :class="{
+                    'is-invalid': errors.email,
+                    'is-valid': form.email && !errors.email && emailTouched,
+                  }" :placeholder="lang === 'en' ? 'name@company.com' : 'name@company.com'" required autofocus
+                    autocomplete="email" aria-describedby="email-error" @blur="emailTouched = true" />
                   <Transition name="slide">
                     <div v-if="errors.email" id="email-error" class="field-error" role="alert">
                       <span class="error-icon material-icon">error</span>
@@ -155,78 +140,34 @@ onMounted(() => {
                     {{ lang === 'en' ? 'Password' : 'كلمة المرور' }}
                   </label>
                   <div class="input-wrapper">
-                    <input
-                      id="password"
-                      v-model="form.password"
-                      :type="showPassword ? 'text' : 'password'"
-                      class="form-control has-toggle"
-                      :class="{ 'is-invalid': errors.password }"
-                      :placeholder="lang === 'en' ? 'Enter your password' : 'أدخل كلمة المرور'"
-                      required
-                      autocomplete="current-password"
-                      aria-describedby="password-error"
-                    />
-                    <button
-                      type="button"
-                      class="password-toggle"
-                      @click="togglePassword"
-                      :aria-label="
-                        showPassword
-                          ? lang === 'en'
-                            ? 'Hide password'
-                            : 'إخفاء كلمة المرور'
-                          : lang === 'en'
-                            ? 'Show password'
-                            : 'إظهار كلمة المرور'
-                      "
-                    >
-                      <svg
-                        class="eye-icon"
-                        :class="{ 'eye-open': showPassword }"
-                        width="22"
-                        height="22"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          class="eye-outline"
-                          d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"
-                          stroke="currentColor"
-                          stroke-width="1.8"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <circle
-                          class="eye-iris"
-                          cx="12"
-                          cy="12"
-                          r="3.5"
-                          stroke="currentColor"
-                          stroke-width="1.8"
-                          fill="none"
-                        />
+                    <input id="password" v-model="form.password" :type="showPassword ? 'text' : 'password'"
+                      class="form-control has-toggle" :class="{ 'is-invalid': errors.password }"
+                      :placeholder="lang === 'en' ? 'Enter your password' : 'أدخل كلمة المرور'" required
+                      autocomplete="current-password" aria-describedby="password-error" />
+                    <button type="button" class="password-toggle" @click="togglePassword" :aria-label="showPassword
+                      ? lang === 'en'
+                        ? 'Hide password'
+                        : 'إخفاء كلمة المرور'
+                      : lang === 'en'
+                        ? 'Show password'
+                        : 'إظهار كلمة المرور'
+                      ">
+                      <svg class="eye-icon" :class="{ 'eye-closed': showPassword }" width="22" height="22"
+                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="eye-top" d="M1 12s4-8 11-8 11 8 11 8" stroke="currentColor" stroke-width="1.8"
+                          stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                        <path class="eye-bottom" d="M1 12s4 8 11 8 11-8 11-8" stroke="currentColor" stroke-width="1.8"
+                          stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                        <circle class="eye-iris" cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"
+                          fill="none" />
                         <circle class="eye-pupil" cx="12" cy="12" r="1.5" fill="currentColor" />
-                        <line
-                          class="eye-strike"
-                          x1="4"
-                          y1="4"
-                          x2="20"
-                          y2="20"
-                          stroke="currentColor"
-                          stroke-width="1.8"
-                          stroke-linecap="round"
-                        />
+                        <path class="eye-lashes" d="M12 17v2M7.5 15.5l-1.5 1.5M16.5 15.5l1.5 1.5" stroke="currentColor"
+                          stroke-width="1.8" stroke-linecap="round" fill="none" />
                       </svg>
                     </button>
                   </div>
                   <Transition name="slide">
-                    <div
-                      v-if="errors.password"
-                      id="password-error"
-                      class="field-error"
-                      role="alert"
-                    >
+                    <div v-if="errors.password" id="password-error" class="field-error" role="alert">
                       <span class="error-icon material-icon">error</span>
                       {{ errors.password }}
                     </div>
@@ -243,13 +184,8 @@ onMounted(() => {
                   </NuxtLink>
                 </div>
 
-                <button
-                  type="submit"
-                  class="btn-signin"
-                  :class="{ 'btn-loading': loading }"
-                  :disabled="loading || !form.email || !form.password"
-                  :aria-busy="loading"
-                >
+                <button type="submit" class="btn-signin" :class="{ 'btn-loading': loading }"
+                  :disabled="loading || !form.email || !form.password" :aria-busy="loading">
                   <span v-if="loading" class="spinner" aria-hidden="true"></span>
                   {{
                     loading
@@ -560,23 +496,36 @@ input[type='password']::-webkit-credentials-auto-fill-button {
 
 .eye-icon .eye-iris,
 .eye-icon .eye-pupil {
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.25s ease, transform 0.3s ease;
   transform: translateX(-2.5px);
 }
 
-.eye-icon.eye-open .eye-iris,
-.eye-icon.eye-open .eye-pupil {
-  transform: translateX(2.5px);
+.eye-icon .eye-top,
+.eye-icon .eye-bottom {
+  transition: d 0.3s ease;
 }
 
-.eye-icon .eye-strike {
-  stroke-dasharray: 24;
-  stroke-dashoffset: 24;
-  transition: stroke-dashoffset 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.eye-icon .eye-lashes {
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
-.eye-icon:not(.eye-open) .eye-strike {
-  stroke-dashoffset: 0;
+.eye-icon.eye-closed .eye-top {
+  d: path('M1 12s4 0 11 0 11 0 11 0');
+}
+
+.eye-icon.eye-closed .eye-bottom {
+  d: path('M1 12s4 0 11 0 11 0 11 0');
+}
+
+.eye-icon.eye-closed .eye-iris,
+.eye-icon.eye-closed .eye-pupil {
+  opacity: 0;
+  transform: translateY(2px);
+}
+
+.eye-icon.eye-closed .eye-lashes {
+  opacity: 1;
 }
 
 .material-icon {
@@ -896,6 +845,7 @@ input[type='password']::-webkit-credentials-auto-fill-button {
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     opacity: 1;
@@ -949,11 +899,6 @@ input[type='password']::-webkit-credentials-auto-fill-button {
 [dir='rtl'] .eye-icon .eye-iris,
 [dir='rtl'] .eye-icon .eye-pupil {
   transform: translateX(2.5px);
-}
-
-[dir='rtl'] .eye-icon.eye-open .eye-iris,
-[dir='rtl'] .eye-icon.eye-open .eye-pupil {
-  transform: translateX(-2.5px);
 }
 
 [dir='rtl'] .error-message {
