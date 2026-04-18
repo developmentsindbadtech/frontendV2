@@ -46,14 +46,23 @@ export default defineNuxtPlugin({
 
     console.log('Using Backend URL:', backendBaseUrl)
 
+    const { token: authToken, signOut } = useAuth()
+
     const api: ApiInstances = {
       backend: createApiClient({
         baseURL: backendBaseUrl as string,
-        getToken: () => authStore.token,
+        getToken: () => {
+          const t = authToken.value
+          if (!t) return null
+          // nuxt-auth might store it with "Bearer " prefix if configured, 
+          // but usually it's just the raw token from the response pointer.
+          return t.replace('Bearer ', '')
+        },
         onAuthError: () => {
-          authStore.logout()
+          signOut()
         },
       }),
+
 
       dpm: createApiClient({
         baseURL: config.public.dpmEndpoint as string,

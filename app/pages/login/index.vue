@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useAppAuthStore } from '~/stores/useAppAuthStore'
+const { signIn } = useAuth()
 
-definePageMeta({ layout: false })
+definePageMeta({
+  layout: false,
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/dashboard',
+  },
+})
 
-const authStore = useAppAuthStore()
 
 const lang = ref('en')
 const showPassword = ref(false)
@@ -44,12 +48,16 @@ const handleLogin = async () => {
 
   loading.value = true
   error.value = ''
-
   try {
-    await authStore.login({
+    const res = await signIn('local', {
       email: form.value.email,
       password: form.value.password,
+      redirect: false,
     })
+
+    if (res?.error) {
+      throw new Error(res.error)
+    }
 
     await navigateTo('/dashboard', { replace: true })
   } catch (err: any) {
@@ -66,6 +74,7 @@ const handleLogin = async () => {
     loading.value = false
   }
 }
+
 
 onMounted(() => {
   setTimeout(() => {

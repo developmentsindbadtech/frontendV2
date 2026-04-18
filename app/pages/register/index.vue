@@ -247,7 +247,13 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue'
 
-definePageMeta({ layout: false })
+definePageMeta({
+  layout: false,
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/dashboard',
+  },
+})
 
 const lang = ref('en')
 const showPassword = ref(false)

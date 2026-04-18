@@ -15,19 +15,25 @@ const credentials = ref<Credentials>({
   password: '',
 })
 
-const { login } = useAppAuthStore()
+const { signIn } = useAuth()
 
 const handleSubmit = async () => {
   isLoading.value = true
-  const res = await login(credentials.value)
-  if (!res) {
-    toast.error('Login failed: Invalid credentials')
+  const res = await signIn('local', {
+    email: credentials.value.email,
+    password: credentials.value.password,
+    redirect: false
+  })
+  
+  if (res?.error) {
+    toast.error('Login failed: ' + res.error)
   } else {
     toast.success('Logged in successfully')
     navigateTo('/')
   }
   isLoading.value = false
 }
+
 </script>
 
 <template>

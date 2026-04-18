@@ -41,8 +41,10 @@ const closeMobileNav = () => {
   expandedMobileSections.value = []
 }
 
-const authStore = useAppAuthStore()
-const isLoggedIn = computed(() => authStore.isSessionActive())
+const { status } = useAuth()
+const isLoggedIn = computed(() => status.value === 'authenticated')
+
+
 </script>
 
 <template>

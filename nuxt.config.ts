@@ -27,7 +27,35 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
+    '@sidebase/nuxt-auth',
   ],
+  auth: {
+    provider: {
+      type: 'local',
+      endpoints: {
+        signIn: { path: '/login', method: 'post' },
+        signOut: { path: '/logout', method: 'post' },
+        getSession: { path: '/user', method: 'get' },
+      },
+      token: {
+        signInResponseTokenPointer: '/token',
+        type: 'Bearer',
+        headerName: 'Authorization',
+        maxAgeInSeconds: 28800,
+      },
+      pages: {
+        login: '/login',
+      },
+      sessionDataType: {
+        id: 'string | number',
+        name: 'string',
+        email: 'string',
+        botToken: 'string',
+      },
+    },
+    globalAppMiddleware: true,
+  },
+
   colorMode: {
     classSuffix: '',
   },

@@ -12,6 +12,7 @@ import Pricing from '~/components/landing/sections/Pricing.vue'
 
 definePageMeta({
   layout: 'landing',
+  auth: false,
 })
 useHead({
   title: 'Sindbad - AI-Powered Stock Trading for Saudi Markets',

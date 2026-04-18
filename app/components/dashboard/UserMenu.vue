@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { LogOut, Settings, User } from 'lucide-vue-next'
-import { useAppAuthStore } from '~/stores/useAppAuthStore'
-
-const authStore = useAppAuthStore()
+const { data: session, signOut } = useAuth()
 const { t } = useI18n()
 
-const handleLogout = () => {
-  authStore.logout()
+const handleLogout = async () => {
+  await signOut({ redirect: false })
+  await navigateTo('/login', { replace: true })
 }
+
 </script>
 
 <template>
