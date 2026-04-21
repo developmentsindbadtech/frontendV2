@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-  CreditCard, type LucideComponent, Megaphone, Banknote, TvMinimalPlay, Bot, ShieldUser, LayoutDashboard
+  CreditCard, type LucideComponent, Megaphone, Banknote, TvMinimalPlay, Bot, ShieldUser, LayoutDashboard,MessageCircle
 } from 'lucide-vue-next'
 
 const { t, locale } = useI18n()
@@ -11,6 +11,7 @@ const navItems: { key: string; icon: typeof LucideComponent; to: string }[] = [
   { key: 'dashboard', icon: LayoutDashboard, to: '/dashboard' },
   { key: 'referrals', icon: Megaphone, to: '/dashboard/referrals' },
   { key: 'profile', icon: CreditCard, to: '/dashboard/profile' },
+  { key: 'whatsapp', icon: MessageCircle, to: '/dashboard/whatsapp' },
   { key: 'dpm', icon: Banknote, to: '/dashboard/dpm' },
   { key: 'subscriptions', icon: TvMinimalPlay, to: '/dashboard/subscriptions' },
   { key: 'tradingBot', icon: Bot, to: '/dashboard/trading-bot' },
